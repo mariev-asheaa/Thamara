@@ -5,7 +5,7 @@ import 'package:thamara/features/auth/sign_up/presentation/widgets/phone_field.d
 import 'package:thamara/features/auth/sign_up/presentation/widgets/user_name_field.dart';
 import '../../../../core/color_manager/app_colors.dart';
 import '../../../../core/widgets/app_logo.dart';
-import '../../../../core/widgets/app_logo_text.dart';
+import '../../../../core/widgets/thamara_text.dart';
 import '../../../../core/widgets/custome_button.dart';
 import '../../../../core/widgets/custome_labeld_field.dart';
 
@@ -29,7 +29,7 @@ class SignUpView extends StatelessWidget {
                 
                   SizedBox(height: 24.h),
                 
-                  const AppLogoText(),
+                  const ThamaraText(),
                 
                   SizedBox(height: 41.h),
                 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:thamara/core/widgets/app_logo.dart';
-import 'package:thamara/core/widgets/app_logo_text.dart';
+import 'package:thamara/core/widgets/thamara_text.dart';
 import 'package:thamara/core/color_manager/app_colors.dart';
 import 'package:thamara/features/auth/login/presentation/widgets/terms_and_policy_text.dart';
 
@@ -30,7 +30,7 @@ class LoginView extends StatelessWidget {
                 
                   SizedBox(height: 25.h),
                 
-                  const Hero(tag: 'app_logo_text', child: AppLogoText()),
+                  const Hero(tag: 'app_logo_text', child: ThamaraText()),
                 
                   SizedBox(height: 41.h),
                 

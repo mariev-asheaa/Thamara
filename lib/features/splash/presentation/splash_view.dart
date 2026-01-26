@@ -4,7 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:thamara/core/color_manager/app_colors.dart';
 import 'package:thamara/core/widgets/app_logo.dart';
-import 'package:thamara/core/widgets/app_logo_text.dart';
+import 'package:thamara/core/widgets/thamara_text.dart';
 
 import '../../auth/login/presentation/login_view.dart';
 
@@ -57,7 +57,7 @@ class _SplashViewState extends State<SplashView> {
 
             SizedBox(height: 20.h),
 
-            Hero(tag: 'app_logo_text', child: AppLogoText())
+            Hero(tag: 'app_logo_text', child: ThamaraText())
                 .animate(delay: 600.ms)
                 .fadeIn(duration: 400.ms)
                 .moveY(
