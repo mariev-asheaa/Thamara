@@ -1,0 +1,72 @@
+import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
+import 'package:meta/meta.dart';
+
+import '../../../../../core/extentions/navigation.dart';
+import '../../../../../core/extentions/show_toast.dart';
+import '../../../../../core/routing/routes.dart';
+import '../../data/params/register_params.dart';
+import '../../data/repos/register_repo.dart';
+
+part 'register_state.dart';
+
+@injectable
+class RegisterCubit extends Cubit<RegisterState> {
+  final RegisterRepository registerRepository;
+
+  RegisterCubit({
+    required this.registerRepository,
+  }) : super(RegisterInitial());
+
+  final GlobalKey<FormState> registerFormKeyController = GlobalKey<FormState>();
+  final TextEditingController registerEmailController = TextEditingController();
+  final TextEditingController registerPasswordController =
+  TextEditingController();
+  final TextEditingController registerConfirmPasswordController =
+  TextEditingController();
+  final TextEditingController registerFirstNameController =
+  TextEditingController();
+  final TextEditingController registerLastNameController =
+  TextEditingController();
+  final TextEditingController registerPhoneController = TextEditingController();
+  final TextEditingController registerOTPController = TextEditingController();
+  bool isChecked = false;
+
+  void changeCheck(bool value) {
+    isChecked = value;
+  }
+
+  Future register(BuildContext context) async {
+    emit(RegisterLoadingState());
+    var result = await registerRepository.register(
+      param: RegisterParams(
+          email: registerEmailController.text,
+          password: registerPasswordController.text,
+          firstName: registerFirstNameController.text,
+          confirmPassword: registerConfirmPasswordController.text,
+          lastName: registerLastNameController.text),
+    );
+    result.fold((failure) {
+      context.showToast(failure.errMessage, isError: true);
+      emit(RegisterFailureState(errorMessage: failure.errMessage));
+    }, (authModel) {
+      context.pushWithNamed(Routes.otpView,
+        //  arguments: OTPArgument(email: authModel.email!, isRegisterOTP: true)
+          );
+      emit(RegisterSuccessState());
+    });
+  }
+
+  @override
+  Future<void> close() {
+    registerEmailController.dispose();
+    registerPasswordController.dispose();
+    registerConfirmPasswordController.dispose();
+    registerFirstNameController.dispose();
+    registerLastNameController.dispose();
+    registerPhoneController.dispose();
+    registerOTPController.dispose();
+    return super.close();
+  }
+}
