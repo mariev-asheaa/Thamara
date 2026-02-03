@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:thamara/app/thamara_app.dart';
 
 import 'package:thamara/main.dart';
 

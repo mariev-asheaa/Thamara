@@ -1,27 +1,36 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'features/splash/presentation/splash_view.dart';
+import 'app/thamara_app.dart';
+import 'core/dependency_injection/di.dart';
 
-void main() {
-  runApp(const Thamara());
+/// Easy Localization
+/// dart run easy_localization:generate -S assets/translations
+/// dart run easy_localization:generate -f keys -o locale_keys.g.dart -S assets/translations
+///code generator runner
+///dart run build_runner build
+/// Di (InjectableInit)
+/// dart run build_runner build --delete-conflicting-outputs
+Future<void> main()async{
+  await Future.wait([
+    configureDependencies(),
+    ScreenUtil.ensureScreenSize(),
+    EasyLocalization.ensureInitialized(),
+  ]);
+  runApp(
+    DevicePreview(
+      enabled: false,
+      builder: (context) => EasyLocalization(
+        useOnlyLangCode: true,
+        supportedLocales: const [Locale('ar'), Locale('en')],
+        path: 'assets/translations',
+        startLocale: const Locale('en'),
+        child: const Thamara(),
+      ),
+    ),
+  );
 }
 
-class Thamara extends StatelessWidget {
-  const Thamara({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(440, 956),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: const SplashView(),
-        );
-      },
-    );
-  }
-}
