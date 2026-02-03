@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:thamara/core/extentions/navigation.dart';
 import 'package:thamara/core/widgets/app_logo.dart';
 import 'package:thamara/core/widgets/thamara_text.dart';
 import 'package:thamara/core/color_manager/app_colors.dart';
 import 'package:thamara/features/auth/login/presentation/widgets/terms_and_policy_text.dart';
 
+import '../../../../core/routing/routes.dart';
 import '../../../../core/text_style_manager/text_style_manager.dart';
 import '../../../../core/widgets/custome_button.dart';
 import '../../../../core/widgets/custome_labeld_field.dart';
@@ -86,10 +88,7 @@ class LoginView extends StatelessWidget {
                     text: 'Create New Account',
                     isPrimary: false,
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const SignUpView()),
-                      );
+                    context.pushWithNamed(Routes.registerView);
                     },
                   ),
                 

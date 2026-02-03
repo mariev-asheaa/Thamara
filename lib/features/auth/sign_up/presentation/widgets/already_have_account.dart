@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:thamara/core/color_manager/app_colors.dart';
+import 'package:thamara/core/extentions/navigation.dart';
 import 'package:thamara/core/text_style_manager/text_style_manager.dart';
 
 class AlreadyHaveAccount extends StatelessWidget {
@@ -23,7 +24,7 @@ class AlreadyHaveAccount extends StatelessWidget {
             ),
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                Navigator.pop(context);
+                context.pop;
               },
           ),
         ],

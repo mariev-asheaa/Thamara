@@ -6,6 +6,8 @@ import 'package:thamara/core/color_manager/app_colors.dart';
 import 'package:thamara/core/widgets/app_logo.dart';
 import 'package:thamara/core/widgets/thamara_text.dart';
 
+import '../../../core/extentions/navigation.dart';
+import '../../../core/routing/routes.dart';
 import '../../auth/login/presentation/login_view.dart';
 
 class SplashView extends StatefulWidget {
@@ -22,10 +24,7 @@ class _SplashViewState extends State<SplashView> {
 
     Future.delayed(const Duration(milliseconds: 3000), () {
       if (mounted) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const LoginView()),
-        );
+        context.pushAndRemoveUntilWithNamed(Routes.loginView);
       }
     });
   }
