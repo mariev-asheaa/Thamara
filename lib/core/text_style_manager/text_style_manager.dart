@@ -47,7 +47,7 @@ class TextStyleManager {
   static TextStyle font28Bold = TextStyle(
     fontSize: 28.sp,
     fontWeight: FontWeight.w700,
-    color: AppColors.mainBlack,
+    color: AppColors.blackColor,
     fontFamily: 'Inter',
   );
 
@@ -68,7 +68,7 @@ class TextStyleManager {
   static TextStyle font16Medium = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight.w500,
-    color: AppColors.mainBlack,
+    color: AppColors.blackColor,
     fontFamily: 'Inter',
   );
 
