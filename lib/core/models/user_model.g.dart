@@ -12,12 +12,14 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
   email: json['email'] as String?,
   phoneNumber: json['phone_number'] as String?,
   image: json['image'] as String?,
+  id: (json['user_id'] as num).toInt(),
 );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
   'token': instance.token,
   'name': instance.name,
   'email': instance.email,
+  'user_id': instance.id,
   'phone_number': instance.phoneNumber,
   'image': instance.image,
 };
