@@ -32,11 +32,6 @@ class RegisterCubit extends Cubit<RegisterState> {
   TextEditingController();
   final TextEditingController registerPhoneController = TextEditingController();
 
-  bool isChecked = false;
-
-  void changeCheck(bool value) {
-    isChecked = value;
-  }
 
   Future register(BuildContext context) async {
     emit(RegisterLoadingState());
@@ -53,7 +48,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       emit(RegisterFailureState(errorMessage: failure.errMessage));
     }, (authModel) {
       context.pushWithNamed(Routes.otpView,
-         arguments: OTPArgument(email: authModel.email!, isRegisterOTP: true, userId: authModel.id)
+         arguments: OTPArgument(email: authModel.email??'', isRegisterOTP: true, userId: authModel.id!)
           );
       emit(RegisterSuccessState());
     });

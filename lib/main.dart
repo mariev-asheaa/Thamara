@@ -14,10 +14,11 @@ import 'core/dependency_injection/di.dart';
 /// Di (InjectableInit)
 /// dart run build_runner build --delete-conflicting-outputs
 Future<void> main()async{
+  WidgetsFlutterBinding.ensureInitialized();
   await Future.wait([
     configureDependencies(),
     ScreenUtil.ensureScreenSize(),
-  //  EasyLocalization.ensureInitialized(),
+    EasyLocalization.ensureInitialized(),
   ]);
   runApp(
     DevicePreview(

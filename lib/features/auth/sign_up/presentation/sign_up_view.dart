@@ -80,17 +80,12 @@ class SignUpView extends StatelessWidget {
                         final cubit = BlocProvider.of<RegisterCubit>(context);
                         return CustomButton(text: 'Sign Up',
                           isLoading: state is RegisterLoadingState,
-                          onPressed: state is RegisterLoadingState
-                              ? null
-                              : () async {
-                            if (cubit.registerFormKeyController.currentState
-                                ?.validate() ??
-                                false) {
-                              if (cubit.isChecked) {
-                                cubit.register(context);
-                              }
+                          onPressed: state is RegisterLoadingState ? null : () async {
+                            if (cubit.registerFormKeyController.currentState?.validate() ?? false) {
+                              cubit.register(context);
                             }
-                          },);
+                          }
+                          ,);
                       },
                     ),
                     SizedBox(height: 16.h),

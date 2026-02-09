@@ -7,7 +7,7 @@ class UserModel {
   final String? name;
   final String? email;
   @JsonKey(name: 'user_id')
-  final int id;
+  final int? id;
   @JsonKey(name: 'phone_number')
   final String? phoneNumber;
   final String? image;
@@ -19,7 +19,7 @@ class UserModel {
     required this.email,
     this.phoneNumber,
     this.image,
-    required this.id,
+    this.id,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
