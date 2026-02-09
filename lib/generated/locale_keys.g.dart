@@ -5,5 +5,12 @@
 abstract class  LocaleKeys {
   static const enterFullOTP = 'enterFullOTP';
   static const phoneNumber = 'phoneNumber';
+  static const unKnownError = 'unKnownError';
+  static const cacheError = 'cacheError';
+  static const noInternetError = 'noInternetError';
+  static const serverError = 'serverError';
+  static const notFoundError = 'notFoundError';
+  static const timeOutError = 'timeOutError';
+  static const youShouldInternet = 'youShouldInternet';
 
 }

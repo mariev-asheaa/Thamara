@@ -16,11 +16,25 @@ class CodegenLoader extends AssetLoader{
 
   static const Map<String,dynamic> _ar = {
   "enterFullOTP": "يرجى إدخال رمز التحقق الكامل",
-  "phoneNumber": "رقم الهاتف"
+  "phoneNumber": "رقم الهاتف",
+  "unKnownError": "خطأ غير معروف، يرجى المحاولة مرة أخرى",
+  "cacheError": "خطأ في التخزين المؤقت، أعد المحاولة",
+  "noInternetError": "لا يوجد اتصال بالإنترنت",
+  "serverError": "حدث خطأ، يرجى المحاولة لاحقًا",
+  "notFoundError": "لم يتم العثور على طلبك، حاول لاحقًا",
+  "timeOutError": "انتهت مهلة الاتصال، يرجى المحاولة مجددًا",
+  "youShouldInternet": "يرجى التحقق من اتصالك بالإنترنت ثم أعد المحاولة"
 };
 static const Map<String,dynamic> _en = {
   "enterFullOTP": "Please enter the full OTP code",
-  "phoneNumber": "Phone Number"
+  "phoneNumber": "Phone Number",
+  "unKnownError": "Unknown error, please try again",
+  "cacheError": "Cache error, please try again",
+  "noInternetError": "No Internet connection",
+  "serverError": "There was an error, please try again",
+  "notFoundError": "Your request was not found, please try later",
+  "timeOutError": "Timeout error, please try again",
+  "youShouldInternet": "Please check your network connection and try again"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }
