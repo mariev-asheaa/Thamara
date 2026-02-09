@@ -5,19 +5,21 @@ import 'package:thamara/core/color_manager/app_colors.dart';
 
 import '../text_style_manager/text_style_manager.dart';
 import 'custome_text_form_field.dart';
-
+// ignore: must_be_immutable
 class CustomLabeledField extends StatefulWidget {
   final String label;
   final String hintText;
   final bool? isObscureText;
   final Widget? suffixIcon;
-
-  const CustomLabeledField({
+  final String? Function(String?)? validator;
+  TextEditingController controller = TextEditingController();
+   CustomLabeledField({
     super.key,
     required this.label,
     required this.hintText,
     this.isObscureText,
     this.suffixIcon,
+     required this.controller, this.validator
   });
 
   @override
@@ -41,6 +43,8 @@ class _CustomLabeledFieldState extends State<CustomLabeledField> {
         SizedBox(height: 8.h),
 
         CustomTextFormField(
+          validator: widget.validator,
+          controller: widget.controller,
           hintText: widget.hintText,
           isObscureText: isPasswordHidden,
           suffixIcon: widget.isObscureText == true

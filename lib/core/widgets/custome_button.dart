@@ -5,21 +5,23 @@ import 'package:thamara/core/text_style_manager/text_style_manager.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
-  final VoidCallback onPressed;
+  final void Function()? onPressed;
   final bool isPrimary;
   final double? width;
-
+  final bool isLoading;
   const CustomButton({
     super.key,
     required this.text,
     required this.onPressed,
     this.isPrimary = true,
-    this.width,
+    this.width, this.isLoading=false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return  isLoading
+        ? const Center(child: CircularProgressIndicator(),)
+        : SizedBox(
       width: width ?? double.infinity,
       height: 52.h,
       child: ElevatedButton(

@@ -32,6 +32,32 @@ import 'package:thamara/features/auth/login/data/repos/login_repo_implementation
     as _i461;
 import 'package:thamara/features/auth/login/presentation/cubit/login_cubit.dart'
     as _i201;
+import 'package:thamara/features/auth/otp/data/data_sources/local/otp_local_data_source.dart'
+    as _i640;
+import 'package:thamara/features/auth/otp/data/data_sources/local/otp_local_data_source_impl.dart'
+    as _i64;
+import 'package:thamara/features/auth/otp/data/data_sources/remote/otp_remote_data_source.dart'
+    as _i1055;
+import 'package:thamara/features/auth/otp/data/data_sources/remote/otp_remote_data_source_impl.dart'
+    as _i460;
+import 'package:thamara/features/auth/otp/data/repos/otp_repository.dart'
+    as _i318;
+import 'package:thamara/features/auth/otp/data/repos/otp_repository_impl.dart'
+    as _i289;
+import 'package:thamara/features/auth/otp/presentation/cubits/otp_cubit.dart'
+    as _i310;
+import 'package:thamara/features/auth/reset_password/data/data_sources/remote/password_settings_remote_data_source.dart'
+    as _i69;
+import 'package:thamara/features/auth/reset_password/data/data_sources/remote/password_settings_remote_data_source_impl.dart'
+    as _i254;
+import 'package:thamara/features/auth/reset_password/data/repos/password_settings_repository.dart'
+    as _i843;
+import 'package:thamara/features/auth/reset_password/data/repos/password_settings_repository_impl.dart'
+    as _i787;
+import 'package:thamara/features/auth/reset_password/presentation/cubits/new_password_cubit/new_password_cubit.dart'
+    as _i973;
+import 'package:thamara/features/auth/reset_password/presentation/cubits/reset_password_cubit/reset_password_cubit.dart'
+    as _i60;
 import 'package:thamara/features/auth/sign_up/data/data_source/register_remote_data_source.dart'
     as _i425;
 import 'package:thamara/features/auth/sign_up/data/data_source/register_remote_data_source_implementation.dart'
@@ -59,14 +85,47 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i558.FlutterSecureStorage>(
       () => injectionModule.secureStorage,
     );
+    gh.factory<_i69.PasswordSettingsRemoteDataSource>(
+      () => _i254.PasswordSettingsRemoteDataSourceImpl(
+        apiConsumer: gh<_i920.ApiConsumer>(),
+      ),
+    );
     gh.factory<_i425.RegisterRemoteDataSource>(
       () => _i666.RegisterRemoteDataSourceImplementation(
         apiConsumer: gh<_i920.ApiConsumer>(),
       ),
     );
+    gh.factory<_i1055.OTPRemoteDataSource>(
+      () => _i460.OTPRemoteDataSourceImpl(apiConsumer: gh<_i920.ApiConsumer>()),
+    );
+    gh.factory<_i843.PasswordSettingsRepository>(
+      () => _i787.PasswordSettingsRepositoryImpl(
+        passwordSettingsRemoteDataSource:
+            gh<_i69.PasswordSettingsRemoteDataSource>(),
+      ),
+    );
+    gh.lazySingleton<_i173.CachedSecure>(
+      () => _i173.CachedSecure(storage: gh<_i558.FlutterSecureStorage>()),
+    );
     gh.factory<_i235.LoginDataSource>(
       () => _i547.LoginDataSourceImplementation(
         apiConsumer: gh<_i920.ApiConsumer>(),
+      ),
+    );
+    gh.factory<_i973.NewPasswordCubit>(
+      () => _i973.NewPasswordCubit(
+        passwordSettingsRepo: gh<_i843.PasswordSettingsRepository>(),
+      ),
+    );
+    gh.lazySingleton<_i757.SharedPrefServices>(
+      () => _i757.SharedPrefServices(
+        sharedPreferences: gh<_i460.SharedPreferences>(),
+      ),
+    );
+    gh.factory<_i640.OTPLocalDataSource>(
+      () => _i64.OTPLocalDataSourceImpl(
+        appPref: gh<_i757.SharedPrefServices>(),
+        secure: gh<_i173.CachedSecure>(),
       ),
     );
     gh.factory<_i734.LoginLocalDataSource>(
@@ -92,10 +151,24 @@ extension GetItInjectableX on _i174.GetIt {
         registerRemoteDataSource: gh<_i425.RegisterRemoteDataSource>(),
       ),
     );
+    gh.factory<_i60.ResetPasswordCubit>(
+      () => _i60.ResetPasswordCubit(
+        passwordSettingsRepository: gh<_i843.PasswordSettingsRepository>(),
+      ),
+    );
+    gh.factory<_i318.OTPRepository>(
+      () => _i289.OTPRepositoryImpl(
+        authRemoteDataSource: gh<_i1055.OTPRemoteDataSource>(),
+        authLocalDataSource: gh<_i640.OTPLocalDataSource>(),
+      ),
+    );
     gh.factory<_i692.RegisterCubit>(
       () => _i692.RegisterCubit(
         registerRepository: gh<_i69.RegisterRepository>(),
       ),
+    );
+    gh.factory<_i310.OTPCubit>(
+      () => _i310.OTPCubit(otpRepository: gh<_i318.OTPRepository>()),
     );
     return this;
   }

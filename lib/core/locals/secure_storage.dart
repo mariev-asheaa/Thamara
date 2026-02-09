@@ -1,8 +1,9 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:injectable/injectable.dart';
 
 import '../constants/app_cached.dart';
 
-//@lazySingleton
+@lazySingleton
 class CachedSecure {
   final FlutterSecureStorage storage;
 

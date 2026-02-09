@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../color_manager/app_colors.dart';
 import '../text_style_manager/text_style_manager.dart';
-
+// ignore: must_be_immutable
 class CustomTextFormField extends StatelessWidget {
   final String hintText;
   final double? width;
@@ -11,8 +11,9 @@ class CustomTextFormField extends StatelessWidget {
   final bool? isObscureText;
   final Widget? suffixIcon;
   final TextInputType? keyboardType;
-
-  const CustomTextFormField({
+  TextEditingController controller = TextEditingController();
+  final String? Function(String?)? validator;
+   CustomTextFormField({
     super.key,
     required this.hintText,
     this.width,
@@ -20,6 +21,7 @@ class CustomTextFormField extends StatelessWidget {
     this.isObscureText,
     this.suffixIcon,
     this.keyboardType,
+     required this.controller, this.validator
   });
 
   @override
@@ -28,6 +30,8 @@ class CustomTextFormField extends StatelessWidget {
       width: width ?? double.infinity,
       height: height ?? 49.h,
       child: TextFormField(
+        validator: validator,
+        controller: controller,
         keyboardType: keyboardType,
         obscureText: isObscureText ?? false,
         decoration: InputDecoration(

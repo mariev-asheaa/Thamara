@@ -17,7 +17,7 @@ Future<void> main()async{
   await Future.wait([
     configureDependencies(),
     ScreenUtil.ensureScreenSize(),
-    EasyLocalization.ensureInitialized(),
+  //  EasyLocalization.ensureInitialized(),
   ]);
   runApp(
     DevicePreview(

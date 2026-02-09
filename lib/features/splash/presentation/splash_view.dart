@@ -8,7 +8,6 @@ import 'package:thamara/core/widgets/thamara_text.dart';
 
 import '../../../core/extentions/navigation.dart';
 import '../../../core/routing/routes.dart';
-import '../../auth/login/presentation/login_view.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
