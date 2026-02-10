@@ -4,10 +4,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:thamara/core/routing/routes.dart';
 import 'package:thamara/features/auth/login/presentation/cubit/login_cubit.dart';
 import 'package:thamara/features/auth/login/presentation/login_view.dart';
+import 'package:thamara/features/auth/otp/data/params/email_param.dart';
 import 'package:thamara/features/auth/sign_up/presentation/cubit/register_cubit.dart';
 import 'package:thamara/features/auth/sign_up/presentation/sign_up_view.dart';
 import 'package:thamara/features/splash/presentation/splash_view.dart';
 
+import '../../features/auth/otp/data/arguments/otp_argument.dart';
+import '../../features/auth/otp/presentation/cubits/otp_cubit.dart';
+import '../../features/auth/otp/presentation/otp_view.dart';
+import '../../features/auth/reset_password/data/arguments/password_arguments.dart';
+import '../../features/auth/reset_password/presentation/cubits/new_password_cubit/new_password_cubit.dart';
+import '../../features/auth/reset_password/presentation/cubits/reset_password_cubit/reset_password_cubit.dart';
+import '../../features/auth/reset_password/presentation/views/passwprd_recovery_view.dart';
+import '../../features/auth/reset_password/presentation/views/reset_password_view.dart';
+import '../../features/home/home_view.dart';
 import '../dependency_injection/di.dart';
 import '../framework/navigation_animation.dart';
 
@@ -34,22 +44,37 @@ class AppRouter {
                 )
         );
 
-        //case Routes.otpView:
-    //         final argument = arguments as OTPArgument;
-    //         return _buildRoute(
-    //           builder: (_) => BlocProvider(
-    //             create: (context) => getIt<OTPCubit>(),
-    //             child: OTPView(argument: argument),
-    //           ),
-    //         );
-    //
-    //       case Routes.resetPasswordView:
-    //         return _buildRoute(
-    //           builder: (_) => BlocProvider(
-    //             create: (context) => getIt<ResetPasswordCubit>(),
-    //             child: ResetPasswordView(),
-    //           ),
-    //         );
+        case Routes.otpView:
+            final argument = arguments as OTPArgument;
+            return _buildRoute(
+              builder: (_) => BlocProvider(
+                create: (context) => getIt<OTPCubit>(),
+                child: OtpView(argument: argument),
+              ),
+            );
+
+          case Routes.resetPasswordView:
+            return _buildRoute(
+              builder: (_) => BlocProvider(
+                create: (context) => getIt<ResetPasswordCubit>(),
+                child: PasswordRecoveryView(),
+              ),
+            );
+      case Routes.newPasswordView:
+        final argument = arguments as PasswordArguments;
+        return _buildRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<NewPasswordCubit>(),
+            child: ResetPasswordView(argument: argument),
+          ),
+        );
+      case Routes.homeView:
+        return _buildRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<NewPasswordCubit>(),
+            child: const HomeView(),
+          ),
+        );
       default:
         return _buildRoute(
           builder: (_) => Scaffold(

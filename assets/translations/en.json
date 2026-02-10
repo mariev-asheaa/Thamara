@@ -1,0 +1,11 @@
+{
+  "enterFullOTP": "Please enter the full OTP code",
+  "phoneNumber": "Phone Number",
+  "unKnownError": "Unknown error, please try again",
+  "cacheError": "Cache error, please try again",
+  "noInternetError": "No Internet connection",
+  "serverError": "There was an error, please try again",
+  "notFoundError": "Your request was not found, please try later",
+  "timeOutError": "Timeout error, please try again",
+  "youShouldInternet": "Please check your network connection and try again"
+}

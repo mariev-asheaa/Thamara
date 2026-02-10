@@ -6,6 +6,7 @@ import 'package:meta/meta.dart';
 import '../../../../../core/extentions/navigation.dart';
 import '../../../../../core/extentions/show_toast.dart';
 import '../../../../../core/routing/routes.dart';
+import '../../../otp/data/arguments/otp_argument.dart';
 import '../../data/params/register_params.dart';
 import '../../data/repos/register_repo.dart';
 
@@ -30,12 +31,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   final TextEditingController registerLastNameController =
   TextEditingController();
   final TextEditingController registerPhoneController = TextEditingController();
-  final TextEditingController registerOTPController = TextEditingController();
-  bool isChecked = false;
 
-  void changeCheck(bool value) {
-    isChecked = value;
-  }
 
   Future register(BuildContext context) async {
     emit(RegisterLoadingState());
@@ -52,7 +48,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       emit(RegisterFailureState(errorMessage: failure.errMessage));
     }, (authModel) {
       context.pushWithNamed(Routes.otpView,
-        //  arguments: OTPArgument(email: authModel.email!, isRegisterOTP: true)
+         arguments: OTPArgument(email: authModel.email??'', isRegisterOTP: true, userId: authModel.id!)
           );
       emit(RegisterSuccessState());
     });
@@ -66,7 +62,6 @@ class RegisterCubit extends Cubit<RegisterState> {
     registerFirstNameController.dispose();
     registerLastNameController.dispose();
     registerPhoneController.dispose();
-    registerOTPController.dispose();
     return super.close();
   }
 }

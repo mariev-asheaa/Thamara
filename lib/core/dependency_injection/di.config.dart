@@ -13,8 +13,15 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart'
+    as _i161;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 import 'package:thamara/core/api/api_consumer.dart' as _i920;
+import 'package:thamara/core/api/dio_consumer.dart' as _i40;
+import 'package:thamara/core/api/dio_log_interceptor.dart' as _i707;
+import 'package:thamara/core/api/network_info.dart' as _i819;
+import 'package:thamara/core/dependency_injection/di_api_consumer_polymorphism.dart'
+    as _i248;
 import 'package:thamara/core/dependency_injection/di_module.dart' as _i351;
 import 'package:thamara/core/locals/secure_storage.dart' as _i173;
 import 'package:thamara/core/locals/shared_preferences.dart' as _i757;
@@ -32,6 +39,32 @@ import 'package:thamara/features/auth/login/data/repos/login_repo_implementation
     as _i461;
 import 'package:thamara/features/auth/login/presentation/cubit/login_cubit.dart'
     as _i201;
+import 'package:thamara/features/auth/otp/data/data_sources/local/otp_local_data_source.dart'
+    as _i640;
+import 'package:thamara/features/auth/otp/data/data_sources/local/otp_local_data_source_impl.dart'
+    as _i64;
+import 'package:thamara/features/auth/otp/data/data_sources/remote/otp_remote_data_source.dart'
+    as _i1055;
+import 'package:thamara/features/auth/otp/data/data_sources/remote/otp_remote_data_source_impl.dart'
+    as _i460;
+import 'package:thamara/features/auth/otp/data/repos/otp_repository.dart'
+    as _i318;
+import 'package:thamara/features/auth/otp/data/repos/otp_repository_impl.dart'
+    as _i289;
+import 'package:thamara/features/auth/otp/presentation/cubits/otp_cubit.dart'
+    as _i310;
+import 'package:thamara/features/auth/reset_password/data/data_sources/remote/password_settings_remote_data_source.dart'
+    as _i69;
+import 'package:thamara/features/auth/reset_password/data/data_sources/remote/password_settings_remote_data_source_impl.dart'
+    as _i254;
+import 'package:thamara/features/auth/reset_password/data/repos/password_settings_repository.dart'
+    as _i843;
+import 'package:thamara/features/auth/reset_password/data/repos/password_settings_repository_impl.dart'
+    as _i787;
+import 'package:thamara/features/auth/reset_password/presentation/cubits/new_password_cubit/new_password_cubit.dart'
+    as _i973;
+import 'package:thamara/features/auth/reset_password/presentation/cubits/reset_password_cubit/reset_password_cubit.dart'
+    as _i60;
 import 'package:thamara/features/auth/sign_up/data/data_source/register_remote_data_source.dart'
     as _i425;
 import 'package:thamara/features/auth/sign_up/data/data_source/register_remote_data_source_implementation.dart'
@@ -55,13 +88,73 @@ extension GetItInjectableX on _i174.GetIt {
       () => injectionModule.prefs,
       preResolve: true,
     );
-    gh.lazySingleton<_i361.Dio>(() => injectionModule.dioClient);
+    gh.factory<_i161.InternetConnection>(
+      () => injectionModule.internetConnection,
+    );
+    gh.factory<_i361.Dio>(() => injectionModule.dioClient);
+    gh.lazySingleton<_i707.DioLogInterceptor>(() => _i707.DioLogInterceptor());
+    gh.lazySingleton<_i819.NetworkInfo>(() => _i819.NetworkInfo());
+    gh.lazySingleton<_i248.ApiConsumerPolymorphism>(
+      () => _i248.ApiConsumerPolymorphism(),
+    );
     gh.lazySingleton<_i558.FlutterSecureStorage>(
       () => injectionModule.secureStorage,
+    );
+    gh.lazySingleton<_i361.Dio>(
+      () => injectionModule.aiDio(),
+      instanceName: 'aiDio',
+    );
+    gh.lazySingleton<_i173.CachedSecure>(
+      () => _i173.CachedSecure(storage: gh<_i558.FlutterSecureStorage>()),
+    );
+    gh.lazySingleton<_i757.SharedPrefServices>(
+      () => _i757.SharedPrefServices(
+        sharedPreferences: gh<_i460.SharedPreferences>(),
+      ),
+    );
+    gh.factory<_i640.OTPLocalDataSource>(
+      () => _i64.OTPLocalDataSourceImpl(
+        appPref: gh<_i757.SharedPrefServices>(),
+        secure: gh<_i173.CachedSecure>(),
+      ),
+    );
+    gh.factory<_i734.LoginLocalDataSource>(
+      () => _i647.LoginLocalDataSourceImpl(
+        appPref: gh<_i757.SharedPrefServices>(),
+        secure: gh<_i173.CachedSecure>(),
+      ),
+    );
+    gh.lazySingleton<_i920.ApiConsumer>(
+      () => _i40.DioApiConsumer(
+        networkInfo: gh<_i819.NetworkInfo>(),
+        dioClient: gh<_i361.Dio>(),
+        cachedSecure: gh<_i173.CachedSecure>(),
+        appPref: gh<_i757.SharedPrefServices>(),
+      ),
+    );
+    gh.factory<_i69.PasswordSettingsRemoteDataSource>(
+      () => _i254.PasswordSettingsRemoteDataSourceImpl(
+        apiConsumer: gh<_i920.ApiConsumer>(),
+      ),
     );
     gh.factory<_i425.RegisterRemoteDataSource>(
       () => _i666.RegisterRemoteDataSourceImplementation(
         apiConsumer: gh<_i920.ApiConsumer>(),
+      ),
+    );
+    gh.factory<_i1055.OTPRemoteDataSource>(
+      () => _i460.OTPRemoteDataSourceImpl(apiConsumer: gh<_i920.ApiConsumer>()),
+    );
+    gh.factory<_i843.PasswordSettingsRepository>(
+      () => _i787.PasswordSettingsRepositoryImpl(
+        passwordSettingsRemoteDataSource:
+            gh<_i69.PasswordSettingsRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i318.OTPRepository>(
+      () => _i289.OTPRepositoryImpl(
+        authRemoteDataSource: gh<_i1055.OTPRemoteDataSource>(),
+        authLocalDataSource: gh<_i640.OTPLocalDataSource>(),
       ),
     );
     gh.factory<_i235.LoginDataSource>(
@@ -69,10 +162,9 @@ extension GetItInjectableX on _i174.GetIt {
         apiConsumer: gh<_i920.ApiConsumer>(),
       ),
     );
-    gh.factory<_i734.LoginLocalDataSource>(
-      () => _i647.LoginLocalDataSourceImpl(
-        appPref: gh<_i757.SharedPrefServices>(),
-        secure: gh<_i173.CachedSecure>(),
+    gh.factory<_i973.NewPasswordCubit>(
+      () => _i973.NewPasswordCubit(
+        passwordSettingsRepo: gh<_i843.PasswordSettingsRepository>(),
       ),
     );
     gh.factory<_i198.LoginRepo>(
@@ -87,9 +179,17 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i757.SharedPrefServices>(),
       ),
     );
+    gh.factory<_i310.OTPCubit>(
+      () => _i310.OTPCubit(otpRepository: gh<_i318.OTPRepository>()),
+    );
     gh.factory<_i69.RegisterRepository>(
       () => _i648.RegisterRepoImplementation(
         registerRemoteDataSource: gh<_i425.RegisterRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i60.ResetPasswordCubit>(
+      () => _i60.ResetPasswordCubit(
+        passwordSettingsRepository: gh<_i843.PasswordSettingsRepository>(),
       ),
     );
     gh.factory<_i692.RegisterCubit>(

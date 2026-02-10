@@ -8,6 +8,7 @@ import 'package:thamara/features/auth/login/data/params/login_params.dart';
 import '../../../../../../core/api/api_status_codes.dart';
 import '../../../../../../core/api/base_response.dart';
 import '../../../../../../core/constants/api_constants.dart';
+import '../../../../../../core/errors/exceptions.dart';
 import '../../params/send_token_param.dart';
 import 'login_data_source.dart';
 
@@ -29,7 +30,7 @@ class LoginDataSourceImplementation implements LoginDataSource{
 
       return user;
     } else {
-      throw ServerFailure(response.message.toString());
+      throw ServerException(response.message);
     }
   }
 

@@ -63,30 +63,27 @@ class LoginCubit extends Cubit<LoginState> {
         emit(LoginFailureState(errorMessage: failure.errMessage));
       },
           (_) async {
-        sendToken(
-          context: context,
-          authModel: authModel,
-        );
-      },
-    );
-  }
-
-  Future<void> sendToken({
-    required BuildContext context,
-    required UserModel authModel,
-  }) async {
-    String? fcmToken;
-    final result = await loginRepository.sendToken(
-      param: SendTokenParam(fcmToken: fcmToken ?? 'fcm'),
-    );
-    result.fold(
-          (failure) {
-        context.showToast(failure.errMessage, isError: true);
-        emit(LoginFailureState(errorMessage: failure.errMessage));
-      },
-          (_) async {
             context.pushAndRemoveUntilWithNamed(Routes.homeView);
       },
     );
   }
+
+  // Future<void> sendToken({
+  //   required BuildContext context,
+  //   required UserModel authModel,
+  // }) async {
+  //   String? fcmToken;
+  //   final result = await loginRepository.sendToken(
+  //     param: SendTokenParam(fcmToken: fcmToken ?? 'fcm'),
+  //   );
+  //   result.fold(
+  //         (failure) {
+  //       context.showToast(failure.errMessage, isError: true);
+  //       emit(LoginFailureState(errorMessage: failure.errMessage));
+  //     },
+  //         (_) async {
+  //           context.pushAndRemoveUntilWithNamed(Routes.homeView);
+  //     },
+  //   );
+  // }
 }

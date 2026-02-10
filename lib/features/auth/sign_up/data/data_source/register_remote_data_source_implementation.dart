@@ -7,7 +7,7 @@ import '../../../../../core/api/api_consumer.dart';
 import '../../../../../core/api/api_status_codes.dart';
 import '../../../../../core/api/base_response.dart';
 import '../../../../../core/constants/api_constants.dart';
-import '../../../../../core/errors/failure.dart';
+import '../../../../../core/errors/exceptions.dart';
 
 @Injectable(as: RegisterRemoteDataSource)
 class RegisterRemoteDataSourceImplementation extends RegisterRemoteDataSource{
@@ -25,7 +25,7 @@ class RegisterRemoteDataSourceImplementation extends RegisterRemoteDataSource{
         response.status == ApiStatusCodes.created) {
       return UserModel.fromJson(response.data);
     } else {
-      throw ServerFailure(response.message.toString());
+      throw ServerException(response.message.toString());
     }
   }
   

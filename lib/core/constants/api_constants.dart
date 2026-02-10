@@ -1,12 +1,12 @@
 class ApiConstants {
-  static const baseUrl = '';
-  static const login = '';
-  static const verifyEmail = '';
-  static const resetPassword = '';
-  static const resendOtp = '';
-  static const register = '';
-  static const otpPassword = '';
-  static const forgotPassword = '';
-  static const logout = '';
+  static const baseUrl = 'https://unappeased-krystyna-windowy.ngrok-free.dev';
+  static const login = '/api/login';
+  static const register = '/api/register';
+  static const verifyEmail = '/api/verify-otp';
+  static const otpPassword = '/api/verify-password';
+  static const resendOtp = '/api/resend-otp';
+  static const forgotPassword = '/api/forgot-password';
+  static const resetPassword = '/api/reset-password';
+  static const logout = '/api/logout';
   static const sendFcmToken = '';
 }

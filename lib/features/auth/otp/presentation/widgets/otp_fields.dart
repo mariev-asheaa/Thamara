@@ -4,8 +4,9 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:thamara/core/color_manager/app_colors.dart';
 
 class OtpFields extends StatelessWidget {
-  const OtpFields({super.key});
-
+  const OtpFields({super.key, required this.isError, required this.onCompleted});
+  final bool isError;
+  final ValueChanged<String> onCompleted;
   @override
   Widget build(BuildContext context) {
     return PinCodeTextField(
@@ -14,14 +15,14 @@ class OtpFields extends StatelessWidget {
       keyboardType: TextInputType.number,
       animationType: AnimationType.fade,
       showCursor: true,
-      cursorColor: AppColors.secondaryColor,
+      cursorColor:isError?Colors.red: AppColors.secondaryColor,
       cursorHeight: 20,
       pinTheme: PinTheme(
         shape: PinCodeFieldShape.box,
         borderRadius: BorderRadius.circular(12.r),
         fieldHeight: 52.h,
         fieldWidth: 52.w,
-        activeColor: AppColors.greyColor,
+        activeColor:isError?Colors.red: AppColors.greyColor,
         selectedColor: AppColors.greyColor,
         inactiveColor: AppColors.greyColor,
 
@@ -30,8 +31,7 @@ class OtpFields extends StatelessWidget {
         selectedFillColor: AppColors.backgroundColor,
       ),
       enableActiveFill: true,
-      onChanged: (value) {},
-      onCompleted: (value) {},
+      onCompleted: onCompleted,
     );
   }
 }
