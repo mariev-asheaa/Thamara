@@ -7,6 +7,7 @@ part of 'otp_param.dart';
 // **************************************************************************
 
 Map<String, dynamic> _$OTPParamToJson(OTPParam instance) => <String, dynamic>{
-  'user_id': instance.id,
+  'user_id': ?instance.id,
   'otp_code': instance.otp,
+  'email': ?instance.email,
 };

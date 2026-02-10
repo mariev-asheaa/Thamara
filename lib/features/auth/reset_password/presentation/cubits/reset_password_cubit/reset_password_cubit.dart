@@ -31,7 +31,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
       },
       (message) {
         context.pushWithNamed(Routes.otpView,
-            arguments:OTPArgument(email: emailController.text, isRegisterOTP: false, userId: 0));
+            arguments:OTPArgument(email: emailController.text, isRegisterOTP: false));
          emit(ResetPasswordSuccessState());
       },
     );

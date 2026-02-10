@@ -10,5 +10,5 @@ class DioLogInterceptor extends LogInterceptor {
   @override
   bool get requestHeader => true;
   @override
-  bool get responseBody => true;
+  bool get responseBody => false;
 }

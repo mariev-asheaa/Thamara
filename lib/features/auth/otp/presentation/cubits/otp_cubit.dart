@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:thamara/features/auth/reset_password/data/arguments/password_arguments.dart';
 
 import '../../../../../core/extentions/navigation.dart';
 import '../../../../../core/extentions/show_toast.dart';
@@ -74,7 +75,7 @@ class OTPCubit extends Cubit<OTPState> {
   Future<void> _forgetPasswordOTP(BuildContext context) async {
     final result = await otpRepository.otpPassword(
       param: OTPParam(
-        id: userId,
+        email: emailController.text,
         otp: oTPController.text,
       ),
     );
@@ -87,7 +88,9 @@ class OTPCubit extends Cubit<OTPState> {
       (_) {
         emit(OTPSuccessState());
         if (context.mounted) {
-          context.pushWithNamed(Routes.newPasswordView);
+          context.pushWithNamed(Routes.newPasswordView,
+              arguments:PasswordArguments(email: emailController.text)
+          );
         }
       },
     );

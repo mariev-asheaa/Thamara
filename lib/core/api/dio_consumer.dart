@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:thamara/app/thamara_app.dart';
@@ -62,7 +61,7 @@ class DioApiConsumer extends ApiConsumer {
   Future<Map<String, dynamic>?> getHeaders() async {
     String token = await cachedSecure.getToken() ?? '';
     if (token.isNotEmpty) {
-      return {'Accept': 'application/json', 'Authorization': 'Bearer $token'};
+      return {'Accept': 'application/json', 'Authorization': 'Bearer $token', "Content-Type": "application/json",};
     }
     return null;
   }

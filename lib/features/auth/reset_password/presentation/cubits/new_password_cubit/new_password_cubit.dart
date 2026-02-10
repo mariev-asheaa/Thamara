@@ -21,12 +21,14 @@ class NewPasswordCubit extends Cubit<NewPasswordState> {
       TextEditingController();
   GlobalKey<FormState> formKeyController = GlobalKey<FormState>();
 
-  Future newPassword(BuildContext context) async {
+  Future newPassword(BuildContext context, String email) async {
     emit(NewPasswordLoadingState());
     var result = await passwordSettingsRepo.resetPassword(
       param: ResetPasswordParam(
           password: passwordController.text,
-          confirmPassword: confirmPasswordController.text),
+          confirmPassword: confirmPasswordController.text,
+          email: email,
+      ),
     );
     result.fold((failure) {
       context.showToast(failure.errMessage, isError: true);

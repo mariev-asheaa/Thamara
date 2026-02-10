@@ -7,11 +7,12 @@ import 'package:thamara/core/widgets/auth_header.dart';
 import '../../../../../core/framework/validator.dart';
 import '../../../../../core/widgets/custome_button.dart';
 import '../../../../../core/widgets/custome_labeld_field.dart';
+import '../../data/arguments/password_arguments.dart';
 import '../cubits/new_password_cubit/new_password_cubit.dart';
 
 class ResetPasswordView extends StatelessWidget {
-  const ResetPasswordView({super.key});
-
+  const ResetPasswordView({super.key, required this.argument});
+final PasswordArguments argument;
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<NewPasswordCubit>();
@@ -65,7 +66,7 @@ class ResetPasswordView extends StatelessWidget {
                         onPressed: state is NewPasswordLoadingState? null:
                            () async {
                           if (cubit.formKeyController.currentState!.validate()) {
-                            cubit.newPassword(context);
+                            cubit.newPassword(context,argument.email);
                           }
                         },
                       );

@@ -2,14 +2,16 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'otp_param.g.dart';
 
-@JsonSerializable(createFactory: false)
+@JsonSerializable(createFactory: false,includeIfNull: false)
 class OTPParam {
   @JsonKey(name: 'user_id')
-  final int id;
+  final int? id;
   @JsonKey(name: 'otp_code')
   final String otp;
+  final String?email;
   OTPParam({
-    required this.id,
+     this.id,
+     this.email,
     required this.otp,
   });
 

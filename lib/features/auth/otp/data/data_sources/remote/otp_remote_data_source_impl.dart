@@ -4,6 +4,7 @@ import '../../../../../../core/api/api_consumer.dart';
 import '../../../../../../core/api/api_status_codes.dart';
 import '../../../../../../core/api/base_response.dart';
 import '../../../../../../core/constants/api_constants.dart';
+import '../../../../../../core/errors/exceptions.dart';
 import '../../../../../../core/errors/failure.dart';
 import '../../../../../../core/models/user_model.dart';
 import '../../params/email_param.dart';
@@ -38,7 +39,7 @@ class OTPRemoteDataSourceImpl extends OTPRemoteDataSource {
         response.status == ApiStatusCodes.created) {
       return response.message.toString();
     } else {
-      throw ServerFailure(response.message.toString());
+      throw ServerException(response.message.toString());
     }
   }
 

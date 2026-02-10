@@ -25,7 +25,7 @@ class _OtpViewState extends State<OtpView> {
     super.initState();
     cubit = context.read<OTPCubit>();
     cubit.updateEmail(widget.argument.email);
-    cubit.updateUserId(widget.argument.userId);
+    cubit.updateUserId(widget.argument.userId??0);
   }
 
   void _onOtpCompleted(String value) {
