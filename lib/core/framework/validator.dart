@@ -12,11 +12,11 @@ class AppValidator {
     if (!emailRegex.hasMatch(value)) {
       return 'Please enter a valid email address';
     }
-    // final RegExp emailRegexTwo = RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$');
+    final RegExp emailRegexTwo = RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$');
 
-    // if (!emailRegexTwo.hasMatch(value)) {
-    //   return 'Enter valid Gmail address ending with @gmail.com';
-    // }
+    if (!emailRegexTwo.hasMatch(value)) {
+      return 'Enter valid Gmail address ending with @gmail.com';
+    }
     return null; // Email is valid
   }
 

@@ -5,8 +5,8 @@ class ApiConstants {
   static const verifyEmail = '/api/verify-otp';
   static const otpPassword = '';
   static const resendOtp = '';
-  static const forgotPassword = '';
-  static const resetPassword = '';
+  static const forgotPassword = '/api/forgot-password';
+  static const resetPassword = '/api/reset-password';
   static const logout = '/api/logout';
   static const sendFcmToken = '';
 }

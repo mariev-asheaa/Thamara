@@ -87,7 +87,7 @@ class OTPCubit extends Cubit<OTPState> {
       (_) {
         emit(OTPSuccessState());
         if (context.mounted) {
-          context.pushWithNamed(Routes.forgotPassword);
+          context.pushWithNamed(Routes.newPasswordView);
         }
       },
     );

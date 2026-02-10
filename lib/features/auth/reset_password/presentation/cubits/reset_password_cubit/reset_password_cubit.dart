@@ -1,7 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import '../../../../../../core/extentions/navigation.dart';
 import '../../../../../../core/extentions/show_toast.dart';
+import '../../../../../../core/routing/routes.dart';
+import '../../../../otp/data/arguments/otp_argument.dart';
 import '../../../../otp/data/params/email_param.dart';
 import '../../../data/repos/password_settings_repository.dart';
 
@@ -27,8 +30,8 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
         emit(ResetPasswordFailureState(errorMessage: failure.errMessage));
       },
       (message) {
-        // context.pushWithNamed(Routes.otpView,
-        //     arguments:OTPArgument(email: emailController.text, isRegisterOTP: false, userId: null));
+        context.pushWithNamed(Routes.otpView,
+            arguments:OTPArgument(email: emailController.text, isRegisterOTP: false, userId: 0));
          emit(ResetPasswordSuccessState());
       },
     );
