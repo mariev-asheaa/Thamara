@@ -11,9 +11,9 @@ import 'package:thamara/features/auth/login/presentation/widgets/terms_and_polic
 import '../../../../core/framework/validator.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../core/text_style_manager/text_style_manager.dart';
+import '../../../../core/widgets/custom_divider.dart';
 import '../../../../core/widgets/custome_button.dart';
 import '../../../../core/widgets/custome_labeld_field.dart';
-
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -21,116 +21,100 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<LoginCubit>();
-    return
-      Scaffold(
-        backgroundColor: AppColors.backgroundColor,
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: Form(
-                key: cubit.loginFormKeyController,
-                child: Column(
-                  children: [
-                    SizedBox(height: 78.h),
+    return Scaffold(
+      backgroundColor: AppColors.backgroundColor,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            child: Form(
+              key: cubit.loginFormKeyController,
+              child: Column(
+                children: [
+                  SizedBox(height: 78.h),
 
-                    const Hero(tag: 'logo', child: AppLogo()),
+                  const Hero(tag: 'logo', child: AppLogo()),
 
-                    SizedBox(height: 25.h),
+                  SizedBox(height: 25.h),
 
-                    const Hero(tag: 'app_logo_text', child: ThamaraText()),
+                  const Hero(tag: 'app_logo_text', child: ThamaraText()),
 
-                    SizedBox(height: 41.h),
+                  SizedBox(height: 41.h),
 
-                    CustomLabeledField(
-                      validator: AppValidator.validateEmail,
-                      controller: cubit.loginEmailController,
-                      label: 'Email',
-                      hintText: 'Enter your email',
-                    ),
+                  CustomLabeledField(
+                    validator: AppValidator.validateEmail,
+                    controller: cubit.loginEmailController,
+                    label: 'Email',
+                    hintText: 'Enter your email',
+                  ),
 
-                    SizedBox(height: 16.h),
+                  SizedBox(height: 16.h),
 
-                    CustomLabeledField(
-                      validator: AppValidator.validatePassword,
-                      controller: cubit.loginPasswordController,
-                      label: 'Password',
-                      hintText: 'Enter your password...',
-                      isObscureText: true,
-                    ),
-                    SizedBox(height: 8.h),
+                  CustomLabeledField(
+                    validator: AppValidator.validatePassword,
+                    controller: cubit.loginPasswordController,
+                    label: 'Password',
+                    hintText: 'Enter your password...',
+                    isObscureText: true,
+                  ),
+                  SizedBox(height: 8.h),
 
-                    Align(
-                      alignment: AlignmentGeometry.bottomLeft,
-                      child: GestureDetector(
-                        onTap: () {
-                          context.pushWithNamed(Routes.resetPasswordView);
-                        },
-                        child: Text(
-                          'Forgot Password?',
-                          style: TextStyleManager.font14Bold.copyWith(
-                            color: AppColors.greyColor,
-                          ),
+                  Align(
+                    alignment: Alignment.bottomLeft,
+                    child: GestureDetector(
+                      onTap: () {
+                        context.pushWithNamed(Routes.resetPasswordView);
+                      },
+                      child: Text(
+                        'Forgot Password?',
+                        style: TextStyleManager.font14Bold.copyWith(
+                          color: AppColors.greyColor,
                         ),
                       ),
                     ),
+                  ),
 
-                    SizedBox(height: 40.h),
-                    BlocBuilder<LoginCubit, LoginState>(
-                      builder: (context, state) {
-                        final cubit = BlocProvider.of<LoginCubit>(context);
-                        return CustomButton(
-                          text: 'Sign In',
-                          isLoading: state is LoginLoadingState,
-                          onPressed: state is LoginLoadingState
-                              ? null
-                              : () async {
-                            if (cubit.loginFormKeyController.currentState?.validate() ?? false) {
-                              cubit.login(context);
-                            }
-                          },
-                        );
-                      },
-                    ),
-                    SizedBox(height: 25.h),
+                  SizedBox(height: 40.h),
+                  BlocBuilder<LoginCubit, LoginState>(
+                    builder: (context, state) {
+                      final cubit = BlocProvider.of<LoginCubit>(context);
+                      return CustomButton(
+                        text: 'Sign In',
+                        isLoading: state is LoginLoadingState,
+                        onPressed: state is LoginLoadingState
+                            ? null
+                            : () async {
+                                if (cubit.loginFormKeyController.currentState
+                                        ?.validate() ??
+                                    false) {
+                                  cubit.login(context);
+                                }
+                              },
+                      );
+                    },
+                  ),
+                  SizedBox(height: 25.h),
 
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Divider(
-                              color: AppColors.greyColor, thickness: 1),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 9),
-                          child: Text('OR', style: TextStyleManager.font12Bold),
-                        ),
+                  const CustomDivider(),
+                  SizedBox(height: 16.h),
 
-                        Expanded(
-                          child: Divider(
-                              color: AppColors.greyColor, thickness: 1),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 16.h),
+                  CustomButton(
+                    text: 'Create New Account',
+                    isPrimary: false,
+                    onPressed: () {
+                      context.pushWithNamed(Routes.registerView);
+                    },
+                  ),
 
-                    CustomButton(
-                      text: 'Create New Account',
-                      isPrimary: false,
-                      onPressed: () {
-                        context.pushWithNamed(Routes.registerView);
-                      },
-                    ),
+                  SizedBox(height: 196.h),
 
-                    SizedBox(height: 196.h),
-
-                    const TermsAndPolicyText(),
-                  ],
-                ),
+                  const TermsAndPolicyText(),
+                ],
               ),
             ),
           ),
         ),
-
-      );
+      ),
+    );
   }
 }

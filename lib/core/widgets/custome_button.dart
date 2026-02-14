@@ -9,12 +9,15 @@ class CustomButton extends StatelessWidget {
   final bool isPrimary;
   final double? width;
   final bool isLoading;
+  final Color? backgroundColor;
+  final Color? textColor;
+  final Widget? icon;
   const CustomButton({
     super.key,
     required this.text,
     required this.onPressed,
     this.isPrimary = true,
-    this.width, this.isLoading=false,
+    this.width, this.isLoading=false, this.backgroundColor, this.textColor, this.icon,
   });
 
   @override
@@ -27,19 +30,29 @@ class CustomButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: isPrimary
+          backgroundColor:backgroundColor ??( isPrimary
               ? AppColors.primaryColor
-              : AppColors.backgroundColor,
+              : AppColors.backgroundColor),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(500.r),
-            side: BorderSide(color: AppColors.primaryColor, width: 1.w),
+            side: BorderSide(color:backgroundColor ?? AppColors.primaryColor, width: 1.w),
           ),
         ),
-        child: Text(
-          text,
-          style: TextStyleManager.font16Bold.copyWith(
-            color: isPrimary ? Colors.white : AppColors.primaryColor,
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+
+          children: [
+            if (icon != null) ...[
+              icon!,
+              SizedBox(width: 8.w),
+            ],
+            Text(
+              text,
+              style: TextStyleManager.font16Bold.copyWith(
+                color:  textColor ?? (isPrimary ? Colors.white : AppColors.primaryColor),
+              ),
+            ),
+          ],
         ),
       ),
     );

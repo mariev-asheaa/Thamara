@@ -17,7 +17,8 @@ import '../../features/auth/reset_password/presentation/cubits/new_password_cubi
 import '../../features/auth/reset_password/presentation/cubits/reset_password_cubit/reset_password_cubit.dart';
 import '../../features/auth/reset_password/presentation/views/passwprd_recovery_view.dart';
 import '../../features/auth/reset_password/presentation/views/reset_password_view.dart';
-import '../../features/home/home_view.dart';
+import '../../features/home/presentation/home_view.dart';
+import '../../features/layout/presentation/main_layout_view.dart';
 import '../dependency_injection/di.dart';
 import '../framework/navigation_animation.dart';
 
@@ -72,7 +73,7 @@ class AppRouter {
         return _buildRoute(
           builder: (_) => BlocProvider(
             create: (context) => getIt<NewPasswordCubit>(),
-            child: const HomeView(),
+            child: const MainLayoutView(),
           ),
         );
       default:

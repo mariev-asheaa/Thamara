@@ -1,0 +1,59 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:thamara/core/color_manager/app_colors.dart';
+import 'package:thamara/core/text_style_manager/text_style_manager.dart';
+
+class CaptureCard extends StatelessWidget {
+  const CaptureCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+
+      padding:  EdgeInsets.symmetric(vertical: 32.h, horizontal: 8.w),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(32.r),
+        gradient: const LinearGradient(
+          colors: [AppColors.secondaryColor, AppColors.gradient1],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
+      child: Column(
+        children: [
+          Container(
+            width: 64.w,
+            height: 64.h,
+            decoration: BoxDecoration(
+              color: AppColors.whiteColor.withValues(alpha: 0.2),
+
+              borderRadius: BorderRadius.circular(12.r),
+
+              border: Border.all(
+                color: AppColors.whiteColor.withValues(alpha: 0.2),
+                width: 1,
+              ),
+            ),
+
+            child: GestureDetector(
+              onTap: () {},
+              child: Center(
+                child: SvgPicture.asset("assets/images/camera.svg"),
+              ),
+            ),
+          ),
+          SizedBox(height: 16.h),
+          Text('Tap To Capture', style: TextStyleManager.font20Bold),
+          Text(
+            'Point your camera at your plant clearly',
+            style: TextStyleManager.font14Medium.copyWith(
+              color: AppColors.whiteColor,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
