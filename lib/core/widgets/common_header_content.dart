@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:thamara/core/text_style_manager/text_style_manager.dart';
-
 import '../color_manager/app_colors.dart';
 
 class CommonHeaderContent extends StatelessWidget {
@@ -22,7 +21,8 @@ class CommonHeaderContent extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+              },
               child: Row(
                 children: [
                   Icon(
