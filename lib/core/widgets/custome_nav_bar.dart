@@ -10,98 +10,94 @@ import '../color_manager/app_colors.dart';
 class CustomNavBar extends StatefulWidget {
   final int selectedIndex;
   final Function(int) onTabChange;
-  const CustomNavBar({super.key, required this.selectedIndex, required this.onTabChange});
+  const CustomNavBar({
+    super.key,
+    required this.selectedIndex,
+    required this.onTabChange,
+  });
 
   @override
   State<CustomNavBar> createState() => _CustomNavBarState();
 }
 
 class _CustomNavBarState extends State<CustomNavBar> {
-
-
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.w,vertical:16.h ),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
       child: Row(
         children: [
-          Expanded(
+          Flexible(
             child: Container(
               height: 64.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(500.r),
-                gradient:  LinearGradient(
+                gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [
-                    AppColors.gradient2,
-                    AppColors.gradient1,
-                  ],
+                  colors: [AppColors.gradient2, AppColors.gradient1],
                 ),
               ),
 
-              child: GNav(
-                selectedIndex: widget.selectedIndex,
-                onTabChange: (index) {
+              child: FittedBox(
+               child : Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  child: GNav(
+                    selectedIndex: widget.selectedIndex,
+                    onTabChange: (index) {
+                      widget.onTabChange(index);
+                    },
 
-                   widget.onTabChange(index);
+                    gap: 4.w,
+                    tabBackgroundColor: AppColors.whiteColor,
 
-                },
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                gap: 4.w,
-                tabBackgroundColor: AppColors.whiteColor,
-                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
-                tabs: [
-                  buildGButton(
-                    index: 0,
-                    iconPath: 'assets/images/home.svg',
-                    label: 'Home',
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 12.w,
+                      vertical: 6.h,
+                    ),
+                    tabs: [
+                      buildGButton(
+                        index: 0,
+                        iconPath: 'assets/images/home.svg',
+                        label: 'Home',
+                      ),
+                      buildGButton(
+                        index: 1,
+                        iconPath: 'assets/images/analytics.svg',
+                        label: 'Tracking',
+                      ),
+                      buildGButton(
+                        index: 2,
+                        iconPath: 'assets/images/orange.svg',
+                        label: 'plants',
+                      ),
+                      buildGButton(
+                        index: 3,
+                        iconPath: 'assets/images/user.svg',
+                        label: 'Profile',
+                      ),
+                    ],
                   ),
-                  buildGButton(
-                    index: 1,
-                    iconPath: 'assets/images/analytics.svg',
-                    label: 'Tracking',
-                  ),
-                  buildGButton(
-                    index: 2,
-                    iconPath: 'assets/images/orange.svg',
-                    label: ' my plants',
-                  ),
-                  buildGButton(
-                    index: 3,
-                    iconPath: 'assets/images/user.svg',
-                    label: 'Profile',
-                  ),
-                ],
+                ),
               ),
-
             ),
           ),
           SizedBox(width: 16.w),
           Container(
             height: 64.h,
-            width: 64.h,
+            width: 64.w,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [
-                  AppColors.gradient2,
-                  AppColors.gradient1,
-                ],
+                colors: [AppColors.gradient2, AppColors.gradient1],
               ),
             ),
             child: GestureDetector(
-    onTap: (){
-
-    }
-
-             , child: Center(
-                child: SvgPicture.asset(
-                  'assets/images/chatbot.svg',
-              
-                ),
+              onTap: () {},
+              child: Center(
+                child: SvgPicture.asset('assets/images/chatbot.svg'),
               ),
             ),
           ),
@@ -110,31 +106,27 @@ class _CustomNavBarState extends State<CustomNavBar> {
     );
   }
 
-
   GButton buildGButton({
     required int index,
     required String iconPath,
     required String label,
   }) {
-
-    bool isSelected =  widget.selectedIndex == index;
+    bool isSelected = widget.selectedIndex == index;
 
     return GButton(
       icon: Icons.home,
       text: label,
-      textStyle: TextStyleManager.font12Bold.copyWith(color: AppColors.darkPrimary2),
+      textStyle: TextStyleManager.font12Bold.copyWith(
+        color: AppColors.darkPrimary2,
+      ),
       leading: Container(
         padding: EdgeInsets.all(4.w),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: isSelected ? AppColors.secondaryColor2 : Colors.transparent,
         ),
-        child: SvgPicture.asset(
-          iconPath,
-
-          ),
-        ),
-
+        child: SvgPicture.asset(iconPath),
+      ),
     );
   }
 }

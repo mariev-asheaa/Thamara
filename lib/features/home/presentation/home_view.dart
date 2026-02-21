@@ -21,15 +21,13 @@ class HomeView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              width: double.infinity,
-              child: CustomHeader(
-                child: Column(
-                  children: [
-                    Text('Good Morning', style: TextStyleManager.font26Bold),
-                    Text('Mohab Mohamed', style: TextStyleManager.font26Bold),
-                  ],
-                ),
+            CustomHeader(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Good Morning', style: TextStyleManager.font26Bold),
+                  Text('Mohab Mohamed 👋🏻', style: TextStyleManager.font26Bold),
+                ],
               ),
             ),
 

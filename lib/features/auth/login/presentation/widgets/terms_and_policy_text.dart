@@ -14,6 +14,7 @@ class TermsAndPolicyText extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 25.w,vertical: 16.h),
       child: GestureDetector(
         onTap: (){
+          print("Navigate to OTP");
           context.pushWithNamed(Routes.homeView);
         },
         child: Wrap(

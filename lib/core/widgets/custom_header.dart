@@ -16,7 +16,7 @@ class CustomHeader extends StatelessWidget {
       child: Stack(
         children: [
           Image.asset(
-            'assets/images/Header.png',
+            'assets/images/appbar.png',
             width: MediaQuery.of(context).size.width,
             height: 172.h,
             fit: BoxFit.cover,

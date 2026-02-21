@@ -22,7 +22,7 @@ Future<void> main()async{
   ]);
   runApp(
     DevicePreview(
-      enabled: false,
+      enabled:false,
       builder: (context) => EasyLocalization(
         useOnlyLangCode: true,
         supportedLocales: const [Locale('ar'), Locale('en')],
