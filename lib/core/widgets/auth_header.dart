@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../generated/locale_keys.g.dart';
 import '../color_manager/app_colors.dart';
 import '../text_style_manager/text_style_manager.dart';
 
@@ -34,7 +36,7 @@ class AuthHeader extends StatelessWidget {
                 SizedBox(width: 4.w),
 
                 Text(
-                  'Go Back',
+                  LocaleKeys.goBack.tr(),
                   style: TextStyleManager.font16Bold.copyWith(
                     color: AppColors.secondaryColor,
                   ),

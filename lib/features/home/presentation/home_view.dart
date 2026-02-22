@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,6 +10,7 @@ import 'package:thamara/features/home/presentation/widgets/instructions_card.dar
 import '../../../core/widgets/custom_divider.dart';
 import '../../../core/widgets/custom_header.dart';
 import '../../../core/widgets/custome_button.dart';
+import '../../../generated/locale_keys.g.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -25,7 +27,7 @@ class HomeView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Good Morning', style: TextStyleManager.font26Bold),
+                  Text(LocaleKeys.goodMorning.tr(), style: TextStyleManager.font26Bold),
                   Text('Mohab Mohamed 👋🏻', style: TextStyleManager.font26Bold),
                 ],
               ),
@@ -43,7 +45,7 @@ class HomeView extends StatelessWidget {
 
                   SizedBox(height: 8.h),
                   CustomButton(
-                    text: 'Upload from your gallery',
+                    text: LocaleKeys.uploadFromGallery.tr(),
                     backgroundColor: AppColors.lightGreen,
                     textColor: AppColors.secondaryColor,
                     icon: SvgPicture.asset('assets/images/gallery.svg'),

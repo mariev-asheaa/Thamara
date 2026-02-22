@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/extentions/navigation.dart';
 import '../../../../../core/routing/routes.dart';
+import '../../../../../generated/locale_keys.g.dart';
 import 'custome_text.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class TermsAndPolicyText extends StatelessWidget {
   const TermsAndPolicyText({super.key});
@@ -14,19 +16,18 @@ class TermsAndPolicyText extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 25.w,vertical: 16.h),
       child: GestureDetector(
         onTap: (){
-          print("Navigate to OTP");
           context.pushWithNamed(Routes.homeView);
         },
         child: Wrap(
           alignment: WrapAlignment.center,
           spacing: 3.w,
           runSpacing: 1.h,
-          children: const [
-            CustomText(text: 'By signing up, you accept our'),
-            CustomText(text: 'Terms of Service,', isColored: true),
-            CustomText(text: 'Privacy Policy,', isColored: true),
-            CustomText(text: 'and use of'),
-            CustomText(text: 'Cookies', isColored: true),
+          children:  [
+            CustomText(text: LocaleKeys.policyText.tr()),
+            CustomText(text: LocaleKeys.termsOfService.tr(), isColored: true),
+            CustomText(text: LocaleKeys.privacyPolicy.tr(), isColored: true),
+            CustomText(text: LocaleKeys.andUseOf.tr()),
+            CustomText(text: LocaleKeys.cookies.tr(), isColored: true),
           ],
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +8,7 @@ import  'package:thamara/core/widgets/auth_header.dart';
 import '../../../../../core/framework/validator.dart';
 import '../../../../../core/widgets/custome_button.dart';
 import '../../../../../core/widgets/custome_labeld_field.dart';
+import '../../../../../generated/locale_keys.g.dart';
 import '../cubits/reset_password_cubit/reset_password_cubit.dart';
 
 class PasswordRecoveryView extends StatelessWidget {
@@ -27,10 +29,10 @@ class PasswordRecoveryView extends StatelessWidget {
                 children: [
                   SizedBox(height: 16.h),
 
-                  const AuthHeader(
-                    title: 'Password Recovery',
+                   AuthHeader(
+                    title: LocaleKeys.passwordRecoveryTitle.tr(),
                     subTitle:
-                    'Enter your email to recover your password we\'ll send you an email shortly after...',
+                    LocaleKeys.passwordRecoverySubtitle.tr(),
                   ),
 
                   SizedBox(height: 46.h),
@@ -38,8 +40,8 @@ class PasswordRecoveryView extends StatelessWidget {
                   CustomLabeledField(
                     controller: cubit.emailController,
                     validator: AppValidator.validateEmail,
-                    label: 'Email',
-                    hintText: 'example@example.come',
+                    label: LocaleKeys.emailLabel.tr(),
+                    hintText: LocaleKeys.emailHint.tr(),
                   ),
                   SizedBox(height: 32.h),
                   BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
@@ -48,7 +50,7 @@ class PasswordRecoveryView extends StatelessWidget {
                       return AbsorbPointer(
                         absorbing: state is ResetPasswordLoadingState,
                         child: CustomButton(
-                          text: 'Recover Password',
+                          text: LocaleKeys.recoverPasswordBtn.tr(),
                           isLoading: state is ResetPasswordLoadingState,
                           onPressed: () async {
                             if (cubit.formKeyController.currentState!.validate()) {

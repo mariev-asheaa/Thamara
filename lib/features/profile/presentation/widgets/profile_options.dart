@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,6 +6,7 @@ import 'package:thamara/core/text_style_manager/text_style_manager.dart';
 import 'package:thamara/features/profile/presentation/widgets/profile_option_item.dart';
 
 import '../../../../core/color_manager/app_colors.dart';
+import '../../../../generated/locale_keys.g.dart';
 
 class ProfileOptions extends StatelessWidget {
   const ProfileOptions({super.key});
@@ -40,12 +42,12 @@ class ProfileOptions extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Setting", style: TextStyleManager.font24Bold),
+          Text(LocaleKeys.settingsTitle.tr(), style: TextStyleManager.font24Bold),
 
           SizedBox(height: 24.h),
 
           ProfileOptionItem(
-            title: 'Profile',
+            title: LocaleKeys.navProfile.tr(),
             iconPath: 'assets/images/user.png',
             onTap: () {
               //
@@ -53,7 +55,7 @@ class ProfileOptions extends StatelessWidget {
           ),
 
           ProfileOptionItem(
-            title: 'Language',
+            title: LocaleKeys.languageOption.tr(),
             iconPath: 'assets/images/languauge.png',
             onTap: () {
               //
@@ -61,7 +63,7 @@ class ProfileOptions extends StatelessWidget {
           ),
 
           ProfileOptionItem(
-            title: 'Date & Time',
+            title: LocaleKeys.dateTimeOption.tr(),
             iconPath: 'assets/images/date&time.png',
             onTap: () {
 

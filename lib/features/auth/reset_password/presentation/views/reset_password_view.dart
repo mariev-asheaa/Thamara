@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +8,7 @@ import 'package:thamara/core/widgets/auth_header.dart';
 import '../../../../../core/framework/validator.dart';
 import '../../../../../core/widgets/custome_button.dart';
 import '../../../../../core/widgets/custome_labeld_field.dart';
+import '../../../../../generated/locale_keys.g.dart';
 import '../../data/arguments/password_arguments.dart';
 import '../cubits/new_password_cubit/new_password_cubit.dart';
 
@@ -28,17 +30,17 @@ final PasswordArguments argument;
                 children: [
                   SizedBox(height: 16.h),
 
-                  const AuthHeader(
-                    title: 'Reset Password',
+                   AuthHeader(
+                    title: LocaleKeys.resetPasswordTitle.tr(),
                     subTitle:
-                    'Create a new password to regain access to your account',
+                    LocaleKeys.resetPasswordSubtitle.tr(),
                   ),
 
                   SizedBox(height: 46.h),
 
                   CustomLabeledField(
-                    label: 'Password',
-                    hintText: 'Enter your password...',
+                    label: LocaleKeys.passwordLabel.tr(),
+                    hintText: LocaleKeys.passwordHint.tr(),
                     isObscureText: true,
                     controller: cubit.passwordController,
                     validator: AppValidator.validatePassword,
@@ -46,8 +48,8 @@ final PasswordArguments argument;
                   SizedBox(height: 16.h),
 
                   CustomLabeledField(
-                    label: 'Confirm Password',
-                    hintText: 'Enter your password...',
+                    label: LocaleKeys.confirmPassword.tr(),
+                    hintText: LocaleKeys.passwordHint.tr(),
                     isObscureText: true,
                     controller: cubit.confirmPasswordController,
                     validator: (value) =>
@@ -61,7 +63,7 @@ final PasswordArguments argument;
                     builder: (context, state) {
                       NewPasswordCubit cubit = BlocProvider.of<NewPasswordCubit>(context);
                       return CustomButton(
-                        text: 'Confirm Password',
+                        text: LocaleKeys.confirmPassword.tr(),
                         isLoading: state is NewPasswordLoadingState,
                         onPressed: state is NewPasswordLoadingState? null:
                            () async {

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,6 +7,7 @@ import 'package:thamara/features/auth/otp/presentation/widgets/otp_fields.dart';
 import '../../../../core/color_manager/app_colors.dart';
 import '../../../../core/widgets/auth_header.dart';
 import '../../../../core/widgets/custome rich_text.dart';
+import '../../../../generated/locale_keys.g.dart';
 import '../data/arguments/otp_argument.dart';
 import 'cubits/otp_cubit.dart';
 
@@ -49,10 +51,10 @@ class _OtpViewState extends State<OtpView> {
               children: [
                 SizedBox(height: 16.h),
 
-                const AuthHeader(
-                  title: 'Enter Verification Code',
+               AuthHeader(
+                  title: LocaleKeys.otpTitle.tr(),
                   subTitle:
-                  'We’ve sent a one-time code to your Email. Please enter it below.',
+                  LocaleKeys.otpSubtitle.tr(),
                 ),
 
                 SizedBox(height: 46.h),
@@ -71,8 +73,8 @@ class _OtpViewState extends State<OtpView> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: CustomRichText(
-                    text: "Didn't Receive one? ",
-                    actionText: "Resend",
+                    text: LocaleKeys.didntReceiveCode.tr(),
+                    actionText: LocaleKeys.resendCode.tr(),
                     onTap: () {
                       context.read<OTPCubit>().resendOTP(context);
                     },

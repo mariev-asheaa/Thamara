@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,6 +15,7 @@ import '../../../../core/text_style_manager/text_style_manager.dart';
 import '../../../../core/widgets/custom_divider.dart';
 import '../../../../core/widgets/custome_button.dart';
 import '../../../../core/widgets/custome_labeld_field.dart';
+import '../../../../generated/locale_keys.g.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -44,8 +46,8 @@ class LoginView extends StatelessWidget {
                   CustomLabeledField(
                     validator: AppValidator.validateEmail,
                     controller: cubit.loginEmailController,
-                    label: 'Email',
-                    hintText: 'Enter your email',
+                    label: LocaleKeys.emailLabel.tr(),
+                    hintText: LocaleKeys.emailHint.tr(),
                   ),
 
                   SizedBox(height: 16.h),
@@ -53,8 +55,8 @@ class LoginView extends StatelessWidget {
                   CustomLabeledField(
                     validator: AppValidator.validatePassword,
                     controller: cubit.loginPasswordController,
-                    label: 'Password',
-                    hintText: 'Enter your password...',
+                    label: LocaleKeys.passwordLabel.tr(),
+                    hintText: LocaleKeys.passwordHint.tr(),
                     isObscureText: true,
                   ),
                   SizedBox(height: 8.h),
@@ -66,7 +68,7 @@ class LoginView extends StatelessWidget {
                         context.pushWithNamed(Routes.resetPasswordView);
                       },
                       child: Text(
-                        'Forgot Password?',
+                        LocaleKeys.forgotPassword.tr(),
                         style: TextStyleManager.font14Bold.copyWith(
                           color: AppColors.greyColor,
                         ),
@@ -79,7 +81,7 @@ class LoginView extends StatelessWidget {
                     builder: (context, state) {
                       final cubit = BlocProvider.of<LoginCubit>(context);
                       return CustomButton(
-                        text: 'Sign In',
+                        text: LocaleKeys.signInBtn.tr(),
                         isLoading: state is LoginLoadingState,
                         onPressed: state is LoginLoadingState
                             ? null
@@ -99,7 +101,7 @@ class LoginView extends StatelessWidget {
                   SizedBox(height: 16.h),
 
                   CustomButton(
-                    text: 'Create New Account',
+                    text: LocaleKeys.createNewAccount.tr(),
                     isPrimary: false,
                     onPressed: () {
                       context.pushWithNamed(Routes.registerView);

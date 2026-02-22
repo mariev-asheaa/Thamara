@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:thamara/core/widgets/common_header_content.dart';
 import 'package:thamara/features/profile/presentation/widgets/profile_options.dart';
 import '../../../core/color_manager/app_colors.dart';
 import '../../../core/widgets/custom_header.dart';
+import '../../../generated/locale_keys.g.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -16,7 +18,7 @@ class ProfileView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomHeader(child: CommonHeaderContent(title: 'Profile')),
+            CustomHeader(child: CommonHeaderContent(title: LocaleKeys.navProfile.tr())),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Column(

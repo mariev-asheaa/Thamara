@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,6 +12,7 @@ import '../../../../core/widgets/custome rich_text.dart';
 import '../../../../core/widgets/thamara_text.dart';
 import '../../../../core/widgets/custome_button.dart';
 import '../../../../core/widgets/custome_labeld_field.dart';
+import '../../../../generated/locale_keys.g.dart';
 import 'cubit/register_cubit.dart';
 
 class SignUpView extends StatelessWidget {
@@ -47,8 +49,8 @@ class SignUpView extends StatelessWidget {
 
                     CustomLabeledField(
                       validator: AppValidator.validateEmail,
-                      label: 'Email',
-                      hintText: 'example@example.come',
+                      label:  LocaleKeys.emailLabel.tr(),
+                      hintText: LocaleKeys.emailHint.tr(),
                       controller: cubit.registerEmailController,
                     ),
 
@@ -59,16 +61,16 @@ class SignUpView extends StatelessWidget {
                     CustomLabeledField(
                       validator: AppValidator.validatePassword,
                       controller: cubit.registerPasswordController,
-                      label: 'Password',
-                      hintText: 'Enter your password...',
+                      label: LocaleKeys.passwordLabel.tr(),
+                      hintText: LocaleKeys.passwordHint.tr(),
                       isObscureText: true,
                     ),
                     SizedBox(height: 16.h),
 
                     CustomLabeledField(
                       controller: cubit.registerConfirmPasswordController,
-                      label: 'Confirm Password',
-                      hintText: 'Enter your password...',
+                      label: LocaleKeys.confirmPassword.tr(),
+                      hintText: LocaleKeys.passwordHint.tr(),
                       isObscureText: true,
                       validator: (value) =>
                           AppValidator.validateConfirmPassword(
@@ -78,7 +80,7 @@ class SignUpView extends StatelessWidget {
                     BlocBuilder<RegisterCubit, RegisterState>(
                       builder: (context, state) {
                         final cubit = BlocProvider.of<RegisterCubit>(context);
-                        return CustomButton(text: 'Sign Up',
+                        return CustomButton(text: LocaleKeys.signUpBtn.tr(),
                           isLoading: state is RegisterLoadingState,
                           onPressed: state is RegisterLoadingState ? null : () async {
                             if (cubit.registerFormKeyController.currentState?.validate() ?? false) {
@@ -92,8 +94,8 @@ class SignUpView extends StatelessWidget {
                     Align(
                       alignment: Alignment.center,
                       child: CustomRichText(
-                        text: "Already have an account? ",
-                        actionText: "Login",
+                        text: LocaleKeys.alreadyHaveAccount.tr(),
+                        actionText: LocaleKeys.signInLink.tr(),
                         onTap: () {
                           context.pop();
                         },

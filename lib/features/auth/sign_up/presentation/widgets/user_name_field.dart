@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/framework/validator.dart';
 import '../../../../../core/widgets/custome_labeld_field.dart';
+import '../../../../../generated/locale_keys.g.dart';
 // ignore: must_be_immutable
 class UserNameFields extends StatelessWidget {
    UserNameFields({super.key, required this.firstNameController,required this.secondNameController});
@@ -14,8 +16,8 @@ class UserNameFields extends StatelessWidget {
         Expanded(
           child: CustomLabeledField(
             validator: AppValidator.validateName,
-            label: 'First Name',
-            hintText: 'First Name...',
+            label: LocaleKeys.firstNameLabel.tr(),
+            hintText: LocaleKeys.firstNameHint.tr(),
             controller: firstNameController,
           ),
         ),
@@ -23,8 +25,8 @@ class UserNameFields extends StatelessWidget {
         Expanded(
           child: CustomLabeledField(
             validator: AppValidator.validateName,
-            label: 'Second Name',
-            hintText: 'Second Name...',
+            label: LocaleKeys.secondNameLabel.tr(),
+            hintText: LocaleKeys.secondNameHint.tr(),
             controller: secondNameController,
           ),
         ),

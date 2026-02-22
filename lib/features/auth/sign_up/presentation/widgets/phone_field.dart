@@ -42,7 +42,7 @@ class PhoneField extends StatelessWidget {
             SizedBox(width: 16.w),
             Expanded(
               child: CustomTextFormField(
-                hintText: 'EX: 1558578054',
+                hintText: LocaleKeys.phoneHint.tr(),
                 keyboardType: TextInputType.phone,
                 controller: controller,
                 validator: AppValidator.validatePhone,
