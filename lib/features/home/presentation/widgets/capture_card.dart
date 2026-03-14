@@ -8,7 +8,8 @@ import 'package:thamara/core/text_style_manager/text_style_manager.dart';
 import '../../../../generated/locale_keys.g.dart';
 
 class CaptureCard extends StatelessWidget {
-  const CaptureCard({super.key});
+  final VoidCallback onTap;
+  const CaptureCard({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class CaptureCard extends StatelessWidget {
             ),
 
             child: GestureDetector(
-              onTap: () {},
+              onTap: onTap,
               child: Center(
                 child: SvgPicture.asset("assets/images/camera.svg"),
               ),
