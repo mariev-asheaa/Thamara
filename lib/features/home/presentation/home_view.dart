@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:thamara/core/color_manager/app_colors.dart';
 import 'package:thamara/core/text_style_manager/text_style_manager.dart';
 import 'package:thamara/features/home/presentation/widgets/capture_card.dart';
+import 'package:thamara/features/home/presentation/widgets/disease_analysis_sheet.dart';
 import 'package:thamara/features/home/presentation/widgets/instructions_card.dart';
 
 import '../../../core/widgets/custom_divider.dart';
@@ -27,12 +28,18 @@ class _HomeViewState extends State<HomeView> {
   File? selectedImage;
   Future<void> pickImage(ImageSource source) async {
     final XFile? pickedFile = await picker.pickImage(source: source);
+
     if (pickedFile != null) {
       setState(() {
         selectedImage = File(pickedFile.path);
       });
 
-      print("saved successfully ${selectedImage!.path}");
+      // 2-second delay to "simulate" AI analysis
+      await Future.delayed(const Duration(seconds: 2));
+
+      if (mounted) {
+        DiseaseAnalysisSheet.show(context);
+      }
     }
   }
 
@@ -40,57 +47,89 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CustomHeader(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    LocaleKeys.goodMorning.tr(),
-                    style: TextStyleManager.font26Bold,
+      body: Stack(
+        children:[
+          SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomHeader(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        LocaleKeys.goodMorning.tr(),
+                        style: TextStyleManager.font26Bold,
+                      ),
+                      Text(
+                        'Mohab Mohamed 👋🏻',
+                        style: TextStyleManager.font26Bold,
+                      ),
+                    ],
                   ),
-                  Text(
-                    'Mohab Mohamed 👋🏻',
-                    style: TextStyleManager.font26Bold,
+                ),
+
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 24.h),
+                      CaptureCard(onTap: () {
+                        pickImage(ImageSource.camera);
+
+                      }),
+
+                      SizedBox(height: 8.h),
+
+                      CustomDivider(themeColor: AppColors.secondaryColor),
+
+                      SizedBox(height: 8.h),
+                      CustomButton(
+                          text: LocaleKeys.uploadFromGallery.tr(),
+                          backgroundColor: AppColors.lightGreen,
+                          textColor: AppColors.secondaryColor,
+                          icon: SvgPicture.asset('assets/images/gallery.svg'),
+                          onPressed: () {
+                            pickImage(ImageSource.gallery);
+                          }
+                      ),
+                      SizedBox(height: 24.h),
+                      InstructionsCard(),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          if (selectedImage != null)
+            SizedBox.expand(
+              child: Stack(
+                children: [
+                  SizedBox.expand(
+                    child: Image.file(
+                      selectedImage!,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                  Positioned(
+                    top: 50.h,
+                    right: 20.w,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.black54,
+                      child: IconButton(
+                        icon: const Icon(Icons.close, color: Colors.white),
+                        onPressed: () {
+                          setState(() {
+                            selectedImage = null;
+                          });
+                        },
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
-
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: Column(
-                children: [
-                  SizedBox(height: 24.h),
-                  CaptureCard(onTap: () {
-                    pickImage(ImageSource.camera);
-
-                  }),
-
-                  SizedBox(height: 8.h),
-
-                  CustomDivider(themeColor: AppColors.secondaryColor),
-
-                  SizedBox(height: 8.h),
-                  CustomButton(
-                    text: LocaleKeys.uploadFromGallery.tr(),
-                    backgroundColor: AppColors.lightGreen,
-                    textColor: AppColors.secondaryColor,
-                    icon: SvgPicture.asset('assets/images/gallery.svg'),
-                    onPressed: () {
-                      pickImage(ImageSource.gallery);
-                    }
-                  ),
-                  SizedBox(height: 24.h),
-                  InstructionsCard(),
-                ],
-              ),
-            ),
-          ],
-        ),
+        ]
       ),
     );
   }
