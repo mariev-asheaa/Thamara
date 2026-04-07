@@ -82,5 +82,7 @@
   "plant_name_hint": "e.g. Mango Tree - Garden",
   "treatment": "Treatment",
   "ai_recommendation": "AI Recommendation",
-  "ai_disclaimer": "This Is An AI-Generated Suggestion. Always Consult An Agricultural Expert Before Applying Any Treatment."
+  "ai_disclaimer": "This Is An AI-Generated Suggestion. Always Consult An Agricultural Expert Before Applying Any Treatment.",
+  "ai_analysis_description": "AI analysis found no signs of disease in the uploaded image",
+  "monitoring_tip": "Keep Monitoring Your Plant Regularly. Early Scanning Helps Catch Diseases Before They Spread."
 }
