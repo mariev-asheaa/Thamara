@@ -87,5 +87,7 @@ abstract class  LocaleKeys {
   static const treatment = 'treatment';
   static const ai_recommendation = 'ai_recommendation';
   static const ai_disclaimer = 'ai_disclaimer';
+  static const ai_analysis_description = 'ai_analysis_description';
+  static const monitoring_tip = 'monitoring_tip';
 
 }

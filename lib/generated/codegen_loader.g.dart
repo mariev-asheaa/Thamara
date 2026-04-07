@@ -98,7 +98,9 @@ class CodegenLoader extends AssetLoader{
   "plant_name_hint": "مثال: شجرة مانجو - الحديقة",
   "treatment": "طريقة العلاج",
   "ai_recommendation": "توصية الذكاء الاصطناعي",
-  "ai_disclaimer": "هذه التوصية ناتجة عن الذكاء الاصطناعي. يرجى دائماً استشارة خبير زراعي قبل البدء بأي علاج."
+  "ai_disclaimer": "هذه التوصية ناتجة عن الذكاء الاصطناعي. يرجى دائماً استشارة خبير زراعي قبل البدء بأي علاج.",
+  "ai_analysis_description": "لم يجد تحليل الذكاء الاصطناعي أي علامات للمرض في الصورة المرفوعة",
+  "monitoring_tip": "استمر في مراقبة نباتك بانتظام. الفحص المبكر يساعد في اكتشاف الأمراض قبل انتشارها."
 };
 static const Map<String,dynamic> _en = {
   "enterFullOTP": "Please enter the full OTP code",
@@ -184,7 +186,9 @@ static const Map<String,dynamic> _en = {
   "plant_name_hint": "e.g. Mango Tree - Garden",
   "treatment": "Treatment",
   "ai_recommendation": "AI Recommendation",
-  "ai_disclaimer": "This Is An AI-Generated Suggestion. Always Consult An Agricultural Expert Before Applying Any Treatment."
+  "ai_disclaimer": "This Is An AI-Generated Suggestion. Always Consult An Agricultural Expert Before Applying Any Treatment.",
+  "ai_analysis_description": "AI analysis found no signs of disease in the uploaded image",
+  "monitoring_tip": "Keep Monitoring Your Plant Regularly. Early Scanning Helps Catch Diseases Before They Spread."
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }
