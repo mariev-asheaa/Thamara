@@ -23,11 +23,9 @@ class AppColors {
   static const Color lowColor = Color(0xFFFFF085);
   static const Color criticalColor = Color(0xFFC10007);
 
+ static const Color statusWarning=Color(0xffFCF3BD);
+  static const Color statusWarning2=Color(0xffDC6803);
 
   static const Color  gradient1 = Color(0xff093420);
   static const Color  gradient2 = Color(0xff22C77B);
-
-
-
-
 }
