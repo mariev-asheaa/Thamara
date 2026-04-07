@@ -7,7 +7,14 @@ import 'package:thamara/generated/locale_keys.g.dart';
 import '../../../../core/text_style_manager/text_style_manager.dart';
 
 class TreatmentSection extends StatelessWidget {
-  const TreatmentSection({super.key});
+  final String treatmentTitle;
+  final String treatmentUsage;
+
+  const TreatmentSection({
+    super.key,
+    required this.treatmentTitle,
+    required this.treatmentUsage,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,13 +47,17 @@ class TreatmentSection extends StatelessWidget {
               ),
               SizedBox(height: 10.h),
               Text(
-                "Sulfur-based Fungicide",
+                treatmentTitle,
                 style: TextStyleManager.font14Bold,
               ),
-              Text(
-                "Usage: Apply once every 7 days",
-                style: TextStyleManager.font12Bold.copyWith(color: Colors.grey[600]),
-              ),
+              if (treatmentUsage.isNotEmpty)
+                Padding(
+                  padding: EdgeInsets.only(top: 4.h),
+                  child: Text(
+                    treatmentUsage,
+                    style: TextStyleManager.font12Bold.copyWith(color: Colors.grey),
+                  ),
+                ),
               SizedBox(height: 15.h),
               Container(
                 padding: EdgeInsets.all(12.w),
