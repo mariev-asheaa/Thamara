@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:meta/meta.dart';
 
 import '../../../../../core/extentions/navigation.dart';
 import '../../../../../core/extentions/show_toast.dart';
+import '../../../../../core/models/user_model.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../../otp/data/arguments/otp_argument.dart';
 import '../../data/params/register_params.dart';
@@ -23,15 +23,14 @@ class RegisterCubit extends Cubit<RegisterState> {
   final GlobalKey<FormState> registerFormKeyController = GlobalKey<FormState>();
   final TextEditingController registerEmailController = TextEditingController();
   final TextEditingController registerPasswordController =
-  TextEditingController();
+      TextEditingController();
   final TextEditingController registerConfirmPasswordController =
-  TextEditingController();
+      TextEditingController();
   final TextEditingController registerFirstNameController =
-  TextEditingController();
+      TextEditingController();
   final TextEditingController registerLastNameController =
-  TextEditingController();
+      TextEditingController();
   final TextEditingController registerPhoneController = TextEditingController();
-
 
   Future register(BuildContext context) async {
     emit(RegisterLoadingState());
@@ -47,11 +46,32 @@ class RegisterCubit extends Cubit<RegisterState> {
       context.showToast(failure.errMessage, isError: true);
       emit(RegisterFailureState(errorMessage: failure.errMessage));
     }, (authModel) {
-      context.pushWithNamed(Routes.otpView,
-         arguments: OTPArgument(email: authModel.email??'', isRegisterOTP: true, userId: authModel.id!)
-          );
-      emit(RegisterSuccessState());
+      saveToken(context: context, authModel: authModel);
     });
+  }
+
+  Future<void> saveToken({
+    required BuildContext context,
+    required UserModel authModel,
+  }) async {
+    final result = registerRepository.saveToken(
+      token: authModel.token ?? '',
+    );
+
+    result.fold(
+      (failure) {
+        context.showToast(failure.errMessage, isError: true);
+        emit(RegisterFailureState(errorMessage: failure.errMessage));
+      },
+      (_) async {
+        context.pushWithNamed(Routes.otpView,
+            arguments: OTPArgument(
+                email: authModel.email ?? '',
+                isRegisterOTP: true,
+                userId: authModel.id!));
+        emit(RegisterSuccessState());
+      },
+    );
   }
 
   @override
