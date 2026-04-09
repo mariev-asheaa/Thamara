@@ -66,5 +66,28 @@ abstract class  LocaleKeys {
   static const settingsTitle = 'settingsTitle';
   static const languageOption = 'languageOption';
   static const dateTimeOption = 'dateTimeOption';
+  static const severity_level = 'severity_level';
+  static const ai_confidence_level = 'ai_confidence_level';
+  static const disease_detected = 'disease_detected';
+  static const no_disease_detected = 'no_disease_detected';
+  static const disease_found_desc = 'disease_found_desc';
+  static const no_disease_found_desc = 'no_disease_found_desc';
+  static const scan_again = 'scan_again';
+  static const continueUse = 'continueUse';
+  static const saved_title = 'saved_title';
+  static const saved_success_msg = 'saved_success_msg';
+  static const back_to_home = 'back_to_home';
+  static const view_plant = 'view_plant';
+  static const save = 'save';
+  static const back = 'back';
+  static const save_your_plant = 'save_your_plant';
+  static const save_plant_desc = 'save_plant_desc';
+  static const plant_name = 'plant_name';
+  static const plant_name_hint = 'plant_name_hint';
+  static const treatment = 'treatment';
+  static const ai_recommendation = 'ai_recommendation';
+  static const ai_disclaimer = 'ai_disclaimer';
+  static const ai_analysis_description = 'ai_analysis_description';
+  static const monitoring_tip = 'monitoring_tip';
 
 }

@@ -9,4 +9,6 @@ class ApiConstants {
   static const resetPassword = '/api/reset-password';
   static const logout = '/api/logout';
   static const sendFcmToken = '';
+  static const postPlantImage = 'https://learned-unparochially-herman.ngrok-free.dev/predict';
+  static const postAiAnalysisReport = 'https://unappeased-krystyna-windowy.ngrok-free.dev/api/detections';
 }

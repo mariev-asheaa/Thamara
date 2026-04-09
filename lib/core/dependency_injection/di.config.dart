@@ -65,6 +65,10 @@ import 'package:thamara/features/auth/reset_password/presentation/cubits/new_pas
     as _i973;
 import 'package:thamara/features/auth/reset_password/presentation/cubits/reset_password_cubit/reset_password_cubit.dart'
     as _i60;
+import 'package:thamara/features/auth/sign_up/data/data_source/local/register_local_data_source.dart'
+    as _i509;
+import 'package:thamara/features/auth/sign_up/data/data_source/local/register_local_data_source_implementation.dart'
+    as _i326;
 import 'package:thamara/features/auth/sign_up/data/data_source/register_remote_data_source.dart'
     as _i425;
 import 'package:thamara/features/auth/sign_up/data/data_source/register_remote_data_source_implementation.dart'
@@ -75,6 +79,15 @@ import 'package:thamara/features/auth/sign_up/data/repos/register_repo_implement
     as _i648;
 import 'package:thamara/features/auth/sign_up/presentation/cubit/register_cubit.dart'
     as _i692;
+import 'package:thamara/features/home/data/data_source/remote_data_source/ai_feature_data_source.dart'
+    as _i618;
+import 'package:thamara/features/home/data/data_source/remote_data_source/ai_feature_data_source_impl.dart'
+    as _i737;
+import 'package:thamara/features/home/data/repos/ai_feature_repo.dart' as _i779;
+import 'package:thamara/features/home/data/repos/ai_feature_repo_impl.dart'
+    as _i349;
+import 'package:thamara/features/home/presentation/cubit/ai_feature_cubit.dart'
+    as _i387;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -124,6 +137,12 @@ extension GetItInjectableX on _i174.GetIt {
         secure: gh<_i173.CachedSecure>(),
       ),
     );
+    gh.factory<_i618.AiFeatureDataSource>(
+      () => _i737.AiFeatureDataSourceImpl(
+        gh<_i361.Dio>(instanceName: 'aiDio'),
+        cachedSecure: gh<_i173.CachedSecure>(),
+      ),
+    );
     gh.lazySingleton<_i920.ApiConsumer>(
       () => _i40.DioApiConsumer(
         networkInfo: gh<_i819.NetworkInfo>(),
@@ -131,6 +150,20 @@ extension GetItInjectableX on _i174.GetIt {
         cachedSecure: gh<_i173.CachedSecure>(),
         appPref: gh<_i757.SharedPrefServices>(),
       ),
+    );
+    gh.factory<_i509.RegisterLocalDataSource>(
+      () => _i326.RegisterLocalDataSourceImpl(
+        appPref: gh<_i757.SharedPrefServices>(),
+        secure: gh<_i173.CachedSecure>(),
+      ),
+    );
+    gh.factory<_i779.AiFeatureRepo>(
+      () => _i349.AiFeatureRepoImpl(
+        remoteDataSource: gh<_i618.AiFeatureDataSource>(),
+      ),
+    );
+    gh.factory<_i387.AiFeatureCubit>(
+      () => _i387.AiFeatureCubit(gh<_i779.AiFeatureRepo>()),
     );
     gh.factory<_i69.PasswordSettingsRemoteDataSource>(
       () => _i254.PasswordSettingsRemoteDataSourceImpl(
@@ -185,6 +218,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i69.RegisterRepository>(
       () => _i648.RegisterRepoImplementation(
         registerRemoteDataSource: gh<_i425.RegisterRemoteDataSource>(),
+        registerLocalDataSource: gh<_i509.RegisterLocalDataSource>(),
       ),
     );
     gh.factory<_i60.ResetPasswordCubit>(

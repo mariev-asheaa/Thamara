@@ -9,7 +9,6 @@ import '../../../../../core/locals/shared_preferences.dart';
 import '../../../../../core/models/user_model.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../data/params/login_params.dart';
-import '../../data/params/send_token_param.dart';
 import '../../data/repos/login_repo.dart';
 
 part 'login_state.dart';

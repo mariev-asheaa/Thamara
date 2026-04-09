@@ -8,4 +8,5 @@ abstract class RegisterRepository {
   Future<Either<Failure, UserModel>> register({
     required RegisterParams param,
   });
+  Either<Failure, dynamic> saveToken({required String token});
 }
