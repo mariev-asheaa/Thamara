@@ -65,6 +65,10 @@ import 'package:thamara/features/auth/reset_password/presentation/cubits/new_pas
     as _i973;
 import 'package:thamara/features/auth/reset_password/presentation/cubits/reset_password_cubit/reset_password_cubit.dart'
     as _i60;
+import 'package:thamara/features/auth/sign_up/data/data_source/local/register_local_data_source.dart'
+    as _i509;
+import 'package:thamara/features/auth/sign_up/data/data_source/local/register_local_data_source_implementation.dart'
+    as _i326;
 import 'package:thamara/features/auth/sign_up/data/data_source/register_remote_data_source.dart'
     as _i425;
 import 'package:thamara/features/auth/sign_up/data/data_source/register_remote_data_source_implementation.dart'
@@ -134,7 +138,10 @@ extension GetItInjectableX on _i174.GetIt {
       ),
     );
     gh.factory<_i618.AiFeatureDataSource>(
-      () => _i737.AiFeatureDataSourceImpl(gh<_i361.Dio>(instanceName: 'aiDio')),
+      () => _i737.AiFeatureDataSourceImpl(
+        gh<_i361.Dio>(instanceName: 'aiDio'),
+        cachedSecure: gh<_i173.CachedSecure>(),
+      ),
     );
     gh.lazySingleton<_i920.ApiConsumer>(
       () => _i40.DioApiConsumer(
@@ -142,6 +149,12 @@ extension GetItInjectableX on _i174.GetIt {
         dioClient: gh<_i361.Dio>(),
         cachedSecure: gh<_i173.CachedSecure>(),
         appPref: gh<_i757.SharedPrefServices>(),
+      ),
+    );
+    gh.factory<_i509.RegisterLocalDataSource>(
+      () => _i326.RegisterLocalDataSourceImpl(
+        appPref: gh<_i757.SharedPrefServices>(),
+        secure: gh<_i173.CachedSecure>(),
       ),
     );
     gh.factory<_i779.AiFeatureRepo>(
@@ -205,6 +218,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i69.RegisterRepository>(
       () => _i648.RegisterRepoImplementation(
         registerRemoteDataSource: gh<_i425.RegisterRemoteDataSource>(),
+        registerLocalDataSource: gh<_i509.RegisterLocalDataSource>(),
       ),
     );
     gh.factory<_i60.ResetPasswordCubit>(

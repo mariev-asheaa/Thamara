@@ -3,6 +3,7 @@ part 'user_model.g.dart';
 
 @JsonSerializable()
 class UserModel {
+  @JsonKey(name: 'access_token')
   final String? token;
   final String? name;
   final String? email;
