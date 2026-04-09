@@ -15,7 +15,6 @@ import 'package:thamara/features/home/presentation/widgets/instructions_card.dar
 import 'package:thamara/features/home/presentation/widgets/no_disease_sheet.dart';
 
 import '../../../core/widgets/custom_divider.dart';
-import '../../../core/widgets/custom_header.dart';
 import '../../../core/widgets/custome_button.dart';
 import '../../../generated/locale_keys.g.dart';
 import 'cubit/ai_feature_cubit.dart';
