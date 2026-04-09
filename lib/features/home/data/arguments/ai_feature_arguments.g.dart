@@ -17,7 +17,7 @@ AiFeatureArguments _$AiFeatureArgumentsFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$AiFeatureArgumentsToJson(AiFeatureArguments instance) =>
     <String, dynamic>{
-      'predicted_class': instance.diseaseName,
+      'disease_name': instance.diseaseName,
       'disease_description': instance.diseaseDescription,
       'confidence': instance.confidenceLevel,
       'severity_level': instance.severityLevel,
