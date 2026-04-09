@@ -78,7 +78,7 @@ class PlantSavedDialog extends StatelessWidget {
                     elevation: 0, // Flat design
                   ),
                   onPressed: () {
-                    Navigator.of(context).popUntil((route) => route.isCurrent);
+                    Navigator.of(context).popUntil((route) => route.isFirst);
                   },
                   child: Text(
                     LocaleKeys.back_to_home.tr(),
@@ -109,7 +109,7 @@ class PlantSavedDialog extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 10.h), // Bottom padding
+          SizedBox(height: 10.h),
         ],
       ),
     );

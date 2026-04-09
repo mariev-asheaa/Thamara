@@ -102,7 +102,10 @@ class NoDiseaseSheet extends StatelessWidget {
             ),
           ),
            SizedBox(height: 24.h),
-          OverlayActions()
+          OverlayActions(
+            arguments: data,
+            imagePath: uploadedImagePath,
+          )
         ],
       ),
     );

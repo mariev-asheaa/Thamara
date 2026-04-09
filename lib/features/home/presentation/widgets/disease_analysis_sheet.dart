@@ -73,7 +73,10 @@ class DiseaseAnalysisSheet extends StatelessWidget {
 
               SizedBox(height: 30.h),
 
-              OverlayActions(),
+              OverlayActions(
+                arguments: data,
+                imagePath: uploadedImagePath,
+              ),
 
               SizedBox(height: 20.h),
             ],

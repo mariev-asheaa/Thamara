@@ -60,7 +60,7 @@ class _HomeViewState extends State<HomeView> {
           if (Navigator.canPop(context)) {
             Navigator.pop(context);
           }
-          if(state.resultModel.severityLevel=='None'||state.resultModel.severityLevel=='Low'){
+          if(state.resultModel.severityLevel=='None'){
             NoDiseaseSheet.show(
                 context,
                 state.resultModel, selectedImage!.path
@@ -84,65 +84,61 @@ class _HomeViewState extends State<HomeView> {
       },
       child: Scaffold(
         backgroundColor: AppColors.backgroundColor,
-        body: Stack(
-          children: [
-            SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomHeader(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          LocaleKeys.goodMorning.tr(),
-                          style: TextStyleManager.font26Bold,
-                        ),
-                        Text(
-                          'Mohab Mohamed 👋🏻',
-                          style: TextStyleManager.font26Bold,
-                        ),
-                      ],
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CustomHeader(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      LocaleKeys.goodMorning.tr(),
+                      style: TextStyleManager.font26Bold,
                     ),
-                  ),
-
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w),
-                    child: Column(
-                      children: [
-                        SizedBox(height: 24.h),
-
-                        CaptureCard(
-                          onTap: () {
-                            pickImage(ImageSource.camera);
-                          },
-                        ),
-
-                        SizedBox(height: 8.h),
-
-                        CustomDivider(themeColor: AppColors.secondaryColor),
-
-                        SizedBox(height: 8.h),
-
-                        CustomButton(
-                          text: LocaleKeys.uploadFromGallery.tr(),
-                          backgroundColor: AppColors.lightGreen,
-                          textColor: AppColors.secondaryColor,
-                          icon: SvgPicture.asset('assets/images/gallery.svg'),
-                          onPressed: () {
-                            pickImage(ImageSource.gallery);
-                          },
-                        ),
-
-                        SizedBox(height: 24.h),
-                        InstructionsCard(),
-                      ],
+                    Text(
+                      'Mohab Mohamed 👋🏻',
+                      style: TextStyleManager.font26Bold,
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                child: Column(
+                  children: [
+                    SizedBox(height: 24.h),
+
+                    CaptureCard(
+                      onTap: () {
+                        pickImage(ImageSource.camera);
+                      },
+                    ),
+
+                    SizedBox(height: 8.h),
+
+                    CustomDivider(themeColor: AppColors.secondaryColor),
+
+                    SizedBox(height: 8.h),
+
+                    CustomButton(
+                      text: LocaleKeys.uploadFromGallery.tr(),
+                      backgroundColor: AppColors.lightGreen,
+                      textColor: AppColors.secondaryColor,
+                      icon: SvgPicture.asset('assets/images/gallery.svg'),
+                      onPressed: () {
+                        pickImage(ImageSource.gallery);
+                      },
+                    ),
+
+                    SizedBox(height: 24.h),
+                    InstructionsCard(),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
