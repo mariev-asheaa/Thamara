@@ -88,20 +88,18 @@ class _HomeViewState extends State<HomeView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomHeader(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      LocaleKeys.goodMorning.tr(),
-                      style: TextStyleManager.font26Bold,
-                    ),
-                    Text(
-                      'Mohab Mohamed 👋🏻',
-                      style: TextStyleManager.font26Bold,
-                    ),
-                  ],
-                ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    LocaleKeys.goodMorning.tr(),
+                    style: TextStyleManager.font26Bold,
+                  ),
+                  Text(
+                    'Mohab Mohamed 👋🏻',
+                    style: TextStyleManager.font26Bold,
+                  ),
+                ],
               ),
 
               Padding(
@@ -118,8 +116,7 @@ class _HomeViewState extends State<HomeView> {
 
                     SizedBox(height: 8.h),
 
-                    CustomDivider(themeColor: AppColors.secondaryColor),
-
+                    CustomDivider(lineColor: AppColors.primaryColor.withValues(alpha: 0.25),textColor:AppColors.primaryColor ,),
                     SizedBox(height: 8.h),
 
                     CustomButton(
