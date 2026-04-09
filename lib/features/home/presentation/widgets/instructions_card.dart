@@ -17,6 +17,13 @@ class InstructionsCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.whiteColor,
         borderRadius: BorderRadius.circular(16.r),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.blackColor.withValues(alpha: 0.1),
+            blurRadius: 3.06.r,
+            offset: Offset(0, 1.02.h),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +40,7 @@ class InstructionsCard extends StatelessWidget {
                 ),
                 child: Center(
                   child: Image.asset(
-                     'assets/images/idea.png',
+                     'assets/images/element.png',
 
                   ),
                 ),

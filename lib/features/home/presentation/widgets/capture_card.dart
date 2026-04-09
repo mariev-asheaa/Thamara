@@ -18,12 +18,12 @@ class CaptureCard extends StatelessWidget {
 
       padding:  EdgeInsets.symmetric(vertical: 32.h, horizontal: 8.w),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(32.r),
-        gradient: const LinearGradient(
-          colors: [AppColors.secondaryColor, AppColors.gradient1],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+        image: const DecorationImage(
+          image: AssetImage("assets/images/capture image.png"),
+          fit: BoxFit.cover,
         ),
+        borderRadius: BorderRadius.circular(32.r),
+
       ),
       child: Column(
         children: [

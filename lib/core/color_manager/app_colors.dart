@@ -15,13 +15,13 @@ class AppColors {
   static Color greyColor = const Color(0xFF121212).withValues(alpha: 0.5);
 
 
-  static const Color backgroundColor = Color(0xFFECECEC);
+  static const Color backgroundColor = Color(0xFFF9FBFA);
   static const Color whiteColor = Color(0xFFFDFDFD);
 
   static const Color recoveredColor = Color(0xFF00C950);
   static const Color improvingColor = Color(0xFF1447E6);
   static const Color lowColor = Color(0xFFFFF085);
-  static const Color criticalColor = Color(0xFFC10007);
+  static const Color criticalColor = Color(0xFFD92D20);
 
 
   static const Color  gradient1 = Color(0xff093420);

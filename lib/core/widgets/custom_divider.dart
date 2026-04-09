@@ -1,38 +1,48 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:thamara/core/color_manager/app_colors.dart';
 
-import '../../generated/locale_keys.g.dart';
-import '../color_manager/app_colors.dart';
 import '../text_style_manager/text_style_manager.dart';
 
 class CustomDivider extends StatelessWidget {
-  final Color? themeColor;
+  final Color? textColor;
+  final Color? lineColor;
 
   const CustomDivider({
     super.key,
-    this.themeColor,
+    this.textColor,
+    this.lineColor,
   });
 
   @override
   Widget build(BuildContext context) {
-
-    final Color color = themeColor ?? AppColors.greyColor;
-
     return Row(
       children: [
+
         Expanded(
-          child: Divider(color: color, thickness: 1),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: Text(
-            LocaleKeys.or.tr(),
-            style: TextStyleManager.font12Bold.copyWith(color: color),
+          child: Divider(
+            color: lineColor ?? AppColors.greyColor,
+            thickness: 1,
           ),
         ),
+
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.w),
+          child: Text(
+            "OR",
+            style: TextStyleManager.font14Medium.copyWith(
+              color: textColor ?? AppColors.greyColor,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+
         Expanded(
-          child: Divider(color: color, thickness: 1),
+          child: Divider(
+            color: lineColor ?? AppColors.greyColor,
+            thickness: 1,
+          ),
         ),
       ],
     );
