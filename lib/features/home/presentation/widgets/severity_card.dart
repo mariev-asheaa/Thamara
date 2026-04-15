@@ -37,7 +37,7 @@ class SeverityCard extends StatelessWidget {
                 severityLevel.isNotEmpty ? severityLevel : "None",
                 style: TextStyleManager.font10Bold.copyWith(color: severityColor,
               ),
-            )
+              ),
             )
           ]
         ),
