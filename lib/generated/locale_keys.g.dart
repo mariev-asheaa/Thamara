@@ -17,9 +17,9 @@ abstract class  LocaleKeys {
   static const or = 'or';
   static const confirm = 'confirm';
   static const navHome = 'navHome';
+  static const navNotifications = 'navNotifications';
+  static const navSettings = 'navSettings';
   static const navPlants = 'navPlants';
-  static const navTracking = 'navTracking';
-  static const navProfile = 'navProfile';
   static const usernameLabel = 'usernameLabel';
   static const usernameHint = 'usernameHint';
   static const passwordLabel = 'passwordLabel';
@@ -65,7 +65,8 @@ abstract class  LocaleKeys {
   static const instruction7 = 'instruction7';
   static const settingsTitle = 'settingsTitle';
   static const languageOption = 'languageOption';
-  static const dateTimeOption = 'dateTimeOption';
+  static const themeOption = 'themeOption';
+  static const personalInfo = 'personalInfo';
   static const severity_level = 'severity_level';
   static const ai_confidence_level = 'ai_confidence_level';
   static const disease_detected = 'disease_detected';
@@ -89,5 +90,33 @@ abstract class  LocaleKeys {
   static const ai_disclaimer = 'ai_disclaimer';
   static const ai_analysis_description = 'ai_analysis_description';
   static const monitoring_tip = 'monitoring_tip';
+  static const clickToChange = 'clickToChange';
+  static const lightMode = 'lightMode';
+  static const darkMode = 'darkMode';
+  static const deleteAccountTitle = 'deleteAccountTitle';
+  static const deleteAccountSubtitle = 'deleteAccountSubtitle';
+  static const keepAccountBtn = 'keepAccountBtn';
+  static const deleteBtn = 'deleteBtn';
+  static const editInfoBtn = 'editInfoBtn';
+  static const deleteAccountBtn = 'deleteAccountBtn';
+  static const cancel = 'cancel';
+  static const sortNewest = 'sortNewest';
+  static const sortOldest = 'sortOldest';
+  static const sortAToZ = 'sortAToZ';
+  static const sortZToA = 'sortZToA';
+  static const recovery = 'recovery';
+  static const usage = 'usage';
+  static const recoveryProgress = 'recoveryProgress';
+  static const accordingToLastScan = 'accordingToLastScan';
+  static const uploadBtn = 'uploadBtn';
+  static const viewFullDetailsBtn = 'viewFullDetailsBtn';
+  static const searchHint = 'searchHint';
+  static const diseaseDetails = 'diseaseDetails';
+  static const nameLabel = 'nameLabel';
+  static const firstDetectionDate = 'firstDetectionDate';
+  static const diseaseDescription = 'diseaseDescription';
+  static const scanHistory = 'scanHistory';
+  static const scansCount = 'scansCount';
+  static const allPlantsTitle = 'allPlantsTitle';
 
 }
