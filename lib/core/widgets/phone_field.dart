@@ -5,11 +5,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:thamara/core/color_manager/app_colors.dart';
 import 'package:thamara/core/text_style_manager/text_style_manager.dart';
 import 'package:thamara/generated/locale_keys.g.dart';
-import '../../../../../core/framework/validator.dart';
-import '../../../../../core/widgets/custome_text_form_field.dart';
+import '../framework/validator.dart';
+import 'custome_text_form_field.dart';
 // ignore: must_be_immutable
 class PhoneField extends StatelessWidget {
-   PhoneField({super.key,required this.controller});
+  final bool enabled;
+  final Color? backgroundColor;
+  PhoneField({super.key,required this.controller,this.enabled=true,this.backgroundColor,});
   TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -23,20 +25,26 @@ class PhoneField extends StatelessWidget {
             Container(
               height: 55.h,
               decoration: BoxDecoration(
-                color: AppColors.backgroundColor,
+                color:  backgroundColor ?? AppColors.backgroundColor,
                 borderRadius: BorderRadius.circular(12.r),
-                border: Border.all(color: AppColors.greyColor),
+                border: Border.all(color: enabled ? AppColors.primaryColor.withValues(alpha: 0.2) : AppColors.neutralGrey,),
               ),
-              child: CountryCodePicker(
-                onChanged: (country) {
-                  print(country.dialCode);
-                },
-                initialSelection: 'EG',
-                favorite: const ['+20', 'EG'],
-                showCountryOnly: false,
-                showOnlyCountryWhenClosed: false,
-                alignLeft: false,
-                padding: EdgeInsets.zero,
+              child: AbsorbPointer(
+                absorbing: !enabled,
+                child: Opacity(
+                  opacity: enabled ? 1.0 : 0.5,
+                  child: CountryCodePicker(
+                    onChanged: (country) {
+                      print(country.dialCode);
+                    },
+                    initialSelection: 'EG',
+                    favorite: const ['+20', 'EG'],
+                    showCountryOnly: false,
+                    showOnlyCountryWhenClosed: false,
+                    alignLeft: false,
+                    padding: EdgeInsets.zero,
+                  ),
+                ),
               ),
             ),
             SizedBox(width: 16.w),
@@ -46,6 +54,8 @@ class PhoneField extends StatelessWidget {
                 keyboardType: TextInputType.phone,
                 controller: controller,
                 validator: AppValidator.validatePhone,
+                enabled: enabled,
+                backgroundColor: backgroundColor ?? AppColors.backgroundColor,
               ),
             ),
           ],

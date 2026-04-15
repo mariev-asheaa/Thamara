@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:thamara/core/extentions/navigation.dart';
-import 'package:thamara/features/auth/sign_up/presentation/widgets/phone_field.dart';
-import 'package:thamara/features/auth/sign_up/presentation/widgets/user_name_field.dart';
+import 'package:thamara/core/widgets/phone_field.dart';
+import 'package:thamara/core/widgets/user_name_field.dart';
 import '../../../../core/color_manager/app_colors.dart';
 import '../../../../core/framework/validator.dart';
 import '../../../../core/widgets/app_logo.dart';
@@ -29,10 +29,9 @@ class SignUpView extends StatelessWidget {
             child: Form(
               key: cubit.registerFormKeyController,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                padding: EdgeInsets.symmetric(vertical:24.h,horizontal: 16.w),
                 child: Column(
                   children: [
-                    SizedBox(height: 16.h),
 
                     const AppLogo(),
 

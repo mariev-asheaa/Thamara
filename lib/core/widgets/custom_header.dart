@@ -1,30 +1,43 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:thamara/core/color_manager/app_colors.dart';
+import 'package:thamara/core/text_style_manager/text_style_manager.dart';
+
+import '../extentions/navigation.dart';
 
 class CustomHeader extends StatelessWidget {
-  final Widget child;
-
-  const CustomHeader({super.key, required this.child});
+  final String title;
+  const CustomHeader({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 172.h,
-      width: MediaQuery.of(context).size.width,
-
-      child: Stack(
-        children: [
-          Image.asset(
-            'assets/images/appbar.png',
-            width: MediaQuery.of(context).size.width,
-            height: 172.h,
-            fit: BoxFit.cover,
+    return Row(
+      children: [
+        GestureDetector(
+          onTap: ()  => context.pop(),
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 13.h, horizontal: 16.w),
+            decoration: BoxDecoration(
+              color: AppColors.primaryColor.withValues(alpha: 0.2),
+              borderRadius: BorderRadius.circular(8.r),
+              border: Border.all(color: AppColors.primaryColor),
+            ),
+            child: SvgPicture.asset(
+              'assets/images/back arrow.svg',
+              width: 10.w,
+              height: 14.h,
+            ),
           ),
+        ),
 
-          Positioned(top: 78.h, left: 16.w, right: 16.w, child: child),
-        ],
-      ),
+SizedBox(width: 12.w),
+        Text(
+          title,
+          style: TextStyleManager.font22SemiBold
+        ),
+
+      ],
     );
   }
 }

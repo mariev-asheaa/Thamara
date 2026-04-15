@@ -83,57 +83,61 @@ class _HomeViewState extends State<HomeView> {
       },
       child: Scaffold(
         backgroundColor: AppColors.backgroundColor,
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Column(
+        body: SafeArea(
+          bottom: false,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(top: 24.h, left: 16.w, right: 16.w,bottom: 24.h),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    LocaleKeys.goodMorning.tr(),
-                    style: TextStyleManager.font26Bold,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        LocaleKeys.goodMorning.tr(),
+                        style: TextStyleManager.font26Bold.copyWith(color: AppColors.secondaryColor),
+                      ),
+                      Text(
+                        'Mohab Mohamed 👋🏻',
+                        style: TextStyleManager.font26Bold.copyWith(color: AppColors.mainBlack),
+                      ),
+                    ],
                   ),
-                  Text(
-                    'Mohab Mohamed 👋🏻',
-                    style: TextStyleManager.font26Bold,
+          
+                  Column(
+                    children: [
+                      SizedBox(height: 24.h),
+          
+                      CaptureCard(
+                        onTap: () {
+                          pickImage(ImageSource.camera);
+                        },
+                      ),
+          
+                      SizedBox(height: 8.h),
+          
+                      CustomDivider(lineColor: AppColors.primaryColor.withValues(alpha: 0.25),textColor:AppColors.primaryColor ,),
+                      SizedBox(height: 8.h),
+          
+                      CustomButton(
+                        text: LocaleKeys.uploadFromGallery.tr(),
+                        backgroundColor: AppColors.lightGreen,
+                        borderColor: AppColors.lightGreen,
+                        textColor: AppColors.primaryColor,
+                        icon: SvgPicture.asset('assets/images/photos.svg'),
+                        onPressed: () {
+                          pickImage(ImageSource.gallery);
+                        },
+                      ),
+          
+                      SizedBox(height: 24.h),
+                      InstructionsCard(),
+                    ],
                   ),
                 ],
               ),
-
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w),
-                child: Column(
-                  children: [
-                    SizedBox(height: 24.h),
-
-                    CaptureCard(
-                      onTap: () {
-                        pickImage(ImageSource.camera);
-                      },
-                    ),
-
-                    SizedBox(height: 8.h),
-
-                    CustomDivider(lineColor: AppColors.primaryColor.withValues(alpha: 0.25),textColor:AppColors.primaryColor ,),
-                    SizedBox(height: 8.h),
-
-                    CustomButton(
-                      text: LocaleKeys.uploadFromGallery.tr(),
-                      backgroundColor: AppColors.lightGreen,
-                      textColor: AppColors.secondaryColor,
-                      icon: SvgPicture.asset('assets/images/gallery.svg'),
-                      onPressed: () {
-                        pickImage(ImageSource.gallery);
-                      },
-                    ),
-
-                    SizedBox(height: 24.h),
-                    InstructionsCard(),
-                  ],
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),

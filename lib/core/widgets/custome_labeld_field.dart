@@ -12,6 +12,8 @@ class CustomLabeledField extends StatefulWidget {
   final bool? isObscureText;
   final Widget? suffixIcon;
   final String? Function(String?)? validator;
+  final bool? enabled;
+  final Color? backgroundColor;
   TextEditingController controller = TextEditingController();
    CustomLabeledField({
     super.key,
@@ -19,7 +21,9 @@ class CustomLabeledField extends StatefulWidget {
     required this.hintText,
     this.isObscureText,
     this.suffixIcon,
-     required this.controller, this.validator
+     required this.controller, this.validator,
+     this.enabled,
+     this.backgroundColor,
   });
 
   @override
@@ -46,6 +50,8 @@ class _CustomLabeledFieldState extends State<CustomLabeledField> {
           validator: widget.validator,
           controller: widget.controller,
           hintText: widget.hintText,
+          enabled: widget.enabled,
+          backgroundColor: widget.backgroundColor,
           isObscureText: isPasswordHidden,
           suffixIcon: widget.isObscureText == true
               ? GestureDetector(

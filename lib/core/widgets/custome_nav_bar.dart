@@ -66,17 +66,17 @@ class _CustomNavBarState extends State<CustomNavBar> {
                       buildGButton(
                         index: 1,
                         iconPath: 'assets/images/plants.svg',
-                        label: LocaleKeys.navTracking.tr(),
+                        label: LocaleKeys.navPlants.tr(),
                       ),
                       buildGButton(
                         index: 2,
                         iconPath: 'assets/images/notifications.svg',
-                        label: LocaleKeys.navPlants.tr(),
+                        label: LocaleKeys.navNotifications.tr(),
                       ),
                       buildGButton(
                         index: 3,
                         iconPath: 'assets/images/setting.svg',
-                        label: LocaleKeys.navProfile.tr(),
+                        label: LocaleKeys.navSettings.tr(),
                       ),
                     ],
                   ),

@@ -10,9 +10,12 @@ class CustomTextFormField extends StatelessWidget {
   final double? height;
   final bool? isObscureText;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
   final TextInputType? keyboardType;
   TextEditingController controller = TextEditingController();
   final String? Function(String?)? validator;
+  final Color? backgroundColor;
+  final bool? enabled;
    CustomTextFormField({
     super.key,
     required this.hintText,
@@ -20,8 +23,13 @@ class CustomTextFormField extends StatelessWidget {
     this.height,
     this.isObscureText,
     this.suffixIcon,
+     this.prefixIcon,
     this.keyboardType,
-     required this.controller, this.validator
+     required this.controller,
+     this.validator,
+     this.backgroundColor,
+     this.enabled,
+
   });
 
   @override
@@ -30,6 +38,7 @@ class CustomTextFormField extends StatelessWidget {
       width: width ?? double.infinity,
       height: height ?? 49.h,
       child: TextFormField(
+        enabled: enabled ?? true,
         validator: validator,
         controller: controller,
         keyboardType: keyboardType,
@@ -39,22 +48,31 @@ class CustomTextFormField extends StatelessWidget {
             horizontal: 16.w,
             vertical: 14.h,
           ),
+          prefixIcon: prefixIcon,
 
           hintText: hintText,
           hintStyle: TextStyleManager.font14Medium,
 
-          fillColor: AppColors.backgroundColor,
+          fillColor:  backgroundColor ?? AppColors.backgroundColor,
           filled: true,
 
           suffixIcon: suffixIcon,
 
+
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.greyColor, width: 1.w),
+            borderSide: BorderSide(color: AppColors.primaryColor.withValues(alpha: 0.2),
+                width: 1.5.w),
             borderRadius: BorderRadius.circular(12.r),
           ),
 
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.primaryColor, width: 1.w),
+            borderSide: BorderSide(color: AppColors.primaryColor, width: 1.5.w),
+            borderRadius: BorderRadius.circular(12.r),
+          ),
+          disabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColors.neutralGrey,
+
+                width: 1.5.w),
             borderRadius: BorderRadius.circular(12.r),
           ),
         ),

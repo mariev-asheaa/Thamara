@@ -12,12 +12,13 @@ class CustomButton extends StatelessWidget {
   final Color? backgroundColor;
   final Color? textColor;
   final Widget? icon;
+  final Color? borderColor;
   const CustomButton({
     super.key,
     required this.text,
     required this.onPressed,
     this.isPrimary = true,
-    this.width, this.isLoading=false, this.backgroundColor, this.textColor, this.icon,
+    this.width, this.isLoading=false, this.backgroundColor, this.textColor, this.icon,this.borderColor,
   });
 
   @override
@@ -35,7 +36,7 @@ class CustomButton extends StatelessWidget {
               : AppColors.backgroundColor),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16.r),
-            side: BorderSide(color:backgroundColor ?? AppColors.primaryColor, width: 1.w),
+            side: BorderSide(color:borderColor ?? AppColors.primaryColor, width: 1.w),
           ),
         ),
         child: Row(
@@ -49,7 +50,7 @@ class CustomButton extends StatelessWidget {
             Text(
               text,
               style: TextStyleManager.font16Bold.copyWith(
-                color:  textColor ?? (isPrimary ? Colors.white : AppColors.primaryColor),
+                color:  textColor ?? (isPrimary ? AppColors.whiteColor : AppColors.primaryColor),
               ),
             ),
           ],

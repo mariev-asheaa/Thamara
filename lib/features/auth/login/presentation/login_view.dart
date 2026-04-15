@@ -28,12 +28,12 @@ class LoginView extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 24.h),
             child: Form(
               key: cubit.loginFormKeyController,
               child: Column(
                 children: [
-                  SizedBox(height: 78.h),
+                  SizedBox(height: 24.h),
 
                   const Hero(tag: 'logo', child: AppLogo()),
 

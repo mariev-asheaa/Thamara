@@ -24,10 +24,9 @@ class PasswordRecoveryView extends StatelessWidget {
           child: Form(
             key: cubit.formKeyController,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 24.h),
               child: Column(
                 children: [
-                  SizedBox(height: 16.h),
 
                    AuthHeader(
                     title: LocaleKeys.passwordRecoveryTitle.tr(),

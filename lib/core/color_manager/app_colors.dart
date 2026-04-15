@@ -8,18 +8,24 @@ class AppColors {
   static const Color  secondaryColor = Color(0xff157D4E);
   static const Color  secondaryColor2 = Color(0xff258757);
   static const Color  lightGreen = Color(0xffC7DCD2);
+  static const Color  success = Color(0xff079455);
 
 
   static const Color  blackColor = Color(0xFF000000);
   static const Color  mainBlack = Color(0xff121212);
   static Color greyColor = const Color(0xFF121212).withValues(alpha: 0.5);
+  static const Color  neutralGrey = Color(0xffF3F4F6);
+  static const Color  neutralGrey600 = Color(0xff4D5761);
+  static const Color  neutralGrey500 = Color(0xff6C737F);
+
 
 
   static const Color backgroundColor = Color(0xFFF9FBFA);
   static const Color whiteColor = Color(0xFFFDFDFD);
+  static const Color whiteColor2 = Color(0xFFffffff);
 
   static const Color recoveredColor = Color(0xFF00C950);
-  static const Color improvingColor = Color(0xFF1447E6);
+  static const Color improvingColor = Color(0xFF1570EF);
   static const Color lowColor = Color(0xFFFFF085);
   static const Color criticalColor = Color(0xFFD92D20);
 

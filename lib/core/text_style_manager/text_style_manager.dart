@@ -37,6 +37,12 @@ class TextStyleManager {
     fontFamily: 'Inter',
   );
 
+  static TextStyle font18Bold = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.mainBlack,
+    fontFamily: 'Inter',
+  );
   static TextStyle font20Bold = TextStyle(
     fontSize: 20.sp,
     fontWeight: FontWeight.w700,
@@ -64,11 +70,30 @@ class TextStyleManager {
     color: AppColors.greyColor,
     fontFamily: 'Inter',
   );
+  static TextStyle font12Medium = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w500,
+    color: AppColors.greyColor,
+    fontFamily: 'Inter',
+  );
+
 
   static TextStyle font16Medium = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight.w500,
     color: AppColors.blackColor,
+    fontFamily: 'Inter',
+  );
+  static TextStyle font20Medium = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w500,
+    color: AppColors.mainBlack,
+    fontFamily: 'Inter',
+  );
+  static TextStyle font12Regular = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.mainBlack,
     fontFamily: 'Inter',
   );
 
@@ -78,9 +103,26 @@ class TextStyleManager {
     color: AppColors.mainBlack,
     fontFamily: 'Inter',
   );
-
+  static TextStyle font16Regular = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.blackColor,
+    fontFamily: 'Inter',
+  );
   static TextStyle font18SemiBold = TextStyle(
     fontSize: 18.sp,
+    fontWeight: FontWeight.w600,
+    color: AppColors.mainBlack,
+    fontFamily: 'Inter',
+  );
+  static TextStyle font14SemiBold = TextStyle(
+    fontSize: 18.sp,
+    fontWeight: FontWeight.w600,
+    color: AppColors.mainBlack,
+    fontFamily: 'Inter',
+  );
+  static TextStyle font22SemiBold = TextStyle(
+    fontSize: 22.sp,
     fontWeight: FontWeight.w600,
     color: AppColors.mainBlack,
     fontFamily: 'Inter',
