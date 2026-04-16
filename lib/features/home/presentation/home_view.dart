@@ -13,6 +13,7 @@ import 'package:thamara/features/home/presentation/widgets/capture_card.dart';
 import 'package:thamara/features/home/presentation/widgets/disease_analysis_sheet.dart';
 import 'package:thamara/features/home/presentation/widgets/instructions_card.dart';
 import 'package:thamara/features/home/presentation/widgets/no_disease_sheet.dart';
+import 'package:thamara/features/settings/presentation/cubit/profile_cubit.dart';
 
 import '../../../core/widgets/custom_divider.dart';
 import '../../../core/widgets/custome_button.dart';
@@ -98,9 +99,19 @@ class _HomeViewState extends State<HomeView> {
                         LocaleKeys.goodMorning.tr(),
                         style: TextStyleManager.font26Bold.copyWith(color: AppColors.secondaryColor),
                       ),
-                      Text(
-                        'Mohab Mohamed 👋🏻',
-                        style: TextStyleManager.font26Bold.copyWith(color: AppColors.mainBlack),
+                      BlocBuilder<ProfileCubit, ProfileState>(
+                     builder: (context, state) {
+                       if(state is ProfileSuccess)
+                         {
+                           return Text(
+                             '${state.userModel.firstName!+state.userModel.secondName!} 👋🏻',
+                             style: TextStyleManager.font26Bold.copyWith(color: AppColors.mainBlack),
+                           );
+                         }
+                       else{
+                         return SizedBox.shrink();
+                       }
+                   },
                       ),
                     ],
                   ),

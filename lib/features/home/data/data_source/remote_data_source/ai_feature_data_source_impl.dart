@@ -40,7 +40,7 @@ class AiFeatureDataSourceImpl implements AiFeatureDataSource {
       }
     } catch (e) {
       print('Exception in postPlantImage: $e');
-      throw ServerException(e.toString());
+      throw ServerException('There was an error try again');
     }
   }
 
@@ -88,7 +88,7 @@ class AiFeatureDataSourceImpl implements AiFeatureDataSource {
       }
     } catch (e) {
       print('Exception in postAiReport: $e');
-      throw ServerException(e.toString());
+      throw ServerException('There was an error try again');
     }
   }
 }
