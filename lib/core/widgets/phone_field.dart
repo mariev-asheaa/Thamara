@@ -11,7 +11,8 @@ import 'custome_text_form_field.dart';
 class PhoneField extends StatelessWidget {
   final bool enabled;
   final Color? backgroundColor;
-  PhoneField({super.key,required this.controller,this.enabled=true,this.backgroundColor,});
+  final String? phoneHint;
+  PhoneField({super.key,required this.controller,this.enabled=true,this.backgroundColor, this.phoneHint,});
   TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -50,7 +51,7 @@ class PhoneField extends StatelessWidget {
             SizedBox(width: 16.w),
             Expanded(
               child: CustomTextFormField(
-                hintText: LocaleKeys.phoneHint.tr(),
+                hintText:phoneHint?? LocaleKeys.phoneHint.tr(),
                 keyboardType: TextInputType.phone,
                 controller: controller,
                 validator: AppValidator.validatePhone,

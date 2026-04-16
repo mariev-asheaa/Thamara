@@ -11,4 +11,5 @@ class ApiConstants {
   static const sendFcmToken = '';
   static const postPlantImage = 'https://learned-unparochially-herman.ngrok-free.dev/predict';
   static const postAiAnalysisReport = 'https://unappeased-krystyna-windowy.ngrok-free.dev/api/detections';
+  static const profileInfo = '/api/profileInfo';
 }

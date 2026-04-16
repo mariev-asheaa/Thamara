@@ -8,13 +8,14 @@ import '../extentions/navigation.dart';
 
 class CustomHeader extends StatelessWidget {
   final String title;
-  const CustomHeader({super.key, required this.title});
+  final bool showArrow;
+  const CustomHeader({super.key, required this.title, this.showArrow=false});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        GestureDetector(
+       showArrow? GestureDetector(
           onTap: ()  => context.pop(),
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 13.h, horizontal: 16.w),
@@ -29,7 +30,7 @@ class CustomHeader extends StatelessWidget {
               height: 14.h,
             ),
           ),
-        ),
+        ):SizedBox.shrink(),
 
 SizedBox(width: 12.w),
         Text(

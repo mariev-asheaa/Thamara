@@ -88,6 +88,16 @@ import 'package:thamara/features/home/data/repos/ai_feature_repo_impl.dart'
     as _i349;
 import 'package:thamara/features/home/presentation/cubit/ai_feature_cubit.dart'
     as _i387;
+import 'package:thamara/features/settings/data/data_source/remote_data_source/profile_info_data_source.dart'
+    as _i385;
+import 'package:thamara/features/settings/data/data_source/remote_data_source/profile_info_data_source_impl.dart'
+    as _i753;
+import 'package:thamara/features/settings/data/repos/profile_info_repo.dart'
+    as _i942;
+import 'package:thamara/features/settings/data/repos/profile_info_repo_impl.dart'
+    as _i852;
+import 'package:thamara/features/settings/presentation/cubit/profile_cubit.dart'
+    as _i642;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -184,6 +194,10 @@ extension GetItInjectableX on _i174.GetIt {
             gh<_i69.PasswordSettingsRemoteDataSource>(),
       ),
     );
+    gh.factory<_i385.ProfileInfoDataSource>(
+      () =>
+          _i753.ProfileInfoDataSourceImpl(apiConsumer: gh<_i920.ApiConsumer>()),
+    );
     gh.factory<_i318.OTPRepository>(
       () => _i289.OTPRepositoryImpl(
         authRemoteDataSource: gh<_i1055.OTPRemoteDataSource>(),
@@ -198,6 +212,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i973.NewPasswordCubit>(
       () => _i973.NewPasswordCubit(
         passwordSettingsRepo: gh<_i843.PasswordSettingsRepository>(),
+      ),
+    );
+    gh.factory<_i942.ProfileInfoRepo>(
+      () => _i852.ProfileInfoRepoImpl(
+        profileInfoDataSource: gh<_i385.ProfileInfoDataSource>(),
       ),
     );
     gh.factory<_i198.LoginRepo>(
@@ -230,6 +249,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i692.RegisterCubit(
         registerRepository: gh<_i69.RegisterRepository>(),
       ),
+    );
+    gh.factory<_i642.ProfileCubit>(
+      () => _i642.ProfileCubit(gh<_i942.ProfileInfoRepo>()),
     );
     return this;
   }

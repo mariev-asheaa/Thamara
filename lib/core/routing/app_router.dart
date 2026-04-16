@@ -7,6 +7,7 @@ import 'package:thamara/features/auth/login/presentation/login_view.dart';
 import 'package:thamara/features/auth/otp/data/params/email_param.dart';
 import 'package:thamara/features/auth/sign_up/presentation/cubit/register_cubit.dart';
 import 'package:thamara/features/auth/sign_up/presentation/sign_up_view.dart';
+import 'package:thamara/features/settings/presentation/cubit/profile_cubit.dart';
 import 'package:thamara/features/splash/presentation/splash_view.dart';
 
 import '../../features/auth/otp/data/arguments/otp_argument.dart';
@@ -18,8 +19,8 @@ import '../../features/auth/reset_password/presentation/cubits/reset_password_cu
 import '../../features/auth/reset_password/presentation/views/passwprd_recovery_view.dart';
 import '../../features/auth/reset_password/presentation/views/reset_password_view.dart';
 import '../../features/home/presentation/cubit/ai_feature_cubit.dart';
-import '../../features/home/presentation/home_view.dart';
 import '../../features/layout/presentation/main_layout_view.dart';
+import '../../features/settings/presentation/views/personal_information_view.dart';
 import '../dependency_injection/di.dart';
 import '../framework/navigation_animation.dart';
 
@@ -80,8 +81,18 @@ class AppRouter {
               BlocProvider(
                 create: (context) => getIt<AiFeatureCubit>(),
               ),
+              BlocProvider(
+                create: (context) => getIt<ProfileCubit>()..getProfileInfo(),
+              ),
             ],
             child: const MainLayoutView(),
+          ),
+        );
+      case Routes.profileView:
+        return _buildRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<ProfileCubit>()..getProfileInfo(),
+            child: PersonalInformationView(),
           ),
         );
       default:
