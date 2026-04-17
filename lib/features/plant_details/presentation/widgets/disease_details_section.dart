@@ -2,14 +2,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:thamara/core/color_manager/app_colors.dart';
-import '../../../../core/text_style_manager/text_style_manager.dart';
+import 'package:thamara/features/plant_details/data/models/plants_model.dart';
+import  '../../../../core/text_style_manager/text_style_manager.dart';
 import '../../../../generated/locale_keys.g.dart';
-import '../../data/models/plant_model.dart';
 
 class DiseaseDetailsSection extends StatelessWidget {
-  final PlantModel plant;
+  final PlantsModel plantsModel;
 
-  const DiseaseDetailsSection({super.key, required this.plant});
+  const DiseaseDetailsSection({super.key, required this.plantsModel});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class DiseaseDetailsSection extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                plant.diseaseName,
+                plantsModel.diseaseName,
                 style: TextStyleManager.font14Medium.copyWith(
                   color: AppColors.neutralGrey500,
                 ),
@@ -57,7 +57,7 @@ class DiseaseDetailsSection extends StatelessWidget {
             ),
             Expanded(
               child: Text(
-                plant.firstDetectionDate,
+                plantsModel.firstDetectionDate??'',
                 style: TextStyleManager.font14Medium.copyWith(
                   color: AppColors.neutralGrey500,
                 ),
@@ -75,7 +75,7 @@ class DiseaseDetailsSection extends StatelessWidget {
         SizedBox(height: 8.h),
 
         Text(
-          plant.description,
+          plantsModel.description,
           style: TextStyleManager.font14Medium.copyWith(
             color: AppColors.neutralGrey500,
             height: 2,
