@@ -18,7 +18,7 @@ class ProfileInfoDataSourceImpl implements ProfileInfoDataSource{
     BaseResponse response = await apiConsumer.get(ApiConstants.profileInfo);
     if (response.status == ApiStatusCodes.ok ||
         response.status == ApiStatusCodes.created) {
-      return UserModel.fromJson(response.data);
+      return UserModel.fromJson(response.data['user']);
     } else {
       throw ServerException(response.message.toString());
     }

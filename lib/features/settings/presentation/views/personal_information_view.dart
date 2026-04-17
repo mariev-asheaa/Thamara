@@ -24,10 +24,43 @@ class PersonalInformationView extends StatefulWidget {
 
 class _PersonalInformationViewState extends State<PersonalInformationView> {
   bool isEditing = false;
-  final firstNameController = TextEditingController();
-  final lastNameController = TextEditingController();
-  final emailController = TextEditingController();
-  final phoneController = TextEditingController();
+  late final TextEditingController firstNameController;
+  late final TextEditingController lastNameController;
+  late final TextEditingController emailController;
+  late final TextEditingController phoneController;
+
+  @override
+  void initState() {
+    super.initState();
+    firstNameController = TextEditingController();
+    lastNameController = TextEditingController();
+    emailController = TextEditingController();
+    phoneController = TextEditingController();
+
+    // Populate controllers if state is already ProfileSuccess
+    final state = context.read<ProfileCubit>().state;
+    if (state is ProfileSuccess) {
+      _populateControllers(state);
+    }
+
+    context.read<ProfileCubit>().getProfileInfo();
+  }
+
+  void _populateControllers(ProfileSuccess state) {
+    firstNameController.text = state.userModel.firstName ?? '';
+    lastNameController.text = state.userModel.secondName ?? '';
+    emailController.text = state.userModel.email ?? '';
+    phoneController.text = state.userModel.phoneNumber ?? '';
+  }
+
+  @override
+  void dispose() {
+    firstNameController.dispose();
+    lastNameController.dispose();
+    emailController.dispose();
+    phoneController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +71,15 @@ class _PersonalInformationViewState extends State<PersonalInformationView> {
           child: Padding(
             padding: EdgeInsets.only(top: 24.h, left: 16.w, right: 16.w),
 
-            child: BlocBuilder<ProfileCubit, ProfileState>(
+            child: BlocConsumer<ProfileCubit, ProfileState>(
+              listener: (context, state) {
+                if (state is ProfileSuccess) {
+                  _populateControllers(state);
+                }
+              },
               builder: (context, state) {
                 final cubit = context.read<ProfileCubit>();
-                if(state is ProfileFailure){
+                if (state is ProfileFailure) {
                   return Center(
                     child: CustomError(
                       error: state.errorMessage,
@@ -50,17 +88,18 @@ class _PersonalInformationViewState extends State<PersonalInformationView> {
                       },
                     ),
                   );
-                }
-                else if(state is ProfileSuccess){
+                } else if (state is ProfileSuccess) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CustomHeader(
-                        title: LocaleKeys.personalInfo.tr(), showArrow: true,),
+                        title: LocaleKeys.personalInfo.tr(),
+                        showArrow: true,
+                      ),
                       SizedBox(height: 32.h),
                       UserNameFields(
-                        firstNameHint:state.userModel.firstName,
-                        secondNameHint:state.userModel.secondName ,
+                        firstNameHint: state.userModel.firstName,
+                        secondNameHint: state.userModel.secondName,
                         firstNameController: firstNameController,
                         secondNameController: lastNameController,
                         enabled: isEditing,
@@ -71,7 +110,7 @@ class _PersonalInformationViewState extends State<PersonalInformationView> {
                       SizedBox(height: 24.h),
                       CustomLabeledField(
                         label: LocaleKeys.emailLabel.tr(),
-                        hintText: state.userModel.email!,
+                        hintText: state.userModel.email ?? '',
                         controller: emailController,
                         enabled: isEditing,
                         backgroundColor: isEditing
@@ -79,7 +118,6 @@ class _PersonalInformationViewState extends State<PersonalInformationView> {
                             : AppColors.neutralGrey,
                       ),
                       SizedBox(height: 24.h),
-
                       PhoneField(
                         phoneHint: state.userModel.phoneNumber,
                         controller: phoneController,
@@ -89,7 +127,6 @@ class _PersonalInformationViewState extends State<PersonalInformationView> {
                             : AppColors.neutralGrey,
                       ),
                       SizedBox(height: 24.h),
-
                       if (isEditing == false)
                         Column(
                           children: [
@@ -110,8 +147,8 @@ class _PersonalInformationViewState extends State<PersonalInformationView> {
                               onPressed: () {
                                 showDialog(
                                   context: context,
-                                  builder: (
-                                      context) => const DeleteAccountDialog(),
+                                  builder: (context) =>
+                                      const DeleteAccountDialog(),
                                 );
                               },
                             ),
@@ -132,7 +169,6 @@ class _PersonalInformationViewState extends State<PersonalInformationView> {
                             CustomButton(
                               text: LocaleKeys.cancel.tr(),
                               isPrimary: false,
-
                               onPressed: () {
                                 setState(() {
                                   isEditing = false;
@@ -143,11 +179,13 @@ class _PersonalInformationViewState extends State<PersonalInformationView> {
                         ),
                     ],
                   );
-                }
-                else {
+                } else {
                   return Padding(
-                    padding:  EdgeInsets.only(top: 300.h),
-                    child: Center(child: CircularProgressIndicator(color: AppColors.primaryColor,)),
+                    padding: EdgeInsets.only(top: 300.h),
+                    child: Center(
+                        child: CircularProgressIndicator(
+                      color: AppColors.primaryColor,
+                    )),
                   );
                 }
               },

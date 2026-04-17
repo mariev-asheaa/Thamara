@@ -104,7 +104,7 @@ class _HomeViewState extends State<HomeView> {
                        if(state is ProfileSuccess)
                          {
                            return Text(
-                             '${state.userModel.firstName!+state.userModel.secondName!} 👋🏻',
+                             '${(state.userModel.firstName ?? '')} ${(state.userModel.secondName ?? '')} 👋🏻',
                              style: TextStyleManager.font26Bold.copyWith(color: AppColors.mainBlack),
                            );
                          }
