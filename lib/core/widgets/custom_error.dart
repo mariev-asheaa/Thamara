@@ -32,7 +32,7 @@ class CustomError extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  LocaleKeys.notFoundError.tr(),
+                    error,
                   style: TextStyleManager.font16Medium.copyWith(
                     color: AppColors.whiteColor,
                   ),

@@ -10,10 +10,17 @@ class UserNameFields extends StatelessWidget {
   final Color? backgroundColor;
   final String? firstNameHint;
   final String? secondNameHint;
-   UserNameFields({super.key, required this.firstNameController,required this.secondNameController,this.enabled,
-     this.backgroundColor, this.firstNameHint, this.secondNameHint,});
-  TextEditingController firstNameController = TextEditingController();
-   TextEditingController secondNameController = TextEditingController();
+  final TextEditingController firstNameController;
+  final TextEditingController secondNameController;
+  const UserNameFields({
+    super.key,
+    required this.firstNameController,
+    required this.secondNameController,
+    this.enabled,
+    this.backgroundColor,
+    this.firstNameHint,
+    this.secondNameHint,
+  });
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -22,7 +29,7 @@ class UserNameFields extends StatelessWidget {
           child: CustomLabeledField(
             validator: AppValidator.validateName,
             label: LocaleKeys.firstNameLabel.tr(),
-            hintText:firstNameHint?? LocaleKeys.firstNameHint.tr(),
+            hintText: firstNameHint ?? LocaleKeys.firstNameHint.tr(),
             controller: firstNameController,
             enabled: enabled,
             backgroundColor: backgroundColor,
@@ -33,7 +40,7 @@ class UserNameFields extends StatelessWidget {
           child: CustomLabeledField(
             validator: AppValidator.validateName,
             label: LocaleKeys.secondNameLabel.tr(),
-            hintText:secondNameHint?? LocaleKeys.secondNameHint.tr(),
+            hintText: secondNameHint ?? LocaleKeys.secondNameHint.tr(),
             controller: secondNameController,
             enabled: enabled,
             backgroundColor: backgroundColor,

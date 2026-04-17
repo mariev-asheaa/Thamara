@@ -5,7 +5,9 @@ part 'user_model.g.dart';
 class UserModel {
   @JsonKey(name: 'access_token')
   final String? token;
+  @JsonKey(name: 'first_name')
   final String? firstName;
+  @JsonKey(name: 'last_name')
   final String? secondName;
   final String? email;
   @JsonKey(name: 'user_id')

@@ -88,6 +88,16 @@ import 'package:thamara/features/home/data/repos/ai_feature_repo_impl.dart'
     as _i349;
 import 'package:thamara/features/home/presentation/cubit/ai_feature_cubit.dart'
     as _i387;
+import 'package:thamara/features/plant_details/data/data_source/remote_data_source/plant_details_data_source.dart'
+    as _i762;
+import 'package:thamara/features/plant_details/data/data_source/remote_data_source/plant_details_data_source_impl.dart'
+    as _i158;
+import 'package:thamara/features/plant_details/data/repos/plant_details_repo.dart'
+    as _i250;
+import 'package:thamara/features/plant_details/data/repos/plant_details_repo_impl.dart'
+    as _i415;
+import 'package:thamara/features/plant_details/presentation/cubit/plant_details_cubit.dart'
+    as _i682;
 import 'package:thamara/features/settings/data/data_source/remote_data_source/profile_info_data_source.dart'
     as _i385;
 import 'package:thamara/features/settings/data/data_source/remote_data_source/profile_info_data_source_impl.dart'
@@ -198,6 +208,11 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i753.ProfileInfoDataSourceImpl(apiConsumer: gh<_i920.ApiConsumer>()),
     );
+    gh.factory<_i762.PlantDetailsDataSource>(
+      () => _i158.PlantDetailsDataSourceImpl(
+        apiConsumer: gh<_i920.ApiConsumer>(),
+      ),
+    );
     gh.factory<_i318.OTPRepository>(
       () => _i289.OTPRepositoryImpl(
         authRemoteDataSource: gh<_i1055.OTPRemoteDataSource>(),
@@ -212,6 +227,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i973.NewPasswordCubit>(
       () => _i973.NewPasswordCubit(
         passwordSettingsRepo: gh<_i843.PasswordSettingsRepository>(),
+      ),
+    );
+    gh.factory<_i250.PlantDetailsRepo>(
+      () => _i415.PlantDetailsRepoImpl(
+        plantDetailsDataSource: gh<_i762.PlantDetailsDataSource>(),
       ),
     );
     gh.factory<_i942.ProfileInfoRepo>(
@@ -244,6 +264,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i60.ResetPasswordCubit(
         passwordSettingsRepository: gh<_i843.PasswordSettingsRepository>(),
       ),
+    );
+    gh.factory<_i682.PlantDetailsCubit>(
+      () => _i682.PlantDetailsCubit(gh<_i250.PlantDetailsRepo>()),
     );
     gh.factory<_i692.RegisterCubit>(
       () => _i692.RegisterCubit(
