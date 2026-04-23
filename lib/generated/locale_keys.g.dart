@@ -118,5 +118,16 @@ abstract class  LocaleKeys {
   static const scanHistory = 'scanHistory';
   static const scansCount = 'scansCount';
   static const allPlantsTitle = 'allPlantsTitle';
+  static const allTab = 'allTab';
+  static const unreadTab = 'unreadTab';
+  static const markAllRead = 'markAllRead';
+  static const weatherTitle = 'weatherTitle';
+  static const checkPlantsTitle = 'checkPlantsTitle';
+  static const dailyReminder = 'dailyReminder';
+  static const noNotificationsTitle = 'noNotificationsTitle';
+  static const noNotificationsSubtitle = 'noNotificationsSubtitle';
+  static const noSavedPlantsTitle = 'noSavedPlantsTitle';
+  static const noSavedPlantsSubtitle = 'noSavedPlantsSubtitle';
+  static const goToHome = 'goToHome';
 
 }

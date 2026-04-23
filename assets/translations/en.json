@@ -113,7 +113,16 @@
   "diseaseDescription": "Disease Description",
   "scanHistory": "Scan History",
   "scansCount": "Scans",
-  "allPlantsTitle": "Plant Details"
-
-
+  "allPlantsTitle": "Plant Details",
+  "allTab": "All",
+  "unreadTab": "Unread",
+  "markAllRead": "Mark All As Read",
+  "weatherTitle": "Perfect morning for plants!",
+  "checkPlantsTitle": "Have you checked on your plants today?",
+  "dailyReminder": "Daily plant care reminder",
+  "noNotificationsTitle": "No Notifications Yet",
+  "noNotificationsSubtitle": "We'll notify you here when something new happens like updates, messages, or important alerts.",
+  "noSavedPlantsTitle": "No Saved Plants Yet",
+  "noSavedPlantsSubtitle": "Go scan your plants and make sure everything is healthy and growing well!",
+  "goToHome": "Go to Home"
 }
