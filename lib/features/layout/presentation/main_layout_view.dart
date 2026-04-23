@@ -3,6 +3,7 @@ import 'package:thamara/features/settings/presentation/views/settings_view.dart'
 
 import '../../../core/widgets/custome_nav_bar.dart';
 import '../../home/presentation/home_view.dart';
+import '../../notifications/presentation/notifications_view.dart';
 import '../../plant_details/presentation/views/all_plants_view.dart';
 
 class MainLayoutView extends StatefulWidget {
@@ -17,7 +18,7 @@ class _MainLayoutViewState extends State<MainLayoutView> {
   final List<Widget> pages = [
     const HomeView(),
     const AllPlantsView(),
-    const Center(child: Text("My Plants")),
+    const NotificationsView(),
     const  SettingsView(),
   ];
   @override
