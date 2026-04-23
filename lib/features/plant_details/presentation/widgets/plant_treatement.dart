@@ -5,12 +5,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:thamara/core/color_manager/app_colors.dart';
 import '../../../../core/text_style_manager/text_style_manager.dart';
 import '../../../../generated/locale_keys.g.dart';
-import '../../data/models/plant_model.dart';
+import '../../data/models/plants_model.dart';
 
 class PlantTreatment extends StatelessWidget {
-  final PlantModel plant;
+  final PlantsModel plantsModel;
 
-  const PlantTreatment({super.key, required this.plant});
+  const PlantTreatment({super.key, required this.plantsModel});
 
   @override
   Widget build(BuildContext context) {
@@ -54,13 +54,13 @@ class PlantTreatment extends StatelessWidget {
               SizedBox(height: 12.h),
 
               Text(
-                plant.treatmentTitle,
+                plantsModel.treatmentTitle,
                 style: TextStyleManager.font14SemiBold,
               ),
               SizedBox(height: 6.h),
 
               Text(
-                '${LocaleKeys.usage.tr()} ${plant.treatmentUsage}',
+                '${LocaleKeys.usage.tr()} ${plantsModel.treatmentUsage}',
                 style: TextStyleManager.font12Regular.copyWith(
                   color: AppColors.neutralGrey500,
                 ),

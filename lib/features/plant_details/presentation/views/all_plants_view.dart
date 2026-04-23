@@ -1,0 +1,99 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:thamara/core/color_manager/app_colors.dart';
+import '../../../../core/text_style_manager/text_style_manager.dart';
+import '../../../../core/widgets/custom_error.dart';
+import '../../../../core/widgets/custom_header.dart';
+import '../../../../generated/locale_keys.g.dart';
+import '../cubit/plant_details_cubit.dart';
+import '../widgets/history_search_bar.dart';
+import '../widgets/plant_card .dart';
+
+class AllPlantsView extends StatefulWidget {
+  const AllPlantsView({super.key});
+
+  @override
+  State<AllPlantsView> createState() => _AllPlantsViewState();
+}
+
+class _AllPlantsViewState extends State<AllPlantsView> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<PlantDetailsCubit>().getAllPlants();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.backgroundColor,
+      body: SafeArea(
+        bottom: false,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.only(
+              top: 24.h,
+              left: 16.w,
+              right: 16.w,
+              bottom: 120.h,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomHeader(title: LocaleKeys.allPlantsTitle.tr()),
+                SizedBox(height: 27.h),
+                HistorySearchBar(),
+                SizedBox(height: 24.h),
+                BlocBuilder<PlantDetailsCubit, PlantDetailsState>(
+                  builder: (context, state) {
+                    final cubit = context.read<PlantDetailsCubit>();
+                    if (state is PlantDetailsLoading) {
+                      return Center(
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 100.h),
+                          child: CircularProgressIndicator(
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
+                      );
+                    } else if (state is PlantDetailsFailure) {
+
+                      return  Center(
+                        child: CustomError(
+                          error: state.errorMessage,
+                          retry: () {
+                            cubit.getAllPlants();
+                          },
+                        ),
+                      );
+                    } else if (state is PlantDetailsSuccess) {
+                      if(state.plantsModel.isEmpty){
+                        return Center(child: Text('No Uploaded Plants yet',style: TextStyleManager.font20Bold.copyWith(color: AppColors.primaryColor)),);
+                      }
+                      return ListView.builder(
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: state.plantsModel.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: EdgeInsets.only(bottom: 22.h),
+                            child: PlantCard(
+                                plantsModel: state.plantsModel[index]),
+                          );
+                        },
+                      );
+                    }
+                    return const SizedBox.shrink();
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

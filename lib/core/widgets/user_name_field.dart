@@ -8,10 +8,19 @@ import '../../generated/locale_keys.g.dart';
 class UserNameFields extends StatelessWidget {
   final bool? enabled;
   final Color? backgroundColor;
-   UserNameFields({super.key, required this.firstNameController,required this.secondNameController,this.enabled,
-     this.backgroundColor,});
-  TextEditingController firstNameController = TextEditingController();
-   TextEditingController secondNameController = TextEditingController();
+  final String? firstNameHint;
+  final String? secondNameHint;
+  final TextEditingController firstNameController;
+  final TextEditingController secondNameController;
+  const UserNameFields({
+    super.key,
+    required this.firstNameController,
+    required this.secondNameController,
+    this.enabled,
+    this.backgroundColor,
+    this.firstNameHint,
+    this.secondNameHint,
+  });
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -20,7 +29,7 @@ class UserNameFields extends StatelessWidget {
           child: CustomLabeledField(
             validator: AppValidator.validateName,
             label: LocaleKeys.firstNameLabel.tr(),
-            hintText: LocaleKeys.firstNameHint.tr(),
+            hintText: firstNameHint ?? LocaleKeys.firstNameHint.tr(),
             controller: firstNameController,
             enabled: enabled,
             backgroundColor: backgroundColor,
@@ -31,7 +40,7 @@ class UserNameFields extends StatelessWidget {
           child: CustomLabeledField(
             validator: AppValidator.validateName,
             label: LocaleKeys.secondNameLabel.tr(),
-            hintText: LocaleKeys.secondNameHint.tr(),
+            hintText: secondNameHint ?? LocaleKeys.secondNameHint.tr(),
             controller: secondNameController,
             enabled: enabled,
             backgroundColor: backgroundColor,

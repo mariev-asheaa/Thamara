@@ -11,8 +11,17 @@ import 'custome_text_form_field.dart';
 class PhoneField extends StatelessWidget {
   final bool enabled;
   final Color? backgroundColor;
-  PhoneField({super.key,required this.controller,this.enabled=true,this.backgroundColor,});
-  TextEditingController controller = TextEditingController();
+  final TextEditingController controller;
+  final String? phoneHint;
+
+  const PhoneField({
+    super.key,
+    required this.controller,
+    this.enabled = true,
+    this.backgroundColor,
+    this.phoneHint,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -25,9 +34,13 @@ class PhoneField extends StatelessWidget {
             Container(
               height: 55.h,
               decoration: BoxDecoration(
-                color:  backgroundColor ?? AppColors.backgroundColor,
+                color: backgroundColor ?? AppColors.backgroundColor,
                 borderRadius: BorderRadius.circular(12.r),
-                border: Border.all(color: enabled ? AppColors.primaryColor.withValues(alpha: 0.2) : AppColors.neutralGrey,),
+                border: Border.all(
+                  color: enabled
+                      ? AppColors.primaryColor.withValues(alpha: 0.2)
+                      : AppColors.neutralGrey,
+                ),
               ),
               child: AbsorbPointer(
                 absorbing: !enabled,
@@ -50,7 +63,7 @@ class PhoneField extends StatelessWidget {
             SizedBox(width: 16.w),
             Expanded(
               child: CustomTextFormField(
-                hintText: LocaleKeys.phoneHint.tr(),
+                hintText: phoneHint ?? LocaleKeys.phoneHint.tr(),
                 keyboardType: TextInputType.phone,
                 controller: controller,
                 validator: AppValidator.validatePhone,

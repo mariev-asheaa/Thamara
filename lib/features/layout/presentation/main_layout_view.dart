@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:thamara/features/settings/presentation/views/settings_view.dart';
 
 import '../../../core/widgets/custome_nav_bar.dart';
 import '../../home/presentation/home_view.dart';
-import '../../plant details/presentation/views/all_plants_view.dart';
+import '../../plant_details/presentation/views/all_plants_view.dart';
 
 class MainLayoutView extends StatefulWidget {
   const MainLayoutView({super.key});

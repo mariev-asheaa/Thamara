@@ -3,23 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:thamara/core/color_manager/app_colors.dart';
+import 'package:thamara/features/plant_details/data/models/plants_model.dart';
 import '../../../../core/text_style_manager/text_style_manager.dart';
 import '../../../../generated/locale_keys.g.dart';
-import '../../data/models/plant_model.dart';
 import 'app_badge.dart';
 import 'diagnose_card.dart';
 
 class PlantGeneralInfo extends StatelessWidget {
-  final PlantModel plant;
-
-  const PlantGeneralInfo({super.key, required this.plant});
+final PlantsModel plantsModel;
+  const PlantGeneralInfo({super.key, required this.plantsModel});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(plant.name, style: TextStyleManager.font22SemiBold),
+        Text(plantsModel.name, style: TextStyleManager.font22SemiBold),
         SizedBox(height: 8.h),
 
         Row(
@@ -30,7 +29,7 @@ class PlantGeneralInfo extends StatelessWidget {
               style: TextStyleManager.font14Medium,
             ),
             Text(
-              '${(plant.progress * 100).toInt()}%',
+              '${((plantsModel.progress ?? 0) * 100).toInt()}%',
               style: TextStyleManager.font20Medium,
             ),
           ],
@@ -40,7 +39,7 @@ class PlantGeneralInfo extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(10.r),
           child: LinearProgressIndicator(
-            value: plant.progress,
+            value: plantsModel.progress,
             minHeight: 14.h,
             backgroundColor: AppColors.whiteColor2,
             valueColor: AlwaysStoppedAnimation<Color>(AppColors.success),
@@ -55,7 +54,7 @@ class PlantGeneralInfo extends StatelessWidget {
                 title: LocaleKeys.ai_confidence_level.tr(),
                 iconPath: 'assets/images/ai.svg',
                 valueWidget: Text(
-                  '${(plant.confidenceLevel * 100).toInt()}%',
+                  (plantsModel.confidenceLevel),
                   style: TextStyleManager.font20Bold.copyWith(
                     color: AppColors.primaryColor,
                   ),
@@ -68,7 +67,7 @@ class PlantGeneralInfo extends StatelessWidget {
             Expanded(
               child: DiagnosticCard(
                 title: LocaleKeys.severity_level.tr(),
-                valueWidget: AppBadge(text: plant.severityLevel),
+                valueWidget: AppBadge(text: plantsModel.severityLevel),
               ),
             ),
           ],
@@ -84,7 +83,7 @@ class PlantGeneralInfo extends StatelessWidget {
             ),
             SizedBox(width: 4.w),
             Text(
-              '${LocaleKeys.accordingToLastScan.tr()} ${plant.date}',
+              '${LocaleKeys.accordingToLastScan.tr()} ${plantsModel.date}',
               style: TextStyleManager.font14Medium.copyWith(
                 color: AppColors.neutralGrey600,
               ),

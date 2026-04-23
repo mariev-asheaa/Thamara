@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:thamara/core/color_manager/app_colors.dart';
-import 'package:thamara/features/plant%20details/presentation/widgets/sort_pop_up_menu.dart';
+import 'package:thamara/features/plant_details/presentation/widgets/sort_pop_up_menu.dart';
 import '../../../../core/widgets/custome_text_form_field.dart';
 import '../../../../generated/locale_keys.g.dart';
 
