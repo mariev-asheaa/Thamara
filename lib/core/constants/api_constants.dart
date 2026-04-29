@@ -14,4 +14,6 @@ class ApiConstants {
   static const profileInfo = '/api/profile';
   static const allPlants = '/api/detections';
   static const plantDetails = '/api/detections/';
+  static const notifications = '';
+  static const markAsRead = '';
 }
