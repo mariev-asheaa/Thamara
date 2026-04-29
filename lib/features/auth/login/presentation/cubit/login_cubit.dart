@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
@@ -5,20 +7,22 @@ import 'package:meta/meta.dart';
 
 import '../../../../../core/extentions/navigation.dart';
 import '../../../../../core/extentions/show_toast.dart';
+import '../../../../../core/services/firebase_service.dart';
 import '../../../../../core/locals/shared_preferences.dart';
 import '../../../../../core/models/user_model.dart';
 import '../../../../../core/routing/routes.dart';
 import '../../data/params/login_params.dart';
+import '../../data/params/send_token_param.dart';
 import '../../data/repos/login_repo.dart';
 
 part 'login_state.dart';
 
 @injectable
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit(this.loginRepository, this.sharedPrefServices) : super(LoginInitial());
   final LoginRepo loginRepository;
   final SharedPrefServices sharedPrefServices;
-
+  final FirebaseService firebaseService;
+  LoginCubit({required this.loginRepository, required this.sharedPrefServices,required this.firebaseService}) : super(LoginInitial());
   final GlobalKey<FormState> loginFormKeyController = GlobalKey<FormState>();
   final TextEditingController loginEmailController = TextEditingController();
   final TextEditingController loginPasswordController = TextEditingController();
@@ -62,27 +66,30 @@ class LoginCubit extends Cubit<LoginState> {
         emit(LoginFailureState(errorMessage: failure.errMessage));
       },
           (_) async {
-            context.pushAndRemoveUntilWithNamed(Routes.homeView);
+            sendToken(context: context, authModel: authModel);
       },
     );
   }
 
-  // Future<void> sendToken({
-  //   required BuildContext context,
-  //   required UserModel authModel,
-  // }) async {
-  //   String? fcmToken;
-  //   final result = await loginRepository.sendToken(
-  //     param: SendTokenParam(fcmToken: fcmToken ?? 'fcm'),
-  //   );
-  //   result.fold(
-  //         (failure) {
-  //       context.showToast(failure.errMessage, isError: true);
-  //       emit(LoginFailureState(errorMessage: failure.errMessage));
-  //     },
-  //         (_) async {
-  //           context.pushAndRemoveUntilWithNamed(Routes.homeView);
-  //     },
-  //   );
-  // }
+  Future<void> sendToken({
+    required BuildContext context,
+    required UserModel authModel,
+  }) async {
+    String? fcmToken;
+    if (Platform.isAndroid) {
+      fcmToken = await firebaseService.getFirebaseToken();
+    }
+    final result = await loginRepository.sendToken(
+      param: SendTokenParam(fcmToken: fcmToken ?? 'fcm'),
+    );
+    result.fold(
+          (failure) {
+        context.showToast(failure.errMessage, isError: true);
+        emit(LoginFailureState(errorMessage: failure.errMessage));
+      },
+          (_) async {
+            context.pushAndRemoveUntilWithNamed(Routes.homeView);
+      },
+    );
+  }
 }

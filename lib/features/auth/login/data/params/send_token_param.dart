@@ -5,10 +5,8 @@ part 'send_token_param.g.dart';
 class SendTokenParam {
   @JsonKey(name: 'fcm_token')
   final String fcmToken;
-  // final String token;
 
   SendTokenParam({
-    // required this.token,
     required this.fcmToken,
   });
 
