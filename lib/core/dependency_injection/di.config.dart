@@ -110,6 +110,10 @@ import 'package:thamara/features/plant_details/data/repos/plant_details_repo_imp
     as _i415;
 import 'package:thamara/features/plant_details/presentation/cubit/plant_details_cubit.dart'
     as _i682;
+import 'package:thamara/features/settings/data/data_source/local/setting_local_data_source.dart'
+    as _i15;
+import 'package:thamara/features/settings/data/data_source/local/setting_local_data_source_impl.dart'
+    as _i129;
 import 'package:thamara/features/settings/data/data_source/remote_data_source/profile_info_data_source.dart'
     as _i385;
 import 'package:thamara/features/settings/data/data_source/remote_data_source/profile_info_data_source_impl.dart'
@@ -118,8 +122,10 @@ import 'package:thamara/features/settings/data/repos/profile_info_repo.dart'
     as _i942;
 import 'package:thamara/features/settings/data/repos/profile_info_repo_impl.dart'
     as _i852;
-import 'package:thamara/features/settings/presentation/cubit/profile_cubit.dart'
-    as _i642;
+import 'package:thamara/features/settings/presentation/cubits/edit_profile_cubit/edit_profile_cubit.dart'
+    as _i127;
+import 'package:thamara/features/settings/presentation/cubits/profile_cubit/profile_cubit.dart'
+    as _i375;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -187,6 +193,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i509.RegisterLocalDataSource>(
       () => _i326.RegisterLocalDataSourceImpl(
+        appPref: gh<_i757.SharedPrefServices>(),
+        secure: gh<_i173.CachedSecure>(),
+      ),
+    );
+    gh.factory<_i15.SettingLocalDataSource>(
+      () => _i129.SettingLocalDataSourceImpl(
         appPref: gh<_i757.SharedPrefServices>(),
         secure: gh<_i173.CachedSecure>(),
       ),
@@ -264,11 +276,6 @@ extension GetItInjectableX on _i174.GetIt {
         repository: gh<_i307.NotificationsRepository>(),
       ),
     );
-    gh.factory<_i942.ProfileInfoRepo>(
-      () => _i852.ProfileInfoRepoImpl(
-        profileInfoDataSource: gh<_i385.ProfileInfoDataSource>(),
-      ),
-    );
     gh.factory<_i198.LoginRepo>(
       () => _i461.LoginRepoImplementation(
         loginRemoteDataSource: gh<_i235.LoginDataSource>(),
@@ -284,6 +291,12 @@ extension GetItInjectableX on _i174.GetIt {
         registerLocalDataSource: gh<_i509.RegisterLocalDataSource>(),
       ),
     );
+    gh.factory<_i942.ProfileInfoRepo>(
+      () => _i852.ProfileInfoRepoImpl(
+        profileInfoDataSource: gh<_i385.ProfileInfoDataSource>(),
+        settingLocalDataSource: gh<_i15.SettingLocalDataSource>(),
+      ),
+    );
     gh.factory<_i60.ResetPasswordCubit>(
       () => _i60.ResetPasswordCubit(
         passwordSettingsRepository: gh<_i843.PasswordSettingsRepository>(),
@@ -297,8 +310,12 @@ extension GetItInjectableX on _i174.GetIt {
         registerRepository: gh<_i69.RegisterRepository>(),
       ),
     );
-    gh.factory<_i642.ProfileCubit>(
-      () => _i642.ProfileCubit(gh<_i942.ProfileInfoRepo>()),
+    gh.factory<_i375.ProfileCubit>(
+      () => _i375.ProfileCubit(gh<_i942.ProfileInfoRepo>()),
+    );
+    gh.factory<_i127.EditProfileCubit>(
+      () =>
+          _i127.EditProfileCubit(profileInfoRepo: gh<_i942.ProfileInfoRepo>()),
     );
     gh.factory<_i201.LoginCubit>(
       () => _i201.LoginCubit(
