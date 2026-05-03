@@ -140,7 +140,10 @@ class CodegenLoader extends AssetLoader{
   "noNotificationsSubtitle": "سنقوم بإخطارك هنا عندما يحدث شيء جديد مثل التحديثات أو الرسائل أو التنبيهات الهامة.",
   "noSavedPlantsTitle": "لا توجد نباتات محفوظة بعد",
   "noSavedPlantsSubtitle": "ابدأ بفحص نباتاتك وتأكد من أن كل شيء بصحة جيدة وينمو بشكل جيد!",
-  "goToHome": "العودة للرئيسية"
+  "goToHome": "العودة للرئيسية",
+  "logOut": "تسجيل خروج",
+  "logOutDescription": "هل أنت متأكد أنك تريد تسجيل الخروج من حسابك؟",
+  "tryAgainInAMoment": "حاول مره اخرى خلال دقيقه"
 };
 static const Map<String,dynamic> _en = {
   "enterFullOTP": "Please enter the full OTP code",
@@ -268,7 +271,10 @@ static const Map<String,dynamic> _en = {
   "noNotificationsSubtitle": "We'll notify you here when something new happens like updates, messages, or important alerts.",
   "noSavedPlantsTitle": "No Saved Plants Yet",
   "noSavedPlantsSubtitle": "Go scan your plants and make sure everything is healthy and growing well!",
-  "goToHome": "Go to Home"
+  "goToHome": "Go to Home",
+  "logOut": "Log Out",
+  "logOutDescription": "Are you sure you want to log out of your account?",
+  "tryAgainInAMoment": "Try again in a moment"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }
