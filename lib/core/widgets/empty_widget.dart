@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:thamara/core/color_manager/app_colors.dart';
+import 'package:thamara/core/extentions/navigation.dart';
 import '../../generated/locale_keys.g.dart';
 import '../text_style_manager/text_style_manager.dart';
 
@@ -36,46 +37,48 @@ class CustomEmptyWidget extends StatelessWidget {
             ),
           ),
 
-          SizedBox(height: 12.h),
+        SizedBox(height: 12.h),
 
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: TextStyleManager.font16SemiBold,
-          ),
+        Text(
+          title,
+          textAlign: TextAlign.center,
+          style: TextStyleManager.font16SemiBold,
+        ),
 
-          SizedBox(height: 6.h),
+        SizedBox(height: 6.h),
 
-          Text(
-            subTitle,
-            textAlign: TextAlign.center,
-            style: TextStyleManager.font16Regular,
-          ),
+        Text(
+          subTitle,
+          textAlign: TextAlign.center,
+          style: TextStyleManager.font16Medium,
+        ),
 
-          SizedBox(height: 32.h),
+        SizedBox(height: 32.h),
 
-          GestureDetector(
-            onTap: () {},
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  LocaleKeys.goToHome.tr(),
-                  style: TextStyleManager.font16Bold.copyWith(
-                    color: AppColors.primaryColor,
-                  ),
+        GestureDetector(
+          onTap: () {
+            context.pop();
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                LocaleKeys.back.tr(),
+                style: TextStyleManager.font16Bold.copyWith(
+                  color: AppColors.primaryColor,
                 ),
-                SizedBox(width: 12.w),
-                SvgPicture.asset(
-                  'assets/images/forward arrow.svg',
-                  width: 24.w,
-                  height: 24.h,
-                ),
-              ],
-            ),
+              ),
+              SizedBox(width: 12.w),
+              SvgPicture.asset(
+                'assets/images/forward arrow.svg',
+                width: 24.w,
+                height: 24.h,
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
+    )
     );
   }
 }
