@@ -26,8 +26,7 @@ Future<void> main()async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await FirebaseService.initializeFireBaseNotifications();
-  await getIt<FirebaseService>().handleTerminatedNotification();
+
   runApp(
     DevicePreview(
       enabled:false,

@@ -13,11 +13,11 @@ import 'package:thamara/features/home/presentation/widgets/capture_card.dart';
 import 'package:thamara/features/home/presentation/widgets/disease_analysis_sheet.dart';
 import 'package:thamara/features/home/presentation/widgets/instructions_card.dart';
 import 'package:thamara/features/home/presentation/widgets/no_disease_sheet.dart';
-import 'package:thamara/features/settings/presentation/cubit/profile_cubit.dart';
 
 import '../../../core/widgets/custom_divider.dart';
 import '../../../core/widgets/custome_button.dart';
 import '../../../generated/locale_keys.g.dart';
+import '../../settings/presentation/cubits/profile_cubit/profile_cubit.dart';
 import 'cubit/ai_feature_cubit.dart';
 
 class HomeView extends StatefulWidget {

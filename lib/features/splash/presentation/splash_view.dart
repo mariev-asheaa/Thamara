@@ -5,8 +5,10 @@ import 'package:thamara/core/color_manager/app_colors.dart';
 import 'package:thamara/core/widgets/app_logo.dart';
 import 'package:thamara/core/widgets/thamara_text.dart';
 
+import '../../../core/dependency_injection/di.dart';
 import '../../../core/extentions/navigation.dart';
 import '../../../core/routing/routes.dart';
+import '../../../core/services/firebase_service.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -25,8 +27,12 @@ class _SplashViewState extends State<SplashView> {
         context.pushAndRemoveUntilWithNamed(Routes.loginView);
       }
     });
+    initNotifications();
   }
-
+  Future<void> initNotifications() async {
+    await FirebaseService.initializeFireBaseNotifications();
+    await getIt<FirebaseService>().handleTerminatedNotification();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
