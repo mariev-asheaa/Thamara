@@ -26,6 +26,7 @@ import 'package:thamara/core/dependency_injection/di_module.dart' as _i351;
 import 'package:thamara/core/locals/secure_storage.dart' as _i173;
 import 'package:thamara/core/locals/shared_preferences.dart' as _i757;
 import 'package:thamara/core/services/firebase_service.dart' as _i879;
+import 'package:thamara/core/services/Location_Service.dart' as _i887;
 import 'package:thamara/features/auth/login/data/data_source/local/login_local_data_source.dart'
     as _i734;
 import 'package:thamara/features/auth/login/data/data_source/local/login_local_data_source_implementation.dart'
@@ -97,6 +98,8 @@ import 'package:thamara/features/notifications/data/repository/notifications_rep
     as _i307;
 import 'package:thamara/features/notifications/data/repository/notifications_repository_impl.dart'
     as _i858;
+import 'package:thamara/features/notifications/presentation/cubit/notifications_cubit.dart'
+    as _i294;
 import 'package:thamara/features/plant_details/data/data_source/remote_data_source/plant_details_data_source.dart'
     as _i762;
 import 'package:thamara/features/plant_details/data/data_source/remote_data_source/plant_details_data_source_impl.dart'
@@ -134,6 +137,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => injectionModule.internetConnection,
     );
     gh.factory<_i361.Dio>(() => injectionModule.dioClient);
+    gh.factory<_i887.LocationService>(() => _i887.LocationService());
     gh.factory<_i879.FirebaseService>(() => _i879.FirebaseService());
     gh.lazySingleton<_i707.DioLogInterceptor>(() => _i707.DioLogInterceptor());
     gh.lazySingleton<_i819.NetworkInfo>(() => _i819.NetworkInfo());
@@ -255,6 +259,11 @@ extension GetItInjectableX on _i174.GetIt {
         plantDetailsDataSource: gh<_i762.PlantDetailsDataSource>(),
       ),
     );
+    gh.factory<_i294.NotificationsCubit>(
+      () => _i294.NotificationsCubit(
+        repository: gh<_i307.NotificationsRepository>(),
+      ),
+    );
     gh.factory<_i942.ProfileInfoRepo>(
       () => _i852.ProfileInfoRepoImpl(
         profileInfoDataSource: gh<_i385.ProfileInfoDataSource>(),
@@ -275,13 +284,6 @@ extension GetItInjectableX on _i174.GetIt {
         registerLocalDataSource: gh<_i509.RegisterLocalDataSource>(),
       ),
     );
-    gh.factory<_i201.LoginCubit>(
-      () => _i201.LoginCubit(
-        loginRepository: gh<_i198.LoginRepo>(),
-        sharedPrefServices: gh<_i757.SharedPrefServices>(),
-        firebaseService: gh<_i879.FirebaseService>(),
-      ),
-    );
     gh.factory<_i60.ResetPasswordCubit>(
       () => _i60.ResetPasswordCubit(
         passwordSettingsRepository: gh<_i843.PasswordSettingsRepository>(),
@@ -297,6 +299,14 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i642.ProfileCubit>(
       () => _i642.ProfileCubit(gh<_i942.ProfileInfoRepo>()),
+    );
+    gh.factory<_i201.LoginCubit>(
+      () => _i201.LoginCubit(
+        loginRepository: gh<_i198.LoginRepo>(),
+        sharedPrefServices: gh<_i757.SharedPrefServices>(),
+        firebaseService: gh<_i879.FirebaseService>(),
+        locationService: gh<_i887.LocationService>(),
+      ),
     );
     return this;
   }
