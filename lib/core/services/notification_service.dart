@@ -25,9 +25,6 @@ class NotificationService {
         "title": "Have you checked on your plants today?",
         "body": "Take a moment to inspect your plants for any changes!Check for new growth, pests, or signs of stress. Early detection prevents problems!"
       },
-    {
-
-    }
   ];
 
 
@@ -136,7 +133,7 @@ class NotificationService {
       priority: Priority.high,
       enableVibration: true,
       playSound: true,
-      icon: '@drawable/ic_notification',
+      icon: '@mipmap/ic_launcher',
     );
 
     const platformDetails = NotificationDetails(
@@ -199,7 +196,7 @@ class NotificationService {
           priority: Priority.high,
           enableVibration: true,
           playSound: true,
-          icon: '@drawable/ic_notification',
+          icon: '@mipmap/ic_launcher',
         ),
         iOS: DarwinNotificationDetails(
           presentAlert: true,

@@ -1,5 +1,7 @@
 import 'package:geolocator/geolocator.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class LocationService {
   Future<bool> checkAndRequestLocationService() async {
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -35,12 +37,14 @@ class LocationService {
 
     try {
       return await Geolocator.getCurrentPosition(
-       locationSettings: LocationSettings(
-         accuracy: LocationAccuracy.low
-       )
+        locationSettings: LocationSettings(
+          accuracy: LocationAccuracy.medium,
+          timeLimit: const Duration(seconds: 10),
+        ),
       );
     } catch (e) {
-      return null;
+      print("GPS failed, trying last known location");
+      return await Geolocator.getLastKnownPosition();
     }
   }
 }

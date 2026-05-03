@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
@@ -25,6 +26,10 @@ class FirebaseService {
       await init.registerFCMForegroundListener();
       await init.registerFCMBackgroundListener();
       await init.listenOnMessageOpenedApp();
+      FirebaseMessaging.instance.onTokenRefresh.listen((newToken) {
+        debugPrint('FCM Token refreshed: $newToken');
+
+      });
       return init;
     } catch (e) {
       debugPrint('Firebase notifications initialization error: $e');
@@ -126,6 +131,7 @@ class FirebaseService {
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
   debugPrint('Background message: ${message.messageId}');
 }
 @pragma('vm:entry-point')
