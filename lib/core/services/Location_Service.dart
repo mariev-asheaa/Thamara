@@ -31,20 +31,23 @@ class LocationService {
 
     return true;
   }
-  Future<Position?> getLocation() async {
-    final hasAccess = await checkAndRequestLocationService();
-    if (!hasAccess) return null;
 
-    try {
-      return await Geolocator.getCurrentPosition(
-        locationSettings: LocationSettings(
-          accuracy: LocationAccuracy.medium,
-          timeLimit: const Duration(seconds: 10),
-        ),
-      );
-    } catch (e) {
-      print("GPS failed, trying last known location");
-      return await Geolocator.getLastKnownPosition();
+    Position? currentPosition;
+    Future<Position?> getLocation() async {
+      final hasAccess = await checkAndRequestLocationService();
+      if (!hasAccess) return null;
+
+      try {
+        currentPosition = await Geolocator.getCurrentPosition(
+          locationSettings: LocationSettings(
+            accuracy: LocationAccuracy.medium,
+            timeLimit: const Duration(seconds: 10),
+          ),
+        );
+        return currentPosition;
+      } catch (e) {
+        currentPosition = await Geolocator.getLastKnownPosition();
+        return currentPosition;
+      }
     }
-  }
 }

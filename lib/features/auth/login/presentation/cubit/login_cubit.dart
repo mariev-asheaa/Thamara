@@ -39,7 +39,7 @@ class LoginCubit extends Cubit<LoginState> {
     double? lat;
     double? long;
     try {
-      final position = await locationService.getLocation();
+      final position = locationService.currentPosition;
       if (position != null) {
         lat = position.latitude;
         long = position.longitude;
