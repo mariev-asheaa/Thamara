@@ -16,13 +16,15 @@ class NotificationsRemoteDataSourceImpl extends NotificationsRemoteDataSource {
   NotificationsRemoteDataSourceImpl({required this.apiConsumer});
 
   @override
-  Future<NotificationModel> fetchNotifications() async {
+  Future<List<NotificationModel>> fetchNotifications() async {
     BaseResponse response = await apiConsumer.get(
       ApiConstants.notifications,
     );
     if (response.status == ApiStatusCodes.ok ||
         response.status == ApiStatusCodes.created) {
-      return NotificationModel.fromJson(response.data);
+      return (response.data["notifications"] as List)
+          .map((e) => NotificationModel.fromJson(e))
+          .toList();
     } else {
       throw ServerException(response.message.toString());
     }
