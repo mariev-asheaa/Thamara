@@ -6,6 +6,7 @@ import 'package:thamara/features/auth/login/presentation/cubit/login_cubit.dart'
 import 'package:thamara/features/auth/login/presentation/login_view.dart';
 import 'package:thamara/features/auth/sign_up/presentation/cubit/register_cubit.dart';
 import 'package:thamara/features/auth/sign_up/presentation/sign_up_view.dart';
+import 'package:thamara/features/notifications/presentation/cubit/notifications_cubit.dart';
 import 'package:thamara/features/splash/presentation/splash_view.dart';
 
 import '../../features/auth/otp/data/arguments/otp_argument.dart';
@@ -88,6 +89,9 @@ class AppRouter {
               ),
               BlocProvider(
                 create: (context) => getIt<PlantDetailsCubit>()..getAllPlants(),
+              ),
+              BlocProvider(
+                create: (context) => getIt<NotificationsCubit>()..fetchNotifications(),
               ),
             ],
             child: const MainLayoutView(),
