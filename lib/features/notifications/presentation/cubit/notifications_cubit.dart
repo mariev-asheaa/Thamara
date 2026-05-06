@@ -16,9 +16,8 @@ class NotificationsCubit extends Cubit<NotificationsState> {
   final NotificationsRepository repository;
 
   NotificationsCubit({required this.repository})
-    : super(const NotificationsInitial());
+    : super( NotificationsInitial());
 
-  NotificationModel? notificationsPaginationModel;
   final List<NotificationModel> _notifications = [];
 
   bool _isSelectionMode = false;
@@ -30,19 +29,21 @@ class NotificationsCubit extends Cubit<NotificationsState> {
       _notifications.isNotEmpty;
   Set<String> get selectedIds => Set.unmodifiable(_selectedNotificationIds);
 
-  Future<void> fetchNotifications() async {
-      emit(const NotificationsLoading());
-
+  Future<void> fetchNotifications({bool isRefresh = false}) async {
+    if (!isRefresh) {
+      emit(NotificationsLoading());
+    }
 
     final result = await repository.fetchNotifications();
+
     result.fold(
-      (failure) {
-          emit(NotificationsFailure(error: failure.errMessage));
+          (failure) {
+        emit(NotificationsFailure(error: failure.errMessage));
       },
-      (notificationData) {
+          (notificationData) {
         emit(
           NotificationsSuccess(
-            notifications: List.unmodifiable(_notifications),
+            notifications: notificationData,
             isSelectionMode: _isSelectionMode,
             selectedCount: selectedCount,
             isAllSelected: isAllSelected,
@@ -51,14 +52,6 @@ class NotificationsCubit extends Cubit<NotificationsState> {
       },
     );
   }
-
-
-
-  void refreshNotifications() {
-    _notifications.clear();
-    fetchNotifications();
-  }
-
   void enterSelectionMode() {
     _isSelectionMode = true;
     _selectedNotificationIds.clear();
@@ -107,7 +100,7 @@ class NotificationsCubit extends Cubit<NotificationsState> {
     } else {
       _selectedNotificationIds.clear();
       _selectedNotificationIds.addAll(
-        _notifications.map((notification) => notification.id),
+        _notifications.map((notification) => notification.id.toString()),
       );
     }
     emit(
@@ -156,30 +149,5 @@ class NotificationsCubit extends Cubit<NotificationsState> {
         }
       },
     );
-  }
-
-  Future<void> readNotificationBasedOnId(
-    BuildContext context,
-    String notificationId,
-  ) async {
-    final NotificationModel notification = _notifications.firstWhere(
-      (notification) => notification.id == notificationId,
-    );
-    if (!notification.isRead) {
-      notification.isRead = true;
-      emit(
-        NotificationsSuccess(
-          notifications: List.unmodifiable(_notifications),
-          isSelectionMode: _isSelectionMode,
-          selectedCount: selectedCount,
-          isAllSelected: isAllSelected,
-        ),
-      );
-
-      final result = await repository.markAsReadBasedOnId(
-        notificationId: notificationId,
-      );
-      result.fold((failure) {}, (_) {});
-    }
   }
 }
