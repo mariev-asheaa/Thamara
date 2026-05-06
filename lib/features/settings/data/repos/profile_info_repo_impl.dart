@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:thamara/core/errors/failure.dart';
 import 'package:thamara/core/models/user_model.dart';
 import 'package:thamara/features/settings/data/data_source/remote_data_source/profile_info_data_source.dart';
+import 'package:thamara/features/settings/data/params/delete_acc_param.dart';
 import 'package:thamara/features/settings/data/params/edit_acc_param.dart';
 import 'package:thamara/features/settings/data/repos/profile_info_repo.dart';
 
@@ -50,6 +51,18 @@ class ProfileInfoRepoImpl implements ProfileInfoRepo{
   }) async {
     try {
       String message = await profileInfoDataSource.editProfile(param: param);
+      return Right(message);
+    } catch (error) {
+      return Left(ServerFailure(error.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> deleteAcc({
+    required DeleteAccParam param,
+  }) async {
+    try {
+      String message = await profileInfoDataSource.deleteAcc(param: param);
       return Right(message);
     } catch (error) {
       return Left(ServerFailure(error.toString()));
