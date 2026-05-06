@@ -6,12 +6,16 @@ import 'package:thamara/core/color_manager/app_colors.dart';
 import 'package:thamara/core/text_style_manager/text_style_manager.dart';
 
 import '../../../../core/extentions/navigation.dart';
+import '../../../../core/extentions/on_tap.dart';
 import '../../../../core/widgets/custome_button.dart';
 import '../../../../generated/locale_keys.g.dart';
 
-class DeleteAccountDialog extends StatelessWidget {
-  const DeleteAccountDialog({super.key});
-
+class CustomAccountDialog extends StatelessWidget {
+  const CustomAccountDialog({super.key, required this.title, required this.description, required this.onConfirm, required this.confirmActionButtonText});
+  final String title;
+  final String description;
+  final String confirmActionButtonText;
+  final VoidCallback onConfirm;
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -32,7 +36,7 @@ class DeleteAccountDialog extends StatelessWidget {
             SizedBox(height: 16.h),
 
             Text(
-              LocaleKeys.deleteAccountTitle.tr(),
+              title,
               style: TextStyleManager.font20Bold.copyWith(
                 color: AppColors.blackColor,
               ),
@@ -41,7 +45,7 @@ class DeleteAccountDialog extends StatelessWidget {
             SizedBox(height: 8.h),
 
             Text(
-              LocaleKeys.deleteAccountSubtitle.tr(),
+             description,
               style: TextStyleManager.font16Regular,
               textAlign: TextAlign.center,
             ),
@@ -63,13 +67,10 @@ class DeleteAccountDialog extends StatelessWidget {
                   child: CustomButton(
                     borderColor: AppColors.criticalColor,
                     textColor: AppColors.whiteColor,
-                    text: LocaleKeys.deleteBtn.tr(),
+                    text: confirmActionButtonText,
                     backgroundColor: AppColors.criticalColor,
-                    onPressed: () {
-                      print("account deleted");
-                      context.pop();
-                    },
-                  ),
+                    onPressed: onConfirm
+                  )
                 ),
               ],
             ),

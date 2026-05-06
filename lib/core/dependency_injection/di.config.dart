@@ -25,6 +25,8 @@ import 'package:thamara/core/dependency_injection/di_api_consumer_polymorphism.d
 import 'package:thamara/core/dependency_injection/di_module.dart' as _i351;
 import 'package:thamara/core/locals/secure_storage.dart' as _i173;
 import 'package:thamara/core/locals/shared_preferences.dart' as _i757;
+import 'package:thamara/core/services/firebase_service.dart' as _i879;
+import 'package:thamara/core/services/Location_Service.dart' as _i887;
 import 'package:thamara/features/auth/login/data/data_source/local/login_local_data_source.dart'
     as _i734;
 import 'package:thamara/features/auth/login/data/data_source/local/login_local_data_source_implementation.dart'
@@ -88,6 +90,16 @@ import 'package:thamara/features/home/data/repos/ai_feature_repo_impl.dart'
     as _i349;
 import 'package:thamara/features/home/presentation/cubit/ai_feature_cubit.dart'
     as _i387;
+import 'package:thamara/features/notifications/data/data_source/notifications_remote_data_source.dart'
+    as _i990;
+import 'package:thamara/features/notifications/data/data_source/notifications_remote_data_source_impl.dart'
+    as _i897;
+import 'package:thamara/features/notifications/data/repository/notifications_repository.dart'
+    as _i307;
+import 'package:thamara/features/notifications/data/repository/notifications_repository_impl.dart'
+    as _i858;
+import 'package:thamara/features/notifications/presentation/cubit/notifications_cubit.dart'
+    as _i294;
 import 'package:thamara/features/plant_details/data/data_source/remote_data_source/plant_details_data_source.dart'
     as _i762;
 import 'package:thamara/features/plant_details/data/data_source/remote_data_source/plant_details_data_source_impl.dart'
@@ -98,6 +110,10 @@ import 'package:thamara/features/plant_details/data/repos/plant_details_repo_imp
     as _i415;
 import 'package:thamara/features/plant_details/presentation/cubit/plant_details_cubit.dart'
     as _i682;
+import 'package:thamara/features/settings/data/data_source/local/setting_local_data_source.dart'
+    as _i15;
+import 'package:thamara/features/settings/data/data_source/local/setting_local_data_source_impl.dart'
+    as _i129;
 import 'package:thamara/features/settings/data/data_source/remote_data_source/profile_info_data_source.dart'
     as _i385;
 import 'package:thamara/features/settings/data/data_source/remote_data_source/profile_info_data_source_impl.dart'
@@ -106,8 +122,10 @@ import 'package:thamara/features/settings/data/repos/profile_info_repo.dart'
     as _i942;
 import 'package:thamara/features/settings/data/repos/profile_info_repo_impl.dart'
     as _i852;
-import 'package:thamara/features/settings/presentation/cubit/profile_cubit.dart'
-    as _i642;
+import 'package:thamara/features/settings/presentation/cubits/edit_profile_cubit/edit_profile_cubit.dart'
+    as _i127;
+import 'package:thamara/features/settings/presentation/cubits/profile_cubit/profile_cubit.dart'
+    as _i375;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -125,6 +143,8 @@ extension GetItInjectableX on _i174.GetIt {
       () => injectionModule.internetConnection,
     );
     gh.factory<_i361.Dio>(() => injectionModule.dioClient);
+    gh.factory<_i887.LocationService>(() => _i887.LocationService());
+    gh.factory<_i879.FirebaseService>(() => _i879.FirebaseService());
     gh.lazySingleton<_i707.DioLogInterceptor>(() => _i707.DioLogInterceptor());
     gh.lazySingleton<_i819.NetworkInfo>(() => _i819.NetworkInfo());
     gh.lazySingleton<_i248.ApiConsumerPolymorphism>(
@@ -177,6 +197,12 @@ extension GetItInjectableX on _i174.GetIt {
         secure: gh<_i173.CachedSecure>(),
       ),
     );
+    gh.factory<_i15.SettingLocalDataSource>(
+      () => _i129.SettingLocalDataSourceImpl(
+        appPref: gh<_i757.SharedPrefServices>(),
+        secure: gh<_i173.CachedSecure>(),
+      ),
+    );
     gh.factory<_i779.AiFeatureRepo>(
       () => _i349.AiFeatureRepoImpl(
         remoteDataSource: gh<_i618.AiFeatureDataSource>(),
@@ -187,6 +213,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i69.PasswordSettingsRemoteDataSource>(
       () => _i254.PasswordSettingsRemoteDataSourceImpl(
+        apiConsumer: gh<_i920.ApiConsumer>(),
+      ),
+    );
+    gh.factory<_i990.NotificationsRemoteDataSource>(
+      () => _i897.NotificationsRemoteDataSourceImpl(
         apiConsumer: gh<_i920.ApiConsumer>(),
       ),
     );
@@ -229,26 +260,26 @@ extension GetItInjectableX on _i174.GetIt {
         passwordSettingsRepo: gh<_i843.PasswordSettingsRepository>(),
       ),
     );
+    gh.factory<_i307.NotificationsRepository>(
+      () => _i858.NotificationsRepositoryImpl(
+        notificationsRemoteDataSource:
+            gh<_i990.NotificationsRemoteDataSource>(),
+      ),
+    );
     gh.factory<_i250.PlantDetailsRepo>(
       () => _i415.PlantDetailsRepoImpl(
         plantDetailsDataSource: gh<_i762.PlantDetailsDataSource>(),
       ),
     );
-    gh.factory<_i942.ProfileInfoRepo>(
-      () => _i852.ProfileInfoRepoImpl(
-        profileInfoDataSource: gh<_i385.ProfileInfoDataSource>(),
+    gh.factory<_i294.NotificationsCubit>(
+      () => _i294.NotificationsCubit(
+        repository: gh<_i307.NotificationsRepository>(),
       ),
     );
     gh.factory<_i198.LoginRepo>(
       () => _i461.LoginRepoImplementation(
         loginRemoteDataSource: gh<_i235.LoginDataSource>(),
         loginLocalDataSource: gh<_i734.LoginLocalDataSource>(),
-      ),
-    );
-    gh.factory<_i201.LoginCubit>(
-      () => _i201.LoginCubit(
-        gh<_i198.LoginRepo>(),
-        gh<_i757.SharedPrefServices>(),
       ),
     );
     gh.factory<_i310.OTPCubit>(
@@ -258,6 +289,12 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i648.RegisterRepoImplementation(
         registerRemoteDataSource: gh<_i425.RegisterRemoteDataSource>(),
         registerLocalDataSource: gh<_i509.RegisterLocalDataSource>(),
+      ),
+    );
+    gh.factory<_i942.ProfileInfoRepo>(
+      () => _i852.ProfileInfoRepoImpl(
+        profileInfoDataSource: gh<_i385.ProfileInfoDataSource>(),
+        settingLocalDataSource: gh<_i15.SettingLocalDataSource>(),
       ),
     );
     gh.factory<_i60.ResetPasswordCubit>(
@@ -273,8 +310,20 @@ extension GetItInjectableX on _i174.GetIt {
         registerRepository: gh<_i69.RegisterRepository>(),
       ),
     );
-    gh.factory<_i642.ProfileCubit>(
-      () => _i642.ProfileCubit(gh<_i942.ProfileInfoRepo>()),
+    gh.factory<_i375.ProfileCubit>(
+      () => _i375.ProfileCubit(gh<_i942.ProfileInfoRepo>()),
+    );
+    gh.factory<_i127.EditProfileCubit>(
+      () =>
+          _i127.EditProfileCubit(profileInfoRepo: gh<_i942.ProfileInfoRepo>()),
+    );
+    gh.factory<_i201.LoginCubit>(
+      () => _i201.LoginCubit(
+        loginRepository: gh<_i198.LoginRepo>(),
+        sharedPrefServices: gh<_i757.SharedPrefServices>(),
+        firebaseService: gh<_i879.FirebaseService>(),
+        locationService: gh<_i887.LocationService>(),
+      ),
     );
     return this;
   }

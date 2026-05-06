@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:meta/meta.dart';
 
 import '../../../../../core/extentions/navigation.dart';
 import '../../../../../core/extentions/show_toast.dart';
+import '../../../../../core/services/firebase_service.dart';
+import '../../../../../core/services/Location_Service.dart';
 import '../../../../../core/locals/shared_preferences.dart';
 import '../../../../../core/models/user_model.dart';
 import '../../../../../core/routing/routes.dart';
@@ -15,9 +16,17 @@ part 'login_state.dart';
 
 @injectable
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit(this.loginRepository, this.sharedPrefServices) : super(LoginInitial());
   final LoginRepo loginRepository;
   final SharedPrefServices sharedPrefServices;
+  final FirebaseService firebaseService;
+  final LocationService locationService;
+
+  LoginCubit({
+    required this.loginRepository,
+    required this.sharedPrefServices,
+    required this.firebaseService,
+    required this.locationService,
+  }) : super(LoginInitial());
 
   final GlobalKey<FormState> loginFormKeyController = GlobalKey<FormState>();
   final TextEditingController loginEmailController = TextEditingController();
@@ -26,29 +35,53 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> login(BuildContext context) async {
     emit(LoginLoadingState());
 
+    final String? fcmToken = await getFcmToken();
+    double? lat;
+    double? long;
+    try {
+      final position = locationService.currentPosition;
+      if (position != null) {
+        lat = position.latitude;
+        long = position.longitude;
+      }
+    } catch (_) {}
+
+    // 3. Send all data in a single login request
     final result = await loginRepository.login(
       param: LoginParams(
         email: loginEmailController.text,
         password: loginPasswordController.text,
+        fcmToken: fcmToken,
+        latitude: lat,
+        longitude: long,
       ),
     );
+
     result.fold(
-          (failure) {
-        context.showToast(failure.errMessage, isError: true);
+      (failure) {
+        if (context.mounted) {
+          context.showToast(failure.errMessage, isError: true);
+        }
         emit(LoginFailureState(errorMessage: failure.errMessage));
       },
-          (authModel) async {
+      (authModel) {
         if (context.mounted) {
-          saveToken(
-            context: context,
-            authModel: authModel,
-          );
+          _saveTokenAndNavigate(context: context, authModel: authModel);
         }
       },
     );
   }
 
-  Future<void> saveToken({
+
+  Future<String?> getFcmToken() async {
+    try {
+      return await firebaseService.getFirebaseToken();
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<void> _saveTokenAndNavigate({
     required BuildContext context,
     required UserModel authModel,
   }) async {
@@ -57,32 +90,17 @@ class LoginCubit extends Cubit<LoginState> {
     );
 
     result.fold(
-          (failure) {
-        context.showToast(failure.errMessage, isError: true);
+      (failure) {
+        if (context.mounted) {
+          context.showToast(failure.errMessage, isError: true);
+        }
         emit(LoginFailureState(errorMessage: failure.errMessage));
       },
-          (_) async {
-            context.pushAndRemoveUntilWithNamed(Routes.homeView);
+      (_) {
+        if (context.mounted) {
+          context.pushAndRemoveUntilWithNamed(Routes.homeView);
+        }
       },
     );
   }
-
-  // Future<void> sendToken({
-  //   required BuildContext context,
-  //   required UserModel authModel,
-  // }) async {
-  //   String? fcmToken;
-  //   final result = await loginRepository.sendToken(
-  //     param: SendTokenParam(fcmToken: fcmToken ?? 'fcm'),
-  //   );
-  //   result.fold(
-  //         (failure) {
-  //       context.showToast(failure.errMessage, isError: true);
-  //       emit(LoginFailureState(errorMessage: failure.errMessage));
-  //     },
-  //         (_) async {
-  //           context.pushAndRemoveUntilWithNamed(Routes.homeView);
-  //     },
-  //   );
-  // }
 }

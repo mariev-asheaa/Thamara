@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "275985949336",
+    "project_id": "thamara-fc885",
+    "storage_bucket": "thamara-fc885.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:275985949336:android:f5360d5d475e29f9c7e6ed",
+        "android_client_info": {
+          "package_name": "com.example.thamara"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPZd-9h_Yy1klAIpeS_cRaOhYc_rfJe9w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

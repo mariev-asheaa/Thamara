@@ -17,25 +17,25 @@ class NotificationsHeader extends StatelessWidget {
       children: [
         CustomHeader(title: LocaleKeys.navNotifications.tr()),
 
-        GestureDetector(
-          onTap: () {},
-          child: Row(
-            children: [
-              SvgPicture.asset(
-                'assets/images/mark as read.svg',
-                width: 20.w,
-                height: 20.h,
-              ),
-              SizedBox(width: 6.w),
-              Text(
-                LocaleKeys.markAllRead.tr(),
-                style: TextStyleManager.font14Medium.copyWith(
-                  color: AppColors.primaryColor,
-                ),
-              ),
-            ],
-          ),
-        ),
+        // GestureDetector(
+        //   onTap: () {},
+        //   child: Row(
+        //     children: [
+        //       SvgPicture.asset(
+        //         'assets/images/mark as read.svg',
+        //         width: 20.w,
+        //         height: 20.h,
+        //       ),
+        //       SizedBox(width: 6.w),
+        //       Text(
+        //         LocaleKeys.markAllRead.tr(),
+        //         style: TextStyleManager.font14Medium.copyWith(
+        //           color: AppColors.primaryColor,
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        // ),
       ],
     );
   }

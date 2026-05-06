@@ -127,7 +127,7 @@ class OTPCubit extends Cubit<OTPState> {
       (_) async {
         if (context.mounted) {
           FocusScope.of(context).unfocus();
-          context.pushAndRemoveUntilWithNamed(Routes.homeView);
+          context.pushAndRemoveUntilWithNamed(Routes.loginView);
         }
       },
     );

@@ -6,7 +6,7 @@ import 'package:thamara/features/auth/login/presentation/cubit/login_cubit.dart'
 import 'package:thamara/features/auth/login/presentation/login_view.dart';
 import 'package:thamara/features/auth/sign_up/presentation/cubit/register_cubit.dart';
 import 'package:thamara/features/auth/sign_up/presentation/sign_up_view.dart';
-import'package:thamara/features/settings/presentation/cubit/profile_cubit.dart';
+import 'package:thamara/features/notifications/presentation/cubit/notifications_cubit.dart';
 import 'package:thamara/features/splash/presentation/splash_view.dart';
 
 import '../../features/auth/otp/data/arguments/otp_argument.dart';
@@ -21,6 +21,8 @@ import '../../features/home/presentation/cubit/ai_feature_cubit.dart';
 import '../../features/layout/presentation/main_layout_view.dart';
 import '../../features/plant_details/presentation/cubit/plant_details_cubit.dart';
 import '../../features/plant_details/presentation/views/plant_details_view.dart';
+import '../../features/settings/presentation/cubits/edit_profile_cubit/edit_profile_cubit.dart';
+import '../../features/settings/presentation/cubits/profile_cubit/profile_cubit.dart';
 import '../../features/settings/presentation/views/personal_information_view.dart';
 import '../dependency_injection/di.dart';
 import '../framework/navigation_animation.dart';
@@ -36,7 +38,7 @@ class AppRouter {
       case Routes.loginView:
         return _buildRoute(
             builder: (_) =>  BlocProvider(
-               create: (context) => getIt<LoginCubit>(),
+               create: (context) => getIt<LoginCubit>()..locationService.getLocation(),
               child: LoginView(),
                )
         );
@@ -88,15 +90,25 @@ class AppRouter {
               BlocProvider(
                 create: (context) => getIt<PlantDetailsCubit>()..getAllPlants(),
               ),
+              BlocProvider(
+                create: (context) => getIt<NotificationsCubit>()..fetchNotifications(),
+              ),
             ],
             child: const MainLayoutView(),
           ),
         );
       case Routes.profileView:
         return _buildRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => getIt<ProfileCubit>()..getProfileInfo(),
-            child: PersonalInformationView(),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => getIt<ProfileCubit>()..getProfileInfo(),
+              ),
+              BlocProvider(
+                create: (context) => getIt<EditProfileCubit>(),
+              ),
+            ],
+            child: const PersonalInformationView(),
           ),
         );
       case Routes.plantDetailsView:

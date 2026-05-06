@@ -17,3 +17,17 @@ final class ProfileFailure extends ProfileState {
 
   ProfileFailure({required this.errorMessage});
 }
+final class LogOutLoading extends ProfileState {}
+
+final class LogOutSuccess extends ProfileState {}
+
+final class LogOutFailure extends ProfileState {}
+
+final class DeleteAccountLoading extends ProfileState {}
+
+final class DeleteAccountSuccess extends ProfileState {}
+
+final class DeleteAccountFailure extends ProfileState {
+  final String errorMessage;
+   DeleteAccountFailure({required this.errorMessage});
+}

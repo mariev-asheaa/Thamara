@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:thamara/core/color_manager/app_colors.dart';
-import '../../../../core/text_style_manager/text_style_manager.dart';
+import 'package:thamara/core/widgets/empty_widget.dart';
 import '../../../../core/widgets/custom_error.dart';
 import '../../../../core/widgets/custom_header.dart';
 import '../../../../generated/locale_keys.g.dart';
@@ -70,7 +70,7 @@ class _AllPlantsViewState extends State<AllPlantsView> {
                       );
                     } else if (state is PlantDetailsSuccess) {
                       if(state.plantsModel.isEmpty){
-                        return Center(child: Text('No Uploaded Plants yet',style: TextStyleManager.font20Bold.copyWith(color: AppColors.primaryColor)),);
+                        return CustomEmptyWidget(title:LocaleKeys.noSavedPlantsTitle.tr(), subTitle:  LocaleKeys.noSavedPlantsSubtitle.tr(),);
                       }
                       return ListView.builder(
                         padding: EdgeInsets.zero,

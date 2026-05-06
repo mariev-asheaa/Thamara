@@ -1,8 +1,6 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:thamara/core/color_manager/app_colors.dart';
-import '../../generated/locale_keys.g.dart';
 import '../extentions/on_tap.dart';
 import '../text_style_manager/text_style_manager.dart';
 

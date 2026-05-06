@@ -129,5 +129,8 @@ abstract class  LocaleKeys {
   static const noSavedPlantsTitle = 'noSavedPlantsTitle';
   static const noSavedPlantsSubtitle = 'noSavedPlantsSubtitle';
   static const goToHome = 'goToHome';
+  static const logOut = 'logOut';
+  static const logOutDescription = 'logOutDescription';
+  static const tryAgainInAMoment = 'tryAgainInAMoment';
 
 }
