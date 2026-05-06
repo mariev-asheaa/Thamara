@@ -8,6 +8,7 @@ import '../../../../../core/api/api_status_codes.dart';
 import '../../../../../core/api/base_response.dart';
 import '../../../../../core/constants/api_constants.dart';
 import '../../../../../core/errors/exceptions.dart';
+import '../../params/delete_acc_param.dart';
 import '../../params/edit_acc_param.dart';
 
 @Injectable(as: ProfileInfoDataSource)
@@ -52,6 +53,20 @@ class ProfileInfoDataSourceImpl implements ProfileInfoDataSource{
     if (response.status == ApiStatusCodes.ok ||
         response.status == ApiStatusCodes.created) {
       return response.message ?? "";
+    } else {
+      throw ServerException(response.message.toString());
+    }
+  }
+
+  @override
+  Future<String> deleteAcc({required DeleteAccParam param}) async {
+    BaseResponse response = await apiConsumer.post(
+      ApiConstants.deleteAccount,
+      body: param.toJson(),
+    );
+    if (response.status == ApiStatusCodes.ok ||
+        response.status == ApiStatusCodes.created) {
+      return response.message.toString();
     } else {
       throw ServerException(response.message.toString());
     }
