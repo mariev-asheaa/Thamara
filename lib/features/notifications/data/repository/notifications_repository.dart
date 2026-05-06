@@ -5,7 +5,7 @@ import '../models/notification_model.dart';
 import '../params/delete_notifications_param.dart';
 
 abstract class NotificationsRepository {
-  Future<Either<Failure,NotificationModel>> fetchNotifications();
+  Future<Either<Failure,List<NotificationModel>>> fetchNotifications();
   Future<Either<Failure, void>> markAsReadBasedOnId({
     required String notificationId,
   });

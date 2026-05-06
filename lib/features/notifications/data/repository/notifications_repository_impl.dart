@@ -13,10 +13,9 @@ class NotificationsRepositoryImpl extends NotificationsRepository {
   NotificationsRepositoryImpl({required this.notificationsRemoteDataSource});
 
   @override
-  Future<Either<Failure, NotificationModel>>
-  fetchNotifications() async {
+  Future<Either<Failure, List<NotificationModel>>> fetchNotifications() async {
     try {
-      final NotificationModel response =
+      final List<NotificationModel> response =
           await notificationsRemoteDataSource.fetchNotifications();
       return Right(response);
     } catch (error) {

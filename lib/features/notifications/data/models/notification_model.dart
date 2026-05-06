@@ -4,20 +4,19 @@ part 'notification_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class NotificationModel {
-  final String id;
+  final int id;
   final String title;
   final String body;
+  @JsonKey(name: 'created_at')
   final String date;
 
-  @JsonKey(name: 'is_read')
-  bool isRead;
+
 
   NotificationModel({
     required this.id,
     required this.title,
     required this.body,
     required this.date,
-    required this.isRead,
   });
 
   factory NotificationModel.fromJson(Map<String, dynamic> json) =>
