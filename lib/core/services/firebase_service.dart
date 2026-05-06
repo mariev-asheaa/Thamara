@@ -17,19 +17,9 @@ class FirebaseService {
     init.notificationService = NotificationService();
 
     try {
-      await init.notificationService.schedulePermanentNotifications(
-        dayInterval: 5,
-        hour: 0,
-        minute: 0,
-        batchSize: 20,
-      );
       await init.registerFCMForegroundListener();
       await init.registerFCMBackgroundListener();
       await init.listenOnMessageOpenedApp();
-      FirebaseMessaging.instance.onTokenRefresh.listen((newToken) {
-        debugPrint('FCM Token refreshed: $newToken');
-
-      });
       return init;
     } catch (e) {
       debugPrint('Firebase notifications initialization error: $e');
@@ -106,9 +96,6 @@ class FirebaseService {
   Future<void> registerFCMForegroundListener() async {
     try {
       FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
-        // if (Platform.isAndroid) {
-        //   notificationService.showNotification(message);
-        // }
         notificationService.showNotification(message);
       });
     } catch (e) {

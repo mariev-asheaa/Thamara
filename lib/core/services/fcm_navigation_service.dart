@@ -32,7 +32,7 @@ class FcmNavigationService {
       NotificationModel data,) async {
     final repository = getIt<NotificationsRepository>();
     final result = await repository.markAsReadBasedOnId(
-      notificationId: data.id,
+      notificationId: data.id.toString(),
     );
     result.fold((failure) {}, (_) async {
       await Navigator.push(context,
