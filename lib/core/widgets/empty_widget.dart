@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:thamara/core/color_manager/app_colors.dart';
+import 'package:thamara/core/constants/app_assets.dart';
 import 'package:thamara/core/extentions/navigation.dart';
 import '../../generated/locale_keys.g.dart';
 import '../text_style_manager/text_style_manager.dart';
@@ -31,7 +32,7 @@ class CustomEmptyWidget extends StatelessWidget {
               border: Border.all(color: AppColors.primaryColor),
             ),
             child: SvgPicture.asset(
-              'assets/images/cancel.svg',
+              AppAssets.cancel,
               width: 24.w,
               height: 24.h,
             ),
@@ -57,7 +58,9 @@ class CustomEmptyWidget extends StatelessWidget {
 
         GestureDetector(
           onTap: () {
-            context.pop();
+            if (Navigator.canPop(context)) {
+              context.pop();
+            }
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -70,7 +73,7 @@ class CustomEmptyWidget extends StatelessWidget {
               ),
               SizedBox(width: 12.w),
               SvgPicture.asset(
-                'assets/images/forward arrow.svg',
+                AppAssets.forwardArrow,
                 width: 24.w,
                 height: 24.h,
               ),
