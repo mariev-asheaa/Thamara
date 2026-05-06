@@ -7,6 +7,7 @@ import 'package:thamara/core/widgets/thamara_text.dart';
 
 import '../../../core/dependency_injection/di.dart';
 import '../../../core/extentions/navigation.dart';
+import '../../../core/locals/secure_storage.dart';
 import '../../../core/routing/routes.dart';
 import '../../../core/services/firebase_service.dart';
 
@@ -21,13 +22,20 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-
-    Future.delayed(const Duration(milliseconds: 3000), () {
-      if (mounted) {
+    navigateToHome();
+    initNotifications();
+  }
+  void navigateToHome()async {
+    bool isLoggedIn = await getIt<CachedSecure>().containToken();
+    Future.delayed(Duration(seconds: 3),(){
+      if(isLoggedIn)
+      {
+        context.pushAndRemoveUntilWithNamed(Routes.homeView);
+      }
+      else{
         context.pushAndRemoveUntilWithNamed(Routes.loginView);
       }
     });
-    initNotifications();
   }
   Future<void> initNotifications() async {
     await FirebaseService.initializeFireBaseNotifications();
