@@ -8,6 +8,7 @@ import 'package:thamara/features/settings/data/repos/profile_info_repo.dart';
 import '../../../../../core/extentions/navigation.dart';
 import '../../../../../core/extentions/show_toast.dart';
 import '../../../../../core/routing/routes.dart';
+import '../../../data/params/delete_acc_param.dart';
 
 part 'profile_state.dart';
 
@@ -46,7 +47,25 @@ class ProfileCubit extends Cubit<ProfileState> {
       },
     );
   }
-
+  final TextEditingController passwordField = TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  void deleteAccount(BuildContext context) async {
+    if (state is DeleteAccountLoading) return;
+    emit(DeleteAccountLoading());
+    final result = await profileInfoRepo.deleteAcc(
+      param: DeleteAccParam(currentPassword: passwordField.text),
+    );
+    result.fold(
+          (failure) {
+        context.pop();
+        context.showToast(failure.errMessage, isError: true);
+        emit(DeleteAccountFailure(errorMessage: failure.errMessage));
+      },
+          (message) {
+        clearUserData(context: context, message: message);
+      },
+    );
+  }
   void clearUserData({
     required BuildContext context,
     required String message,
