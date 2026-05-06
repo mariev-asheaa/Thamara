@@ -1,19 +1,19 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:thamara/core/constants/app_assets.dart';
+import 'package:thamara/features/notifications/data/models/notification_model.dart';
+import 'package:thamara/features/notifications/presentation/widgets/weather_icon.dart';
 import '../../../../core/color_manager/app_colors.dart';
 import '../../../../core/text_style_manager/text_style_manager.dart';
-import '../../../../generated/locale_keys.g.dart';
 
 class NotificationItem extends StatelessWidget {
-  final bool isWeather;
   final bool isUnread;
-
+final NotificationModel notificationModel;
   const NotificationItem({
     super.key,
-    required this.isWeather,
     required this.isUnread,
+    required this.notificationModel,
   });
 
   @override
@@ -38,14 +38,12 @@ class NotificationItem extends StatelessWidget {
               border: Border.all(color: AppColors.primaryColor),
             ),
             child: SvgPicture.asset(
-              "assets/images/green_notification.svg",
+             AppAssets.notificationIcon,
               width: 22.w,
               height: 22.h,
             ),
           ),
-
           SizedBox(width: 12.w),
-
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,9 +53,7 @@ class NotificationItem extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        isWeather
-                            ? LocaleKeys.weatherTitle.tr()
-                            : LocaleKeys.checkPlantsTitle.tr(),
+                        notificationModel.title,
                         style: TextStyleManager.font16SemiBold,
                       ),
                     ),
@@ -75,64 +71,32 @@ class NotificationItem extends StatelessWidget {
 
                 SizedBox(height: 4.h),
 
-                if (isWeather)
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Alexandria – Temperature: 22°C, gentle breeze",
-                        style: TextStyleManager.font10Regular,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      SizedBox(height: 4.h),
                       Row(
                         children: [
-                          WeatherIcon(
-                            'assets/images/thermometer-warm.svg',
-                            "22°C",
-                          ),
+                          WeatherIcon(assetPath: 'assets/images/thermometer-warm.svg', label: "22°C",),
                           SizedBox(width: 14.w),
-                          WeatherIcon('assets/images/humidity.svg', "55%"),
+                          WeatherIcon(assetPath: 'assets/images/humidity.svg',label:  "55%"),
                           SizedBox(width: 14.w),
-                          WeatherIcon('assets/images/uv-02.svg', "UV 4"),
-                          SizedBox(width: 14.w),
-                          WeatherIcon('assets/images/fast-wind.svg', "12 Km/h"),
+                          WeatherIcon(assetPath: 'assets/images/fast-wind.svg',label:  "12 Km/h"),
                         ],
                       ),
                       SizedBox(height: 8.h),
                       Text(
-                        "Mediterranean breeze is perfect. Bring inside before afternoon heat.",
-                        style: TextStyleManager.font12Medium.copyWith(
-                          color: AppColors.neutralGrey500,
-                        ),
-                      ),
-                    ],
-                  )
-                else
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        LocaleKeys.dailyReminder.tr(),
-                        style: TextStyleManager.font10Regular,
-                      ),
-                      SizedBox(height: 4.h),
-                      Text(
-                        "Take a moment to inspect your plants for any changes! Check for new growth, pests, or signs of stress.",
+                       notificationModel.body,
                         style: TextStyleManager.font12Medium.copyWith(
                           color: AppColors.neutralGrey500,
                         ),
                       ),
                     ],
                   ),
-
                 SizedBox(height: 8.h),
-
                 Row(
                   children: [
                     SvgPicture.asset(
-                      "assets/images/clock-01.svg",
+                     AppAssets.clock,
                       width: 14.w,
                       height: 14.h,
                       colorFilter: ColorFilter.mode(
@@ -143,7 +107,7 @@ class NotificationItem extends StatelessWidget {
 
                     SizedBox(width: 3.w),
                     Text(
-                      "2 hours ago",
+                     notificationModel.date,
                       style: TextStyleManager.font10Regular.copyWith(
                         color: AppColors.greyColor,
                       ),
@@ -155,26 +119,6 @@ class NotificationItem extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  Widget WeatherIcon(String assetPath, String label) {
-    return Row(
-      children: [
-        SvgPicture.asset(
-          assetPath,
-          width: 14.w,
-          height: 14.h,
-          colorFilter: ColorFilter.mode(AppColors.greyColor, BlendMode.srcIn),
-        ),
-        SizedBox(width: 3.w),
-        Text(
-          label,
-          style: TextStyleManager.font10Regular.copyWith(
-            color: AppColors.greyColor,
-          ),
-        ),
-      ],
     );
   }
 }
