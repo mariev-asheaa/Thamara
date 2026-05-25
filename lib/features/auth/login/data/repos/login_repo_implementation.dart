@@ -9,7 +9,6 @@ import 'package:thamara/features/auth/login/data/data_source/local/login_local_d
 import 'package:thamara/features/auth/login/data/params/login_params.dart';
 
 import '../data_source/remote/login_data_source.dart';
-import '../params/send_token_param.dart';
 import 'login_repo.dart';
 @Injectable(as: LoginRepo)
 class LoginRepoImplementation implements LoginRepo{
@@ -35,20 +34,6 @@ final LoginLocalDataSource loginLocalDataSource;
       return const Right(null);
     } catch (error) {
       throw Exception('Failed to save token: $error');
-    }
-  }
-
-  @override
-  Future<Either<Failure, dynamic>> sendToken({
-    required SendTokenParam param,
-  }) async {
-    try {
-      await loginRemoteDataSource.sendToken(param: param);
-      return const Right(null);
-    } on ServerFailure catch (exception) {
-      return Left(ServerFailure(exception.errMessage));
-    } catch (error) {
-      return Left(ServerFailure(error.toString()));
     }
   }
 
