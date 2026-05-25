@@ -7,6 +7,7 @@ import 'package:thamara/core/widgets/app_logo.dart';
 import 'package:thamara/core/widgets/thamara_text.dart';
 import 'package:thamara/core/color_manager/app_colors.dart';
 import 'package:thamara/features/auth/login/presentation/cubit/login_cubit.dart';
+import 'package:thamara/features/auth/login/presentation/widgets/social_auth.dart';
 import 'package:thamara/features/auth/login/presentation/widgets/terms_and_policy_text.dart';
 
 import '../../../../core/framework/validator.dart';
@@ -107,8 +108,9 @@ class LoginView extends StatelessWidget {
                       context.pushWithNamed(Routes.registerView);
                     },
                   ),
-
-                  SizedBox(height: 196.h),
+                  SizedBox(height: 16.h),
+                  SocialAuth(),
+                  SizedBox(height: 170.h),
 
                   const TermsAndPolicyText(),
                 ],

@@ -9,4 +9,6 @@ class AppAssets {
   static const String forwardArrow = "$_imagesPath/forward arrow.svg";
   static const String notificationIcon = "$_imagesPath/green_notification.svg";
   static const String clock = "$_imagesPath/clock-01.svg";
+  static const String google = "$_imagesPath/google.svg";
+  static const String facebook = "$_imagesPath/facebook.svg";
 }
