@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">thamara</string>
+    <string name="facebook_app_id">1316192363974123</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="facebook_client_token">70cae90e163aa15dbf48bc12e7e7a644</string>
+</resources>
