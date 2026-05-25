@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,6 +7,8 @@ import 'package:thamara/features/notifications/presentation/cubit/notifications_
 import 'package:thamara/features/notifications/presentation/widgets/notification_item.dart';
 import 'package:thamara/features/notifications/presentation/widgets/notifications_header.dart';
 import '../../../core/widgets/custom_error.dart';
+import '../../../core/widgets/empty_widget.dart';
+import '../../../generated/locale_keys.g.dart';
 
 class NotificationsView extends StatefulWidget {
   const NotificationsView({super.key});
@@ -46,6 +49,9 @@ class _NotificationsViewState extends State<NotificationsView> {
                 BlocBuilder<NotificationsCubit, NotificationsState>(
                   builder: (context, state) {
                     if (state is NotificationsSuccess) {
+                      if(state.notifications.isEmpty){
+                        return CustomEmptyWidget(title:LocaleKeys.noNotificationsTitle.tr(), subTitle:  LocaleKeys.noNotificationsSubtitle.tr(),);
+                      }
                       return ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
@@ -63,11 +69,9 @@ class _NotificationsViewState extends State<NotificationsView> {
                     }
 
                    else if (state is NotificationsFailure) {
-                      return CustomError(
-                        error: state.error,
-                        retry: () {
-                          context.read<NotificationsCubit>().fetchNotifications();
-                        },
+                      return CustomEmptyWidget(
+                        title: state.error,
+                        subTitle: LocaleKeys.tryAgainInAMoment.tr(),
                       );
                     }
                     return Center(
