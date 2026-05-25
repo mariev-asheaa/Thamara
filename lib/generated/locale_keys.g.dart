@@ -132,5 +132,7 @@ abstract class  LocaleKeys {
   static const logOut = 'logOut';
   static const logOutDescription = 'logOutDescription';
   static const tryAgainInAMoment = 'tryAgainInAMoment';
+  static const sign_in_with_google = 'sign_in_with_google';
+  static const sign_in_with_facebook = 'sign_in_with_facebook';
 
 }
