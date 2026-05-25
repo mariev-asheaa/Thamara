@@ -20,7 +20,8 @@ class CustomEmptyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Padding(
+      padding:EdgeInsets.only(top: 150.h),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -81,7 +82,7 @@ class CustomEmptyWidget extends StatelessWidget {
           ),
         ),
       ],
-    )
+          ),
     );
   }
 }

@@ -3,7 +3,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:thamara/core/services/firebase_service.dart';
 
 import 'app/thamara_app.dart';
 import 'core/dependency_injection/di.dart';
