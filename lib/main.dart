@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'app/thamara_app.dart';
 import 'core/dependency_injection/di.dart';
+import 'core/services/social_auth_service.dart';
 import 'firebase_options.dart';
 
 /// Easy Localization
@@ -25,7 +26,6 @@ Future<void> main()async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
   runApp(
     DevicePreview(
       enabled:false,
