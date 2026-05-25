@@ -19,4 +19,11 @@ abstract class ApiConsumer {
     Map<String, dynamic>? queryParameters,
     bool formDataIsEnabled = false,
   });
+
+  Future<dynamic> put(
+      String endPoint, {
+        dynamic body,
+        Map<String, dynamic>? queryParameters,
+        bool formDataIsEnabled = false,
+      });
 }

@@ -140,6 +140,27 @@ class DioApiConsumer extends ApiConsumer {
       throw NoInternetConnectionException();
     }
   }
+  @override
+  Future<dynamic> put(String endPoint,
+      {body, Map<String, dynamic>? queryParameters,
+        bool formDataIsEnabled = false}) async{
+    bool isConnected = await networkInfo.isConnected;
+    if (isConnected) {
+      try {
+        final Response response = await dioClient.put(
+          endPoint,
+          queryParameters: queryParameters,
+          data: formDataIsEnabled ? FormData.fromMap(body ?? {}) : body,
+          options: Options(headers: await getHeaders()),
+        );
+        return handleResponseOnly(response: response);
+      } on DioException catch (error) {
+        return _handelDioError(error: error);
+      }
+    } else {
+      throw NoInternetConnectionException();
+    }
+  }
 
   BaseResponse handleResponseOnly({required Response response}) {
     final statusCode = response.statusCode ?? 0;
