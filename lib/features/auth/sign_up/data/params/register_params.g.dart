@@ -11,6 +11,7 @@ Map<String, dynamic> _$RegisterParamsToJson(RegisterParams instance) =>
       'first_name': instance.firstName,
       'last_name': instance.lastName,
       'email': instance.email,
+      'phone_number': instance.phone,
       'password': instance.password,
       'password_confirmation': instance.confirmPassword,
     };

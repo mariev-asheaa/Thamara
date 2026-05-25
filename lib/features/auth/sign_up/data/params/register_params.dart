@@ -8,6 +8,8 @@ class RegisterParams {
   @JsonKey(name: 'last_name')
   final String lastName;
   final String email;
+  @JsonKey(name: 'phone_number')
+  final String phone;
   final String password;
   @JsonKey(name: 'password_confirmation')
   final String confirmPassword;
@@ -17,7 +19,8 @@ class RegisterParams {
     required this.lastName,
     required this.email,
     required this.password,
-    required this.confirmPassword});
+    required this.confirmPassword,
+    required this.phone});
 
   Map<String, dynamic> toJson() => _$RegisterParamsToJson(this);
 }
