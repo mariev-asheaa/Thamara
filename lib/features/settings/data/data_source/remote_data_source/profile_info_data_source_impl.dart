@@ -40,12 +40,11 @@ class ProfileInfoDataSourceImpl implements ProfileInfoDataSource{
 
   @override
   Future<String> editProfile({required EditAccParam param}) async {
-    BaseResponse response = await apiConsumer.post(
-      ApiConstants.editProfile,
-      formDataIsEnabled: true,
+    BaseResponse response = await apiConsumer.put(
+      ApiConstants.profileInfo,
       body: {
         if (param.firstName != null) 'first_name': param.firstName,
-        if (param.secondName != null) 'second_name': param.secondName,
+        if (param.secondName != null) 'last_name': param.secondName,
         if (param.email != null) 'email': param.email,
         if (param.phone != null) 'phone_number': param.phone,
       },
@@ -60,8 +59,8 @@ class ProfileInfoDataSourceImpl implements ProfileInfoDataSource{
 
   @override
   Future<String> deleteAcc({required DeleteAccParam param}) async {
-    BaseResponse response = await apiConsumer.post(
-      ApiConstants.deleteAccount,
+    BaseResponse response = await apiConsumer.delete(
+      ApiConstants.profileInfo,
       body: param.toJson(),
     );
     if (response.status == ApiStatusCodes.ok ||
