@@ -9,6 +9,10 @@ sealed class EditProfileState extends Equatable {
 
 final class EditProfileInitial extends EditProfileState {}
 
+final class EditingStarted extends EditProfileState {}
+
+final class EditingCancelled extends EditProfileState {}
+
 final class EditProfileLoading extends EditProfileState {}
 
 final class EditProfileSuccess extends EditProfileState {}

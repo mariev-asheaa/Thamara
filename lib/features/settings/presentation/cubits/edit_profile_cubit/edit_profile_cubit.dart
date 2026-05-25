@@ -1,4 +1,3 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -22,11 +21,22 @@ class EditProfileCubit extends Cubit<EditProfileState> {
 
 
   UserModel? userInfo;
+  bool isEditing = false;
+
   final formKey = GlobalKey<FormState>();
   late TextEditingController firstNameController = TextEditingController();
   late TextEditingController secondNameController = TextEditingController();
-  late TextEditingController emailController = TextEditingController();
   late TextEditingController phoneController = TextEditingController();
+
+  void startEditing() {
+    isEditing = true;
+    emit(EditingStarted());
+  }
+
+  void cancelEditing() {
+    isEditing = false;
+    emit(EditingCancelled());
+  }
   void getUserInfo() async {
     emit(GetProfileLoading());
     final result = await profileInfoRepo.getProfileInfo();
@@ -38,7 +48,6 @@ class EditProfileCubit extends Cubit<EditProfileState> {
         userInfo = user;
         firstNameController.text = user.firstName!;
         secondNameController.text = user.secondName ?? "";
-        emailController.text = user.email!;
         phoneController.text = user.phoneNumber ?? '';
 
         emit(GetProfileSuccess());
@@ -51,7 +60,6 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     emit(EditProfileLoading());
     final result = await profileInfoRepo.editProfile(
       param: EditAccParam(
-        email: emailController.text,
         firstName: firstNameController.text,
         phone: phoneController.text,
         secondName: secondNameController.text,
@@ -64,6 +72,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
         emit(EditProfileFailure(errorMessage: failure.errMessage));
       },
       (message) {
+        isEditing = false;
         context.pop();
         context.showToast(message);
         emit(EditProfileSuccess());
