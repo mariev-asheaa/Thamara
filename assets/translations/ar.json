@@ -127,5 +127,7 @@
   "goToHome": "العودة للرئيسية",
   "logOut": "تسجيل خروج",
   "logOutDescription": "هل أنت متأكد أنك تريد تسجيل الخروج من حسابك؟",
-  "tryAgainInAMoment": "حاول مره اخرى خلال دقيقه"
+  "tryAgainInAMoment": "حاول مره اخرى خلال دقيقه",
+  "sign_in_with_google": "تسجيل الدخول باستخدام جوجل",
+  "sign_in_with_facebook": "تسجيل الدخول باستخدام فيسبوك"
 }
