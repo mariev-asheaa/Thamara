@@ -30,7 +30,8 @@ class RegisterCubit extends Cubit<RegisterState> {
       TextEditingController();
   final TextEditingController registerLastNameController =
       TextEditingController();
-  final TextEditingController registerPhoneController = TextEditingController();
+  final TextEditingController registerPhoneController =
+  TextEditingController();
 
   Future register(BuildContext context) async {
     emit(RegisterLoadingState());
@@ -40,7 +41,9 @@ class RegisterCubit extends Cubit<RegisterState> {
           password: registerPasswordController.text,
           firstName: registerFirstNameController.text,
           confirmPassword: registerConfirmPasswordController.text,
-          lastName: registerLastNameController.text),
+          lastName: registerLastNameController.text,
+          phone: registerPhoneController.text
+      ),
     );
     result.fold((failure) {
       context.showToast(failure.errMessage, isError: true);
