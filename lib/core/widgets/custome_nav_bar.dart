@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:thamara/core/text_style_manager/text_style_manager.dart';
+import 'package:thamara/features/chat%20bot/presentation/chat_bot_view.dart';
 
 import '../../generated/locale_keys.g.dart';
 import '../color_manager/app_colors.dart';
@@ -97,7 +98,13 @@ class _CustomNavBarState extends State<CustomNavBar> {
               ),
             ),
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ChatBotView()),
+                );
+              },
               child: Center(
                 child: SvgPicture.asset('assets/images/chatbot.svg'),
               ),

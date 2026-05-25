@@ -7,9 +7,9 @@ import 'package:thamara/core/text_style_manager/text_style_manager.dart';
 import '../extentions/navigation.dart';
 
 class CustomHeader extends StatelessWidget {
-  final String title;
+  final String? title;
   final bool showArrow;
-  const CustomHeader({super.key, required this.title, this.showArrow=false});
+  const CustomHeader({super.key,  this.title, this.showArrow=false});
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +33,9 @@ class CustomHeader extends StatelessWidget {
         ):SizedBox.shrink(),
 
 SizedBox(width: 12.w),
+        if (title != null)
         Text(
-          title,
+          title!,
           style: TextStyleManager.font22SemiBold
         ),
 
