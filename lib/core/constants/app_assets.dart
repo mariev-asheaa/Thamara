@@ -11,4 +11,5 @@ class AppAssets {
   static const String clock = "$_imagesPath/clock-01.svg";
   static const String google = "$_imagesPath/google.svg";
   static const String facebook = "$_imagesPath/facebook.svg";
+  static const String sendMessageButton="$_imagesPath/send.svg";
 }
