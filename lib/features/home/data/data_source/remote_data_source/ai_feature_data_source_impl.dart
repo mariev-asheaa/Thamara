@@ -39,7 +39,6 @@ class AiFeatureDataSourceImpl implements AiFeatureDataSource {
             'Server error occurred, statusCode: ${response.statusCode}');
       }
     } catch (e) {
-      print('Exception in postPlantImage: $e');
       throw ServerException('There was an error try again');
     }
   }

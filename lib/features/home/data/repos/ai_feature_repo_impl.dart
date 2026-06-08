@@ -20,10 +20,8 @@ class AiFeatureRepoImpl implements AiFeatureRepo {
       final model = await remoteDataSource.postPlantImage(params: params);
       return Right(model);
     } on ServerException catch (exception) {
-      print(exception.message);
       return Left(ServerFailure(exception.message ?? 'Server error occurred'));
     } catch (error) {
-      print(error.toString());
       return Left(ServerFailure(error.toString()));
     }
   }
@@ -34,10 +32,8 @@ class AiFeatureRepoImpl implements AiFeatureRepo {
       final message = await remoteDataSource.postAiReport(arguments: arguments, plantParams: plantParams);
       return Right(message);
     } on ServerException catch (exception) {
-      print(exception.message);
       return Left(ServerFailure(exception.message ?? 'Server error occurred'));
     } catch (error) {
-      print(error.toString());
       return Left(ServerFailure(error.toString()));
     }
   }
