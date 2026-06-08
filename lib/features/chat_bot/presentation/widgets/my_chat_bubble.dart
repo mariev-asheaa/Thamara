@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
+import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:thamara/core/text_style_manager/text_style_manager.dart';
 
 import '../../../../core/color_manager/app_colors.dart';
+
 
 class MyChatBubble extends StatelessWidget {
   final String message;
@@ -52,10 +54,18 @@ class MyChatBubble extends StatelessWidget {
               constraints: BoxConstraints(
                 maxWidth: MediaQuery.of(context).size.width * 0.65,
               ),
-              child: Text(
-                message,
-                style: TextStyleManager.font16Medium.copyWith(
-                  color: AppColors.whiteColor,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
+                child: MarkdownBody(
+                  data: message,
+                  styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
+                    p: TextStyleManager.font16Medium.copyWith(color: AppColors.whiteColor),
+                    strong: TextStyleManager.font16Medium.copyWith(
+                      color: AppColors.whiteColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    listBullet: TextStyleManager.font16Medium.copyWith(color: AppColors.whiteColor),
+                  ),
                 ),
               ),
             ),

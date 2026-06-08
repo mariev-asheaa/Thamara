@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:thamara/core/color_manager/app_colors.dart';
+import 'package:thamara/core/constants/app_assets.dart';
 
 import '../../../../core/text_style_manager/text_style_manager.dart';
 
@@ -67,13 +68,13 @@ class ChatInputField extends StatelessWidget {
             child: Container(
               height: 44.h,
               width: 44.w,
-              decoration: const BoxDecoration(
-                color: AppColors.neutralGrey,
+              decoration: BoxDecoration(
+                color: AppColors.secondaryColor2,
                 shape: BoxShape.circle,
               ),
               child: Center(
                 child: SvgPicture.asset(
-                  'assets/images/send.svg',
+                  AppAssets.sendMessageButton,
                   width: 22.w,
                   height: 22.h,
                 ),

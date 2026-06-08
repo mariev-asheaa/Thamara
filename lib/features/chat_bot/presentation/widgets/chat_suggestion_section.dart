@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:thamara/features/chat%20bot/presentation/widgets/suggestion_item.dart';
+import 'package:thamara/features/chat_bot/presentation/widgets/suggestion_item.dart';
 
 class ChatSuggestionsSection extends StatelessWidget {
   final Function(String) onSuggestionClick;
