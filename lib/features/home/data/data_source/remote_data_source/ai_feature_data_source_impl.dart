@@ -51,7 +51,6 @@ class AiFeatureDataSourceImpl implements AiFeatureDataSource {
   }) async {
     try {
       final token = await cachedSecure.getToken();
-      print('Token being sent: "$token"');
       if (token == null || token.isEmpty) {
         throw Exception('Token is missing! You must login first.');
       }
@@ -87,7 +86,6 @@ class AiFeatureDataSourceImpl implements AiFeatureDataSource {
             'Server error occurred, statusCode: ${response.statusCode}');
       }
     } catch (e) {
-      print('Exception in postAiReport: $e');
       throw ServerException('There was an error try again');
     }
   }
