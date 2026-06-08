@@ -6,6 +6,8 @@ import 'package:thamara/features/auth/login/presentation/cubit/login_cubit.dart'
 import 'package:thamara/features/auth/login/presentation/login_view.dart';
 import 'package:thamara/features/auth/sign_up/presentation/cubit/register_cubit.dart';
 import 'package:thamara/features/auth/sign_up/presentation/sign_up_view.dart';
+import 'package:thamara/features/chat_bot/presentation/chat_bot_view.dart';
+import 'package:thamara/features/chat_bot/presentation/cubit/chat_bot_cubit.dart';
 import 'package:thamara/features/notifications/presentation/cubit/notifications_cubit.dart';
 import 'package:thamara/features/splash/presentation/splash_view.dart';
 
@@ -117,6 +119,13 @@ class AppRouter {
           builder: (_) => BlocProvider(
             create: (context) => getIt<PlantDetailsCubit>(),
             child: PlantDetailsView(plantId: plantId),
+          ),
+        );
+      case Routes.chatBotView:
+        return _buildRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<ChatBotCubit>(),
+            child: ChatBotView(),
           ),
         );
       default:

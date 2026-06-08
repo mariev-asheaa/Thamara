@@ -81,6 +81,16 @@ import 'package:thamara/features/auth/sign_up/data/repos/register_repo_implement
     as _i648;
 import 'package:thamara/features/auth/sign_up/presentation/cubit/register_cubit.dart'
     as _i692;
+import 'package:thamara/features/chat_bot/data/data_source/chat_bot_data_source.dart'
+    as _i719;
+import 'package:thamara/features/chat_bot/data/data_source/chat_bot_data_source_impl.dart'
+    as _i608;
+import 'package:thamara/features/chat_bot/data/repos/chat_bot_repo.dart'
+    as _i98;
+import 'package:thamara/features/chat_bot/data/repos/chat_bot_repo_impl.dart'
+    as _i894;
+import 'package:thamara/features/chat_bot/presentation/cubit/chat_bot_cubit.dart'
+    as _i153;
 import 'package:thamara/features/home/data/data_source/remote_data_source/ai_feature_data_source.dart'
     as _i618;
 import 'package:thamara/features/home/data/data_source/remote_data_source/ai_feature_data_source_impl.dart'
@@ -177,6 +187,12 @@ extension GetItInjectableX on _i174.GetIt {
         secure: gh<_i173.CachedSecure>(),
       ),
     );
+    gh.factory<_i719.ChatBotRemoteDataSource>(
+      () => _i608.ChatBotRemoteDataSourceImpl(
+        gh<_i361.Dio>(instanceName: 'aiDio'),
+        cachedSecure: gh<_i173.CachedSecure>(),
+      ),
+    );
     gh.factory<_i618.AiFeatureDataSource>(
       () => _i737.AiFeatureDataSourceImpl(
         gh<_i361.Dio>(instanceName: 'aiDio'),
@@ -210,6 +226,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i387.AiFeatureCubit>(
       () => _i387.AiFeatureCubit(gh<_i779.AiFeatureRepo>()),
+    );
+    gh.factory<_i98.ChatBotRepository>(
+      () => _i894.ChatBotRepositoryImpl(
+        remoteDataSource: gh<_i719.ChatBotRemoteDataSource>(),
+      ),
     );
     gh.factory<_i69.PasswordSettingsRemoteDataSource>(
       () => _i254.PasswordSettingsRemoteDataSourceImpl(
@@ -249,6 +270,9 @@ extension GetItInjectableX on _i174.GetIt {
         authRemoteDataSource: gh<_i1055.OTPRemoteDataSource>(),
         authLocalDataSource: gh<_i640.OTPLocalDataSource>(),
       ),
+    );
+    gh.factory<_i153.ChatBotCubit>(
+      () => _i153.ChatBotCubit(gh<_i98.ChatBotRepository>()),
     );
     gh.factory<_i235.LoginDataSource>(
       () => _i547.LoginDataSourceImplementation(
