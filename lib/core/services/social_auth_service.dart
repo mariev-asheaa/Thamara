@@ -19,33 +19,25 @@ class SocialAuthService {
 
   final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
 
-  Future<void> initGoogle() async {
-    await _googleSignIn.initialize(
-      serverClientId:
-      '1039880044021-4r8nt0i5fl5dniq3aa182r1706sb3h86.apps.googleusercontent.com',
-    );
-  }
-
   Future<SocialAuthResult?> signInWithGoogle() async {
     try {
-      final GoogleSignInAccount user =
-      await _googleSignIn.authenticate();
+      await _googleSignIn.initialize(
+        serverClientId:
+        '1039880044021-4r8nt0i5fl5dniq3aa182r1706sb3h86.apps.googleusercontent.com',
+      );
 
-      final GoogleSignInAuthentication auth =
-      user.authentication;
-
+      final GoogleSignInAccount user = await _googleSignIn.authenticate();
+      final GoogleSignInAuthentication auth = await user.authentication;
       final token = auth.idToken;
 
       if (token == null) return null;
 
-      return SocialAuthResult(
-        token: token,
-        provider: "google",
-      );
+      return SocialAuthResult(token: token, provider: "google");
     } catch (e) {
       throw Exception("Google Sign-In failed: $e");
     }
   }
+
   Future<SocialAuthResult?> signInWithFacebook() async {
     try {
       final LoginResult result =
