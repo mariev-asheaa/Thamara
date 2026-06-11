@@ -129,5 +129,8 @@
   "logOutDescription": "Are you sure you want to log out of your account?",
   "tryAgainInAMoment": "Try again in a moment",
   "sign_in_with_google": "Sign in with Google",
-  "sign_in_with_facebook": "Sign in with Facebook"
+  "sign_in_with_facebook": "Sign in with Facebook",
+  "newScan": "New Scan",
+  "saveDataDesc": "Save The Data Of Your New Plant Scan To Track Progress",
+  "progressStatus": "Progress Status"
 }

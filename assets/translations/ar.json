@@ -129,5 +129,8 @@
   "logOutDescription": "هل أنت متأكد أنك تريد تسجيل الخروج من حسابك؟",
   "tryAgainInAMoment": "حاول مره اخرى خلال دقيقه",
   "sign_in_with_google": "تسجيل الدخول باستخدام جوجل",
-  "sign_in_with_facebook": "تسجيل الدخول باستخدام فيسبوك"
+  "sign_in_with_facebook": "تسجيل الدخول باستخدام فيسبوك",
+  "newScan": "فحص جديد",
+  "saveDataDesc": "حفظ بيانات فحص نباتك الجديد لمتابعة التقدم",
+  "progressStatus": "حالة التقدم"
 }
