@@ -145,7 +145,10 @@ class CodegenLoader extends AssetLoader{
   "logOutDescription": "هل أنت متأكد أنك تريد تسجيل الخروج من حسابك؟",
   "tryAgainInAMoment": "حاول مره اخرى خلال دقيقه",
   "sign_in_with_google": "تسجيل الدخول باستخدام جوجل",
-  "sign_in_with_facebook": "تسجيل الدخول باستخدام فيسبوك"
+  "sign_in_with_facebook": "تسجيل الدخول باستخدام فيسبوك",
+  "newScan": "فحص جديد",
+  "saveDataDesc": "حفظ بيانات فحص نباتك الجديد لمتابعة التقدم",
+  "progressStatus": "حالة التقدم"
 };
 static const Map<String,dynamic> _en = {
   "enterFullOTP": "Please enter the full OTP code",
@@ -278,7 +281,10 @@ static const Map<String,dynamic> _en = {
   "logOutDescription": "Are you sure you want to log out of your account?",
   "tryAgainInAMoment": "Try again in a moment",
   "sign_in_with_google": "Sign in with Google",
-  "sign_in_with_facebook": "Sign in with Facebook"
+  "sign_in_with_facebook": "Sign in with Facebook",
+  "newScan": "New Scan",
+  "saveDataDesc": "Save The Data Of Your New Plant Scan To Track Progress",
+  "progressStatus": "Progress Status"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }

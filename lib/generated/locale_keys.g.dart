@@ -134,5 +134,8 @@ abstract class  LocaleKeys {
   static const tryAgainInAMoment = 'tryAgainInAMoment';
   static const sign_in_with_google = 'sign_in_with_google';
   static const sign_in_with_facebook = 'sign_in_with_facebook';
+  static const newScan = 'newScan';
+  static const saveDataDesc = 'saveDataDesc';
+  static const progressStatus = 'progressStatus';
 
 }
