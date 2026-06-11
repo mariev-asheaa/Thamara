@@ -141,13 +141,13 @@ class DioApiConsumer extends ApiConsumer {
     }
   }
   @override
-  Future<dynamic> put(String endPoint,
+  Future<dynamic> patch(String endPoint,
       {body, Map<String, dynamic>? queryParameters,
         bool formDataIsEnabled = false}) async{
     bool isConnected = await networkInfo.isConnected;
     if (isConnected) {
       try {
-        final Response response = await dioClient.put(
+        final Response response = await dioClient.patch(
           endPoint,
           queryParameters: queryParameters,
           data: formDataIsEnabled ? FormData.fromMap(body ?? {}) : body,

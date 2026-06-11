@@ -40,7 +40,7 @@ class ProfileInfoDataSourceImpl implements ProfileInfoDataSource{
 
   @override
   Future<String> editProfile({required EditAccParam param}) async {
-    BaseResponse response = await apiConsumer.put(
+    BaseResponse response = await apiConsumer.patch(
       ApiConstants.profileInfo,
       body: {
         if (param.firstName != null) 'first_name': param.firstName,

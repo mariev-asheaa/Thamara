@@ -20,7 +20,7 @@ abstract class ApiConsumer {
     bool formDataIsEnabled = false,
   });
 
-  Future<dynamic> put(
+  Future<dynamic> patch(
       String endPoint, {
         dynamic body,
         Map<String, dynamic>? queryParameters,
