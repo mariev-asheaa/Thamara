@@ -73,7 +73,9 @@ class PlantCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppBadge(text: statusText),
+                    if (displayProgress != null)...[
+                     AppBadge(text: statusText)
+                ],
                     SizedBox(height: 12.h),
                     Text(
                       plantsModel.name,

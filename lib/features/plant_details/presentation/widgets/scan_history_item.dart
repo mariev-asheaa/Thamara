@@ -62,7 +62,6 @@ class ScanHistoryItem extends StatelessWidget {
                           color: AppColors.mainBlack,
                         ),
                       ),
-                      // progressStatus is a string badge (e.g. "Healed", "Improving")
                       AppBadge(text: record?.progressStatus ?? ''),
                     ],
                   ),
@@ -76,7 +75,6 @@ class ScanHistoryItem extends StatelessWidget {
                           color: AppColors.neutralGrey500,
                         ),
                       ),
-                      // confidence is a String like "High" / "Medium" / "Low"
                       Text(
                         record?.confidence ?? '',
                         style: TextStyleManager.font12Medium.copyWith(
@@ -90,7 +88,6 @@ class ScanHistoryItem extends StatelessWidget {
                     height: 20.h,
                   ),
 
-                  // progressLevel is a double 0.0–1.0
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10.r),
                     child: LinearProgressIndicator(

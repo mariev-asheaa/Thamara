@@ -11,18 +11,14 @@ class AppBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color color;
-    final String statusText = text.toLowerCase();
 
-    if (statusText == 'low') {
+    if (text == 'Healed') {
       color = AppColors.success;
-    } else if (statusText == 'improving') {
+    } else if (text == 'Improving'||text == "Low") {
       color = AppColors.improvingColor;
-    } else if (statusText == 'medium') {
+    } else if (text == 'Stable'||text == "Severe") {
       color = AppColors.statusWarning2;
-    } else if (statusText == 'high' ||
-        statusText == 'severe' ||
-        statusText == 'affected' ||
-        statusText == 'critical') {
+    } else if (text == 'Worsening'||text == "High") {
       color = AppColors.criticalColor;
     } else {
       color = AppColors.greyColor;

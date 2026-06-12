@@ -127,9 +127,8 @@ class SaveNewScanButtons extends StatelessWidget {
     );
   }
 
-  /// Maps a progress status string from the AI to a 0.0–1.0 progress level.
   int _progressLevelFromStatus(String status) {
-    switch (status.toLowerCase()) {
+    switch (status) {
       case 'Healed':
         return 100;
       case 'Improving':
@@ -139,7 +138,7 @@ class SaveNewScanButtons extends StatelessWidget {
       case 'Worsening':
         return 20;
       default:
-        return 50;
+        return 10;
     }
   }
 }
