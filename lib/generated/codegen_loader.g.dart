@@ -148,7 +148,9 @@ class CodegenLoader extends AssetLoader{
   "sign_in_with_facebook": "تسجيل الدخول باستخدام فيسبوك",
   "newScan": "فحص جديد",
   "saveDataDesc": "حفظ بيانات فحص نباتك الجديد لمتابعة التقدم",
-  "progressStatus": "حالة التقدم"
+  "progress_confidence_level": "ثقة الذكاء الاصطناعي",
+  "progressStatus": "حالة التقدم",
+  "new_plant_scan_saved_successfully": "تم حفظ فحص النبات الجديد بنجاح!"
 };
 static const Map<String,dynamic> _en = {
   "enterFullOTP": "Please enter the full OTP code",
@@ -284,7 +286,9 @@ static const Map<String,dynamic> _en = {
   "sign_in_with_facebook": "Sign in with Facebook",
   "newScan": "New Scan",
   "saveDataDesc": "Save The Data Of Your New Plant Scan To Track Progress",
-  "progressStatus": "Progress Status"
+  "progress_confidence_level": "AI Confidence",
+  "progressStatus": "Progress Status",
+  "new_plant_scan_saved_successfully": "Your new plant scan is saved successfully!"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }

@@ -136,6 +136,8 @@ abstract class  LocaleKeys {
   static const sign_in_with_facebook = 'sign_in_with_facebook';
   static const newScan = 'newScan';
   static const saveDataDesc = 'saveDataDesc';
+  static const progress_confidence_level = 'progress_confidence_level';
   static const progressStatus = 'progressStatus';
+  static const new_plant_scan_saved_successfully = 'new_plant_scan_saved_successfully';
 
 }
