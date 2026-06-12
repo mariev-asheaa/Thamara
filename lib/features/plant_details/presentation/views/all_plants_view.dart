@@ -22,6 +22,7 @@ class _AllPlantsViewState extends State<AllPlantsView> {
   void initState() {
     super.initState();
     context.read<PlantDetailsCubit>().getAllPlants();
+    context.read<PlantDetailsCubit>().getAllPlantsWithLatestScan();
   }
 
   @override
@@ -76,7 +77,9 @@ class _AllPlantsViewState extends State<AllPlantsView> {
                           return Padding(
                             padding: EdgeInsets.only(bottom: 22.h),
                             child: PlantCard(
-                                plantsModel: state.plantsModel[index]),
+                                plantsModel: state.plantsModel[index],
+                                latestScan: state.latestScans[state.plantsModel[index].id]
+                            ),
                           );
                         },
                       );
