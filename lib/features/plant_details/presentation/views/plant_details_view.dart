@@ -66,34 +66,32 @@ class _PlantDetailsViewState extends State<PlantDetailsView> {
       },
       child: BlocBuilder<PlantDetailsCubit, PlantDetailsState>(
         builder: (context, state) {
+          if (state is PlantDetailsFailure) {
+            return Scaffold(
+              backgroundColor: AppColors.backgroundColor,
+              body: Center(
+                child: CustomError(
+                  error: state.errorMessage,
+                  retry: () {
+                    context.read<PlantDetailsCubit>().getPlantById(widget.plantId);
+                  },
+                ),
+              ),
+            );
+          }
           if (_plant == null) {
-            if (state is PlantDetailsLoading) {
-              return Scaffold(
-                backgroundColor: AppColors.backgroundColor,
-                body: Center(
-                  child: CircularProgressIndicator(
-                    color: AppColors.primaryColor,
-                  ),
+            return Scaffold(
+              backgroundColor: AppColors.backgroundColor,
+              body: Center(
+                child: CircularProgressIndicator(
+                  color: AppColors.primaryColor,
                 ),
-              );
-            } else if (state is PlantDetailsFailure) {
-              return Scaffold(
-                backgroundColor: AppColors.backgroundColor,
-                body: Center(
-                  child: CustomError(
-                    error: state.errorMessage,
-                    retry: () {
-                      context.read<PlantDetailsCubit>().getPlantById(widget.plantId);
-                    },
-                  ),
-                ),
-              );
-            }
+              ),
+            );
           }
 
           if (_plant != null) {
             final plant = _plant!;
-            // Use the dedicated history list if available; fall back to embedded.
             final history = _scanRecords ?? plant.scanHistory ?? [];
             final latestScan = _getLatestScan(history);
             return Scaffold(

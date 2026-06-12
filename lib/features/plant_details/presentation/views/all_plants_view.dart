@@ -48,7 +48,6 @@ class _AllPlantsViewState extends State<AllPlantsView> {
                 SizedBox(height: 24.h),
                 BlocBuilder<PlantDetailsCubit, PlantDetailsState>(
                   builder: (context, state) {
-                    final cubit = context.read<PlantDetailsCubit>();
                     if (state is PlantDetailsLoading) {
                       return Center(
                         child: Padding(
