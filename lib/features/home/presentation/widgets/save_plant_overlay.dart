@@ -11,6 +11,7 @@ import 'package:thamara/features/home/presentation/widgets/plant_saved_dialog.da
 import 'package:thamara/features/home/presentation/widgets/save_plant_action_buttons.dart';
 import '../../../../core/dependency_injection/di.dart';
 import '../../../../core/extentions/show_toast.dart';
+import '../../../../core/widgets/close_overlay.dart';
 import '../../../../core/widgets/custome_text_form_field.dart';
 import '../../../../generated/locale_keys.g.dart';
 import '../cubit/ai_feature_cubit.dart';
@@ -53,12 +54,7 @@ class SavePlantOverlay extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: const Icon(Icons.close, color: Colors.black),
-              padding: EdgeInsets.zero,
-              constraints: const BoxConstraints(),
-            ),
+            CloseOverlay(),
             SizedBox(height: 16.h),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,

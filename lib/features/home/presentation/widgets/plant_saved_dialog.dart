@@ -6,11 +6,15 @@ import 'package:thamara/core/color_manager/app_colors.dart';
 import 'package:thamara/core/text_style_manager/text_style_manager.dart';
 
 import '../../../../core/constants/app_assets.dart';
+import '../../../../core/widgets/close_overlay.dart';
 import '../../../../generated/locale_keys.g.dart';
 
 class PlantSavedDialog extends StatelessWidget {
-  const PlantSavedDialog({super.key});
-  static void show(BuildContext context) {
+  const PlantSavedDialog({super.key, this.savedMessage});
+  final String? savedMessage;
+  static void show(BuildContext context,{
+    String? savedMessage,
+  }) {
     showDialog(
       context: context,
       barrierDismissible: true, // Dismiss by clicking outside
@@ -19,7 +23,7 @@ class PlantSavedDialog extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(28.r),
         ),
-        child: const PlantSavedDialog(),
+        child: PlantSavedDialog(savedMessage: savedMessage,),
       ),
     );
   }
@@ -31,15 +35,7 @@ class PlantSavedDialog extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: const Icon(Icons.close, color: Colors.black),
-              padding: EdgeInsets.zero,
-              constraints: const BoxConstraints(),
-            ),
-          ),
+          CloseOverlay(),
           SizedBox(height: 10.h),
          SvgPicture.asset(AppAssets.savedSuccessfully),
           SizedBox(height: 16.h),
@@ -55,7 +51,7 @@ class PlantSavedDialog extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.w),
             child: Text(
-              LocaleKeys.saved_success_msg.tr(),
+             savedMessage?? LocaleKeys.saved_success_msg.tr(),
               textAlign: TextAlign.center,
               style: TextStyleManager.font14Regular.copyWith(
                 color: AppColors.blackColor
