@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:thamara/core/constants/app_assets.dart';
 import 'package:thamara/features/plant_details/data/models/plants_model.dart';
 
 import '../../../../core/extentions/navigation.dart';
@@ -31,7 +32,7 @@ class PlantDetailsHeader extends StatelessWidget {
                 GestureDetector(
                   onTap: () => context.pop(),
                   child: SvgPicture.asset(
-                    'assets/images/back button.svg',
+                    AppAssets.backButton,
                     width: 38.w,
                     height: 38.h,
                   ),
@@ -40,7 +41,7 @@ class PlantDetailsHeader extends StatelessWidget {
                 GestureDetector(
                   onTap: () {},
                   child: SvgPicture.asset(
-                    'assets/images/add button.svg',
+                    AppAssets.addButton,
                     width: 38.w,
                     height: 38.h,
                   ),

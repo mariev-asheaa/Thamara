@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:thamara/core/color_manager/app_colors.dart';
+import 'package:thamara/core/constants/app_assets.dart';
 import '../../../../core/text_style_manager/text_style_manager.dart';
 import '../../../../generated/locale_keys.g.dart';
 import '../../data/models/plants_model.dart';
@@ -38,7 +39,7 @@ class PlantTreatment extends StatelessWidget {
               Row(
                 children: [
                   SvgPicture.asset(
-                    'assets/images/ai.svg',
+                    AppAssets.aiIcon,
                     width: 16.w,
                     height: 16.h,
                   ),
@@ -79,7 +80,7 @@ class PlantTreatment extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SvgPicture.asset(
-                      'assets/images/warning.svg',
+                      AppAssets.warning,
                       width: 16.w,
                       height: 16.h,
                     ),

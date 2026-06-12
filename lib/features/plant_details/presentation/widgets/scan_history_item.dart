@@ -14,6 +14,13 @@ class ScanHistoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final progressVal = record != null
+        ? (record!.progressLevel > 1
+            ? record!.progressLevel / 100.0
+            : record!.progressLevel.toDouble())
+        : 0.0;
+    final progressPercent = (progressVal * 100).toInt();
+
     return Container(
       decoration: BoxDecoration(
         color: AppColors.whiteColor,
@@ -24,11 +31,18 @@ class ScanHistoryItem extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(16.r),
-            child: Image.asset(
-              record?.image??'',
+            child: Image.network(
+              record?.image ?? '',
               width: 135.w,
               height: 135.h,
               fit: BoxFit.cover,
+              errorBuilder: (_, __, ___) => Container(
+                width: 135.w,
+                height: 135.h,
+                color: AppColors.whiteColor2,
+                child: Icon(Icons.image_not_supported_outlined,
+                    color: AppColors.neutralGrey500),
+              ),
             ),
           ),
           SizedBox(width: 12.w),
@@ -43,12 +57,13 @@ class ScanHistoryItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        record?.date??'',
+                        record?.date ?? '',
                         style: TextStyleManager.font14Medium.copyWith(
                           color: AppColors.mainBlack,
                         ),
                       ),
-                      AppBadge(text: record?.severityLevel??''),
+                      // progressStatus is a string badge (e.g. "Healed", "Improving")
+                      AppBadge(text: record?.progressStatus ?? ''),
                     ],
                   ),
                   SizedBox(height: 8.h),
@@ -61,8 +76,9 @@ class ScanHistoryItem extends StatelessWidget {
                           color: AppColors.neutralGrey500,
                         ),
                       ),
+                      // confidence is a String like "High" / "Medium" / "Low"
                       Text(
-                        '${(record?.confidenceLevel??'' * 100)}%',
+                        record?.confidence ?? '',
                         style: TextStyleManager.font12Medium.copyWith(
                           color: AppColors.neutralGrey500,
                         ),
@@ -74,10 +90,11 @@ class ScanHistoryItem extends StatelessWidget {
                     height: 20.h,
                   ),
 
+                  // progressLevel is a double 0.0–1.0
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10.r),
                     child: LinearProgressIndicator(
-                      value: record?.progress,
+                      value: progressVal,
                       minHeight: 8.h,
                       backgroundColor: AppColors.whiteColor2,
                       valueColor: AlwaysStoppedAnimation<Color>(
@@ -98,7 +115,7 @@ class ScanHistoryItem extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '${(record?.progress??'' * 100)}%',
+                        '$progressPercent%',
                         style: TextStyleManager.font12Medium.copyWith(
                           color: AppColors.neutralGrey500,
                         ),

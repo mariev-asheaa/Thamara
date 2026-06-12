@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:thamara/core/color_manager/app_colors.dart';
+import 'package:thamara/core/constants/app_assets.dart';
 import 'package:thamara/core/text_style_manager/text_style_manager.dart';
 
 import '../../../../generated/locale_keys.g.dart';
@@ -45,7 +46,7 @@ class SortPopupMenu extends StatelessWidget {
           ),
           child: Padding(
             padding: EdgeInsets.all(12.w),
-            child: SvgPicture.asset('assets/images/filter.svg'),
+            child: SvgPicture.asset(AppAssets.filter),
           ),
         ),
         itemBuilder: (context) => [

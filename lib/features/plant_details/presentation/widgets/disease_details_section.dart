@@ -57,7 +57,7 @@ class DiseaseDetailsSection extends StatelessWidget {
             ),
             Expanded(
               child: Text(
-                plantsModel.firstDetectionDate??'',
+                plantsModel.date,
                 style: TextStyleManager.font14Medium.copyWith(
                   color: AppColors.neutralGrey500,
                 ),
