@@ -132,5 +132,7 @@
   "sign_in_with_facebook": "تسجيل الدخول باستخدام فيسبوك",
   "newScan": "فحص جديد",
   "saveDataDesc": "حفظ بيانات فحص نباتك الجديد لمتابعة التقدم",
-  "progressStatus": "حالة التقدم"
+  "progress_confidence_level": "ثقة الذكاء الاصطناعي",
+  "progressStatus": "حالة التقدم",
+  "new_plant_scan_saved_successfully": "تم حفظ فحص النبات الجديد بنجاح!"
 }

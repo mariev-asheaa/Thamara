@@ -132,5 +132,7 @@
   "sign_in_with_facebook": "Sign in with Facebook",
   "newScan": "New Scan",
   "saveDataDesc": "Save The Data Of Your New Plant Scan To Track Progress",
-  "progressStatus": "Progress Status"
+  "progress_confidence_level": "AI Confidence",
+  "progressStatus": "Progress Status",
+  "new_plant_scan_saved_successfully": "Your new plant scan is saved successfully!"
 }
