@@ -7,18 +7,18 @@ part of 'scan_record_model.dart';
 // **************************************************************************
 
 ScanRecord _$ScanRecordFromJson(Map<String, dynamic> json) => ScanRecord(
-  date: json['date'] as String,
-  image: json['image'] as String,
-  severityLevel: json['severityLevel'] as String,
-  confidenceLevel: (json['confidenceLevel'] as num).toDouble(),
-  progress: (json['progress'] as num).toDouble(),
+  date: json['scanned_at']?.toString() ?? '',
+  image: json['image_url']?.toString() ?? '',
+  progressLevel: (double.tryParse(json['progress_level']?.toString() ?? '0') ?? 0.0).toInt(),
+  confidence: json['confidence_level']?.toString() ?? '',
+  progressStatus: json['progress_status']?.toString() ?? '',
 );
 
 Map<String, dynamic> _$ScanRecordToJson(ScanRecord instance) =>
     <String, dynamic>{
-      'date': instance.date,
-      'image': instance.image,
-      'severityLevel': instance.severityLevel,
-      'confidenceLevel': instance.confidenceLevel,
-      'progress': instance.progress,
+      'scanned_at': instance.date,
+      'progress_status': instance.progressStatus,
+      'confidence_level': instance.confidence,
+      'image_url': instance.image,
+      'progress_level': instance.progressLevel,
     };

@@ -9,7 +9,9 @@ class PlantsModel {
   final String name;
   @JsonKey(name: 'image_url')
   final String image;
+  @JsonKey(name: 'progress_status')
   final String? status;
+  @JsonKey(name: 'progress_level')
   final double? progress;
   @JsonKey(name: 'created_at')
   final String date;
@@ -23,6 +25,7 @@ class PlantsModel {
   final String description;
   final String treatment;
   final String? firstDetectionDate;
+  @JsonKey(name: 'scans')
   final List<ScanRecord>? scanHistory;
   PlantsModel({
     required this.name,
