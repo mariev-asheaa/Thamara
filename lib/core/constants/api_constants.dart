@@ -9,7 +9,7 @@ class ApiConstants {
   static const forgotPassword = '/api/forgot-password';
   static const resetPassword = '/api/reset-password';
   static const logout = '/api/logout';
-  static const postPlantImage = 'https://alias-fruits-vid-earrings.trycloudflare.com/predict';
+  static const postPlantImage = 'https://consciousness-registration-fellow-korean.trycloudflare.com/predict';
   static const postAiAnalysisReport = 'https://unappeased-krystyna-windowy.ngrok-free.dev/api/detections';
   static const profileInfo = '/api/user-profile';
   static const allPlants = '/api/detections';
@@ -17,4 +17,7 @@ class ApiConstants {
   static const notifications = '/api/notifications';
   static const markAsRead = '';
   static const chatBot='https://knapsack-false-unzip.ngrok-free.dev/api/v1/nlp/index/answer/plant-expert';
+  static const trackProgress='https://consciousness-registration-fellow-korean.trycloudflare.com/progress';
+  static const postProgressResult='/api/detections/scans/';
+  static const getScanHistory='/api/detections/scans/';
 }

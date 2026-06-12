@@ -12,4 +12,13 @@ class AppAssets {
   static const String google = "$_imagesPath/google.svg";
   static const String facebook = "$_imagesPath/facebook.svg";
   static const String sendMessageButton="$_imagesPath/send.svg";
+  static const String upload='$_imagesPath/upload.svg';
+  static const String camera='$_imagesPath/camera.svg';
+  static const String lastScan='$_imagesPath/last scan.svg';
+  static const String aiIcon='$_imagesPath/ai.svg';
+  static const String search='$_imagesPath/search.svg';
+  static const String backButton='$_imagesPath/back button.svg';
+  static const String addButton='$_imagesPath/add button.svg';
+  static const String filter='$_imagesPath/filter.svg';
+  static const String warning='$_imagesPath/warning.svg';
 }
