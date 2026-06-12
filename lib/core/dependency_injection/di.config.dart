@@ -224,6 +224,13 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i618.AiFeatureDataSource>(),
       ),
     );
+    gh.factory<_i762.PlantDetailsDataSource>(
+      () => _i158.PlantDetailsDataSourceImpl(
+        gh<_i361.Dio>(instanceName: 'aiDio'),
+        apiConsumer: gh<_i920.ApiConsumer>(),
+        cachedSecure: gh<_i173.CachedSecure>(),
+      ),
+    );
     gh.factory<_i387.AiFeatureCubit>(
       () => _i387.AiFeatureCubit(gh<_i779.AiFeatureRepo>()),
     );
@@ -259,11 +266,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i385.ProfileInfoDataSource>(
       () =>
           _i753.ProfileInfoDataSourceImpl(apiConsumer: gh<_i920.ApiConsumer>()),
-    );
-    gh.factory<_i762.PlantDetailsDataSource>(
-      () => _i158.PlantDetailsDataSourceImpl(
-        apiConsumer: gh<_i920.ApiConsumer>(),
-      ),
     );
     gh.factory<_i318.OTPRepository>(
       () => _i289.OTPRepositoryImpl(
