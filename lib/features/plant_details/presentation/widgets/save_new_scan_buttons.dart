@@ -92,7 +92,7 @@ class SaveNewScanButtons extends StatelessWidget {
                       : () {
                           final scanParam = ScanParams(
                             progressStatus: result.progressStatus,
-                            confidence: result.confidence,
+                            confidence: result.confidence??'High',
                             image: imagePath,
                             progressLevel: _progressLevelFromStatus(
                               result.progressStatus,

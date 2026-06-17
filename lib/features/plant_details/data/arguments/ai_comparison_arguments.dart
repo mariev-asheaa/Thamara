@@ -6,11 +6,11 @@ part 'ai_comparison_arguments.g.dart';
 class AiComparisonArguments {
   @JsonKey(name: 'progress_status')
   final String progressStatus;
-  final String confidence;
+  final String? confidence;
 
   const AiComparisonArguments({
     required this.progressStatus,
-    required this.confidence,
+     this.confidence,
   });
 
   factory AiComparisonArguments.fromJson(Map<String, dynamic> json) =>

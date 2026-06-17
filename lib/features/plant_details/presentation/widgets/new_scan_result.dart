@@ -105,7 +105,7 @@ class NewScanResult extends StatelessWidget {
                   Flexible(
                     child: AiConfidenceLevel(
                       title: LocaleKeys.progress_confidence_level.tr(),
-                      value: result.confidence,
+                      value: result.confidence??'High',
                       titleStyle: TextStyleManager.font14Medium,
                       valueStyle: TextStyleManager.font20Bold.copyWith(
                         color: AppColors.primaryColor,

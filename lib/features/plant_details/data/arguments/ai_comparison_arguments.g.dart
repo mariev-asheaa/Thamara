@@ -10,7 +10,7 @@ AiComparisonArguments _$AiComparisonArgumentsFromJson(
   Map<String, dynamic> json,
 ) => AiComparisonArguments(
   progressStatus: json['progress_status'] as String,
-  confidence: json['confidence'] as String,
+  confidence: json['confidence'] as String?,
 );
 
 Map<String, dynamic> _$AiComparisonArgumentsToJson(
