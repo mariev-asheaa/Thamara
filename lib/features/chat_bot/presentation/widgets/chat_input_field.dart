@@ -20,7 +20,12 @@ class ChatInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 16.h,left: 16.w,right: 16.w,bottom: 32.h),
+      padding: EdgeInsets.only(
+        top: 16.h,
+        left: 16.w,
+        right: 16.w,
+        bottom: 32.h,
+      ),
       color: AppColors.whiteColor,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -69,7 +74,7 @@ class ChatInputField extends StatelessWidget {
               height: 44.h,
               width: 44.w,
               decoration: BoxDecoration(
-                color: AppColors.secondaryColor2,
+                color: AppColors.lightGrey,
                 shape: BoxShape.circle,
               ),
               child: Center(

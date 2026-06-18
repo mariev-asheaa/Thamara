@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:thamara/features/chat_bot/data/models/message_list_model.dart';
 import 'package:thamara/features/chat_bot/presentation/widgets/chat_input_field.dart';
 import 'package:thamara/features/chat_bot/presentation/widgets/message_list.dart';
-import  '../../../core/color_manager/app_colors.dart';
+import '../../../core/color_manager/app_colors.dart';
 import '../../../core/widgets/custom_header.dart';
 import '../data/models/chat_message.dart';
 import 'cubit/chat_bot_cubit.dart';
@@ -59,7 +59,7 @@ class _ChatBotViewState extends State<ChatBotView> {
   Widget build(BuildContext context) {
     return BlocListener<ChatBotCubit, ChatBotState>(
       listenWhen: (_, state) =>
-      state is ChatBotSuccess || state is ChatBotFailure,
+          state is ChatBotSuccess || state is ChatBotFailure,
       listener: (_, state) => switch (state) {
         ChatBotSuccess(:final answer) => _onBotResponse(answer),
         ChatBotFailure(:final message) => _onBotResponse(message),
@@ -69,20 +69,21 @@ class _ChatBotViewState extends State<ChatBotView> {
         backgroundColor: AppColors.backgroundColor,
         resizeToAvoidBottomInset: true,
         body: SafeArea(
-          bottom: false,
+          bottom: true,
           child: Column(
             children: [
               Padding(
                 padding: EdgeInsets.only(left: 16.w, top: 24.h, right: 16.w),
                 child: const CustomHeader(showArrow: true),
               ),
-              Expanded(child: MessageList(
-                messageListModel: MessageListModel(
+              Expanded(
+                child: MessageList(
+                  messageListModel: MessageListModel(
                     messages: _messages,
                     sendMessage: _sendMessage,
-                    scrollController: _scrollController
+                    scrollController: _scrollController,
+                  ),
                 ),
-              ),
               ),
               Divider(
                 height: 1,
