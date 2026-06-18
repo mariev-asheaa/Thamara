@@ -8,6 +8,7 @@ import 'package:thamara/features/plant_details/presentation/cubit/plant_details_
 import '../../../../core/color_manager/app_colors.dart';
 import '../../../../core/text_style_manager/text_style_manager.dart';
 import '../../../../core/widgets/custom_error.dart';
+import '../../../../core/widgets/custome_button.dart';
 import '../../../../generated/locale_keys.g.dart';
 import '../../data/models/plants_model.dart';
 import '../widgets/disease_details_section.dart';
@@ -163,6 +164,18 @@ class _PlantDetailsViewState extends State<PlantDetailsView> {
                                       );
                                     },
                                   ),
+                              SizedBox(height: 24.h),
+                              CustomButton(
+                                text: 'Delete Plant',
+                                isPrimary: false,
+                                backgroundColor: AppColors.criticalColor,
+                                borderColor: AppColors.criticalColor,
+                                textColor: AppColors.whiteColor,
+                                onPressed: () {
+
+                                },
+                                ),
+                                  SizedBox(height: 53.h),
                                 ],
                               ),
                             ),

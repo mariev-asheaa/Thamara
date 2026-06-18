@@ -27,21 +27,12 @@ class PlantDetailsHeader extends StatelessWidget {
           right: 16.w,
           child: SafeArea(
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 GestureDetector(
                   onTap: () => context.pop(),
                   child: SvgPicture.asset(
                     AppAssets.backButton,
-                    width: 38.w,
-                    height: 38.h,
-                  ),
-                ),
-            
-                GestureDetector(
-                  onTap: () {},
-                  child: SvgPicture.asset(
-                    AppAssets.addButton,
                     width: 38.w,
                     height: 38.h,
                   ),

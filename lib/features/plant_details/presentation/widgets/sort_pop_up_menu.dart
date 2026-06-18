@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:thamara/core/color_manager/app_colors.dart';
 import 'package:thamara/core/constants/app_assets.dart';
 import 'package:thamara/core/text_style_manager/text_style_manager.dart';
+import 'package:thamara/features/plant_details/presentation/widgets/sort_menue_itme.dart';
 
 import '../../../../generated/locale_keys.g.dart';
 
@@ -50,36 +51,29 @@ class SortPopupMenu extends StatelessWidget {
           ),
         ),
         itemBuilder: (context) => [
-          buildMenuItem(LocaleKeys.sortNewest.tr(), 'assets/images/newest.svg'),
+          SortMenuItem(
+            title: LocaleKeys.sortNewest.tr(),
+            iconPath: 'assets/images/newest.svg',
+          ),
           const PopupMenuDivider(),
-          buildMenuItem(LocaleKeys.sortOldest.tr(), 'assets/images/oldest.svg'),
+          SortMenuItem(
+            title: LocaleKeys.sortOldest.tr(),
+            iconPath: 'assets/images/oldest.svg',
+          ),
           const PopupMenuDivider(),
-          buildMenuItem(LocaleKeys.sortAToZ.tr(), 'assets/images/newest.svg'),
+          SortMenuItem(
+            title: LocaleKeys.sortAToZ.tr(),
+            iconPath: 'assets/images/newest.svg',
+          ),
           const PopupMenuDivider(),
-          buildMenuItem(LocaleKeys.sortZToA.tr(), 'assets/images/oldest.svg'),
+          SortMenuItem(
+            title: LocaleKeys.sortZToA.tr(),
+            iconPath: 'assets/images/oldest.svg',
+          ),
         ],
         onSelected: (value) {
           print("Selected: $value");
         },
-      ),
-    );
-  }
-
-  PopupMenuItem<String> buildMenuItem(String title, String iconPath) {
-    return PopupMenuItem<String>(
-      value: title,
-      height: 40.h,
-      child: Row(
-        children: [
-          SvgPicture.asset(iconPath, width: 18.w),
-          SizedBox(width: .5.w),
-          Text(
-            title,
-            style: TextStyleManager.font14Regular.copyWith(
-              color: AppColors.blackColor,
-            ),
-          ),
-        ],
       ),
     );
   }
