@@ -150,7 +150,12 @@ class CodegenLoader extends AssetLoader{
   "saveDataDesc": "حفظ بيانات فحص نباتك الجديد لمتابعة التقدم",
   "progress_confidence_level": "ثقة الذكاء الاصطناعي",
   "progressStatus": "حالة التقدم",
-  "new_plant_scan_saved_successfully": "تم حفظ فحص النبات الجديد بنجاح!"
+  "new_plant_scan_saved_successfully": "تم حفظ فحص النبات الجديد بنجاح!",
+  "suggestion_1": "مرحباً، بماذا يمكنك مساعدتي؟",
+  "suggestion_2": "كم مرة يجب أن أسقي نباتي؟",
+  "suggestion_3": "ما مقدار ضوء الشمس الذي يحتاجه نباتي؟",
+  "welcome_title": "أهلاً بك في مساعد النبات الذكي",
+  "welcome_desc": "مساعدك الشخصي لمعرفة كل ما يخص النباتات! اسألني عن أي شيء، أو ارفع صوراً لتحديد نوع النبات، أو احصل على نصائح للعناية."
 };
 static const Map<String,dynamic> _en = {
   "enterFullOTP": "Please enter the full OTP code",
@@ -288,7 +293,12 @@ static const Map<String,dynamic> _en = {
   "saveDataDesc": "Save The Data Of Your New Plant Scan To Track Progress",
   "progress_confidence_level": "AI Confidence",
   "progressStatus": "Progress Status",
-  "new_plant_scan_saved_successfully": "Your new plant scan is saved successfully!"
+  "new_plant_scan_saved_successfully": "Your new plant scan is saved successfully!",
+  "suggestion_1": "Hello, What can you help me with?",
+  "suggestion_2": "How many times should I water my plant?",
+  "suggestion_3": "How much sunlight does my plant need?",
+  "welcome_title": "Welcome to Plant Expert AI",
+  "welcome_desc": "Your personal plant knowledge assistant! Ask me anything about plants, upload photos for identification, or get care advice."
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }

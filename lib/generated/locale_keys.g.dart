@@ -139,5 +139,10 @@ abstract class  LocaleKeys {
   static const progress_confidence_level = 'progress_confidence_level';
   static const progressStatus = 'progressStatus';
   static const new_plant_scan_saved_successfully = 'new_plant_scan_saved_successfully';
+  static const suggestion_1 = 'suggestion_1';
+  static const suggestion_2 = 'suggestion_2';
+  static const suggestion_3 = 'suggestion_3';
+  static const welcome_title = 'welcome_title';
+  static const welcome_desc = 'welcome_desc';
 
 }

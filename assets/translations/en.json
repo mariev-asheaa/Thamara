@@ -134,5 +134,10 @@
   "saveDataDesc": "Save The Data Of Your New Plant Scan To Track Progress",
   "progress_confidence_level": "AI Confidence",
   "progressStatus": "Progress Status",
-  "new_plant_scan_saved_successfully": "Your new plant scan is saved successfully!"
+  "new_plant_scan_saved_successfully": "Your new plant scan is saved successfully!",
+  "suggestion_1": "Hello, What can you help me with?",
+  "suggestion_2": "How many times should I water my plant?",
+  "suggestion_3": "How much sunlight does my plant need?",
+  "welcome_title": "Welcome to Plant Expert AI",
+  "welcome_desc": "Your personal plant knowledge assistant! Ask me anything about plants, upload photos for identification, or get care advice."
 }
