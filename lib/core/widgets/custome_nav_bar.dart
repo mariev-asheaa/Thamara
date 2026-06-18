@@ -34,15 +34,14 @@ class _CustomNavBarState extends State<CustomNavBar> {
               height: 64.h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(500.r),
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [AppColors.gradient2, AppColors.gradient1],
+                image: const DecorationImage(
+                  image: AssetImage('assets/images/Bottom Navbar.png'),
+                  fit: BoxFit.cover,
                 ),
               ),
 
               child: FittedBox(
-               child : Padding(
+                child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.w),
                   child: GNav(
                     selectedIndex: widget.selectedIndex,
@@ -90,15 +89,14 @@ class _CustomNavBarState extends State<CustomNavBar> {
             width: 64.w,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [AppColors.gradient2, AppColors.gradient1],
+              image: const DecorationImage(
+                image: AssetImage('assets/images/chat background.png'),
+                fit: BoxFit.cover,
               ),
             ),
             child: GestureDetector(
               onTap: () {
-              context.pushWithNamed(Routes.chatBotView);
+                context.pushWithNamed(Routes.chatBotView);
               },
               child: Center(
                 child: SvgPicture.asset('assets/images/chatbot.svg'),
