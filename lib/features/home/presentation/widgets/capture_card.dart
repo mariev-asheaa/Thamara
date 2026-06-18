@@ -13,50 +13,52 @@ class CaptureCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: double.infinity,
 
-      padding:  EdgeInsets.symmetric(vertical: 32.h, horizontal: 8.w),
-      decoration: BoxDecoration(
-        image: const DecorationImage(
-          image: AssetImage("assets/images/capture image.png"),
-          fit: BoxFit.cover,
+        padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 8.w),
+        decoration: BoxDecoration(
+          image: const DecorationImage(
+            image: AssetImage("assets/images/capture image.png"),
+            fit: BoxFit.cover,
+          ),
+          borderRadius: BorderRadius.circular(32.r),
         ),
-        borderRadius: BorderRadius.circular(32.r),
-
-      ),
-      child: Column(
-        children: [
-          Container(
-            width: 64.w,
-            height: 64.h,
-            decoration: BoxDecoration(
-              color: AppColors.whiteColor.withValues(alpha: 0.2),
-
-              borderRadius: BorderRadius.circular(12.r),
-
-              border: Border.all(
+        child: Column(
+          children: [
+            Container(
+              width: 64.w,
+              height: 64.h,
+              decoration: BoxDecoration(
                 color: AppColors.whiteColor.withValues(alpha: 0.2),
-                width: 1,
-              ),
-            ),
 
-            child: GestureDetector(
-              onTap: onTap,
+                borderRadius: BorderRadius.circular(12.r),
+
+                border: Border.all(
+                  color: AppColors.whiteColor.withValues(alpha: 0.2),
+                  width: 1,
+                ),
+              ),
+
               child: Center(
                 child: SvgPicture.asset("assets/images/camera.svg"),
               ),
             ),
-          ),
-          SizedBox(height: 16.h),
-          Text(LocaleKeys.tapToCapture.tr(), style: TextStyleManager.font20Bold),
-          Text(
-            LocaleKeys.captureHint.tr(),
-            style: TextStyleManager.font14Medium.copyWith(
-              color: AppColors.whiteColor,
+            SizedBox(height: 16.h),
+            Text(
+              LocaleKeys.tapToCapture.tr(),
+              style: TextStyleManager.font20Bold,
             ),
-          ),
-        ],
+            Text(
+              LocaleKeys.captureHint.tr(),
+              style: TextStyleManager.font14Medium.copyWith(
+                color: AppColors.whiteColor,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
