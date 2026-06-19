@@ -21,4 +21,10 @@ class AppAssets {
   static const String addButton='$_imagesPath/add button.svg';
   static const String filter='$_imagesPath/filter.svg';
   static const String warning='$_imagesPath/warning.svg';
+  static const String deleteAccount='$_imagesPath/delete account.svg';
+  static const String personalInformation='$_imagesPath/personal information.svg';
+  static const String theme='$_imagesPath/theme.svg';
+  static const String translate='$_imagesPath/translate.svg';
+  static const String dropButton='$_imagesPath/dropButton.svg';
+
 }
