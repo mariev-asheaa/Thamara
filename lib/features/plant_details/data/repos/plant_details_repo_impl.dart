@@ -65,5 +65,17 @@ class PlantDetailsRepoImpl implements PlantDetailsRepo {
       return Left(ServerFailure(error.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> deletePlant({required int id}) async {
+    try {
+      await plantDetailsDataSource.deletePlant(
+      id: id
+      );
+      return const Right(null);
+    } catch (error) {
+      return Left(ServerFailure(error.toString()));
+    }
+  }
 }
 

@@ -16,4 +16,7 @@ abstract class PlantDetailsRepo {
 
   Future<Either<Failure, String>> postScanResult(ScanParams scanParam,int plantId);
   Future<Either<Failure, List<ScanRecord>>> getScanHistory(int plantId);
+  Future<Either<Failure, void>> deletePlant({
+    required int id,
+  });
 }
