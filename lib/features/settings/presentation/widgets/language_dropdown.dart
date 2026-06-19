@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:thamara/core/constants/app_assets.dart';
 import 'package:thamara/features/settings/presentation/widgets/settings_option_item.dart';
 
 import '../../../../core/color_manager/app_colors.dart';
@@ -23,7 +24,7 @@ class LanguageDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     return SettingsOptionItem(
       title: LocaleKeys.languageOption.tr(),
-      iconPath: 'assets/images/translate.svg',
+      iconPath: AppAssets.translate,
       onTap: () {},
       trailing: PopupMenuButton<String>(
         offset: Offset(0, 36.h),
@@ -47,13 +48,13 @@ class LanguageDropdown extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                currentLanguage == 'English' ? 'EN' : 'AR',
+                currentLanguage == 'en' ? 'EN' : 'AR',
                 style: TextStyleManager.font16Medium.copyWith(
                   color: AppColors.primaryColor,
                 ),
               ),
               SvgPicture.asset(
-                'assets/images/dropButton.svg',
+                AppAssets.dropButton,
                 width: 8.w,
                 height: 8.h,
               ),
@@ -63,14 +64,14 @@ class LanguageDropdown extends StatelessWidget {
         itemBuilder: (BuildContext context) {
           return <PopupMenuEntry<String>>[
             PopupMenuItem<String>(
-              value: 'English',
+              value: 'en',
               height: 40.h,
               padding: EdgeInsets.zero,
               child: Container(
                 height: 40.h,
                 width: double.infinity,
                 padding: EdgeInsets.symmetric(vertical: 0.h, horizontal: 8.w),
-                color: currentLanguage == 'English'
+                color: currentLanguage == 'en'
                     ? AppColors.primaryColor.withValues(alpha: 0.20)
                     : AppColors.primaryColor.withValues(alpha: 0.10),
                 child: Center(
@@ -84,7 +85,7 @@ class LanguageDropdown extends StatelessWidget {
               ),
             ),
             PopupMenuItem<String>(
-              value: 'Arabic',
+              value: 'ar',
               height: 40.h,
               padding: EdgeInsets.zero,
 
@@ -92,7 +93,7 @@ class LanguageDropdown extends StatelessWidget {
                 height: 40.h,
                 width: double.infinity,
                 padding: EdgeInsets.symmetric(vertical: 0.h, horizontal: 8.w),
-                color: currentLanguage == 'Arabic'
+                color: currentLanguage == 'ar'
                     ? AppColors.primaryColor.withValues(alpha: 0.20)
                     : AppColors.primaryColor.withValues(alpha: 0.10),
                 child: Center(

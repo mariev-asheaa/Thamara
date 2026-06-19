@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:thamara/core/widgets/common_header_content.dart';
 import 'package:thamara/features/settings/presentation/widgets/settings_options.dart';
 import '../../../../core/color_manager/app_colors.dart';
 import '../../../../core/widgets/custom_header.dart';

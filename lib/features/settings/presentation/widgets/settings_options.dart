@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:thamara/core/constants/app_assets.dart';
 import 'package:thamara/core/extentions/navigation.dart';
 import 'package:thamara/features/settings/presentation/widgets/settings_divider.dart';
 import 'package:thamara/features/settings/presentation/widgets/settings_option_item.dart';
@@ -20,7 +21,13 @@ class SettingsOptions extends StatefulWidget {
 
 class _SettingsOptionsState extends State<SettingsOptions> {
   bool isDarkMode = false;
-  String currentLanguage = 'English';
+  late String currentLanguage;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    currentLanguage = context.locale.languageCode;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +47,7 @@ class _SettingsOptionsState extends State<SettingsOptions> {
         children: [
           SettingsOptionItem(
             title: LocaleKeys.personalInfo.tr(),
-            iconPath: 'assets/images/personal information.svg',
+            iconPath: AppAssets.personalInformation,
             onTap: () {
               context.pushWithNamed(Routes.profileView);
             },
@@ -49,17 +56,23 @@ class _SettingsOptionsState extends State<SettingsOptions> {
 
           LanguageDropdown(
             currentLanguage: currentLanguage,
-            onLanguageChanged: (newValue) {
+            onLanguageChanged: (newValue) async {
               setState(() {
                 currentLanguage = newValue;
               });
+
+              if (newValue == 'en') {
+                await context.setLocale(const Locale('en'));
+              } else {
+                await context.setLocale(const Locale('ar'));
+              }
             },
           ),
           const SettingsDivider(),
 
           SettingsOptionItem(
             title: LocaleKeys.themeOption.tr(),
-            iconPath: 'assets/images/theme.svg',
+            iconPath:AppAssets.theme,
             onTap: () {},
             trailing: SizedBox(
               width: 55.w,
