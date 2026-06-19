@@ -9,10 +9,18 @@ import 'package:thamara/features/settings/presentation/widgets/settings_option_i
 import '../../../../core/color_manager/app_colors.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../generated/locale_keys.g.dart';
-import '../views/personal_information_view.dart';
+import 'language_dropdown.dart';
 
-class SettingsOptions extends StatelessWidget {
+class SettingsOptions extends StatefulWidget {
   const SettingsOptions({super.key});
+
+  @override
+  State<SettingsOptions> createState() => _SettingsOptionsState();
+}
+
+class _SettingsOptionsState extends State<SettingsOptions> {
+  bool isDarkMode = false;
+  String currentLanguage = 'English';
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +29,6 @@ class SettingsOptions extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
       decoration: BoxDecoration(
         color: AppColors.whiteColor,
-
         borderRadius: BorderRadius.circular(16.r),
         border: Border.all(
           color: AppColors.primaryColor.withValues(alpha: 0.25),
@@ -38,21 +45,38 @@ class SettingsOptions extends StatelessWidget {
               context.pushWithNamed(Routes.profileView);
             },
           ),
-          SettingsDivider(),
-          SettingsOptionItem(
-            title: LocaleKeys.languageOption.tr(),
-            iconPath: 'assets/images/translate.svg',
-            subtitle: LocaleKeys.clickToChange.tr(),
-            onTap: () {
-              //
+          const SettingsDivider(),
+
+          LanguageDropdown(
+            currentLanguage: currentLanguage,
+            onLanguageChanged: (newValue) {
+              setState(() {
+                currentLanguage = newValue;
+              });
             },
           ),
-          SettingsDivider(),
+          const SettingsDivider(),
+
           SettingsOptionItem(
             title: LocaleKeys.themeOption.tr(),
-            subtitle: "(Light Mode)",
             iconPath: 'assets/images/theme.svg',
             onTap: () {},
+            trailing: SizedBox(
+              width: 55.w,
+              height: 30.h,
+              child: FittedBox(
+                fit: BoxFit.fill,
+                child: CupertinoSwitch(
+                  value: isDarkMode,
+                  activeTrackColor: AppColors.primaryColor,
+                  onChanged: (value) {
+                    setState(() {
+                      isDarkMode = value;
+                    });
+                  },
+                ),
+              ),
+            ),
           ),
         ],
       ),

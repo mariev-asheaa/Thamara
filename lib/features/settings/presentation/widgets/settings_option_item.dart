@@ -9,6 +9,7 @@ class SettingsOptionItem extends StatelessWidget {
   final String? subtitle;
   final String iconPath;
   final VoidCallback onTap;
+  final Widget? trailing;
 
   const SettingsOptionItem({
     super.key,
@@ -16,44 +17,50 @@ class SettingsOptionItem extends StatelessWidget {
     this.subtitle,
     required this.iconPath,
     required this.onTap,
+    this.trailing,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: onTap,
-      child: Row(
-        children: [
-          Container(
-            width: 30.w,
-            height: 30.h,
-            decoration: BoxDecoration(
-              color: AppColors.secondaryColor.withValues(alpha: 0.2),
-              borderRadius: BorderRadius.circular(8.r),
-            ),
-            child: Center(
-              child: SvgPicture.asset(iconPath, width: 18.w, height: 18.h),
-            ),
-          ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 8.h),
 
-          SizedBox(width: 8.w),
-
-          Text(
-            title,
-            style: TextStyleManager.font16Medium.copyWith(
-              color: AppColors.mainBlack,
+        child: Row(
+          children: [
+            Container(
+              width: 30.w,
+              height: 30.h,
+              decoration: BoxDecoration(
+                color: AppColors.secondaryColor.withValues(alpha: 0.2),
+                borderRadius: BorderRadius.circular(8.r),
+              ),
+              child: Center(
+                child: SvgPicture.asset(iconPath, width: 18.w, height: 18.h),
+              ),
             ),
-          ),
 
-          if (subtitle != null) ...[
-            SizedBox(width: 4.w),
-            Text(subtitle!, style: TextStyleManager.font12Medium),
+            SizedBox(width: 8.w),
+
+            Text(
+              title,
+              style: TextStyleManager.font16Medium.copyWith(
+                color: AppColors.mainBlack,
+              ),
+            ),
+
+            if (subtitle != null) ...[
+              SizedBox(width: 4.w),
+              Text(subtitle!, style: TextStyleManager.font12Medium),
+            ],
+
+            const Spacer(),
+
+            trailing ?? SvgPicture.asset("assets/images/arrow.svg"),
           ],
-
-          const Spacer(),
-
-          SvgPicture.asset("assets/images/arrow.svg"),
-        ],
+        ),
       ),
     );
   }
