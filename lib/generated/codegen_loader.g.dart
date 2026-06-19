@@ -157,7 +157,12 @@ class CodegenLoader extends AssetLoader{
   "welcome_title": "أهلاً بك في مساعد النبات الذكي",
   "welcome_desc": "مساعدك الشخصي لمعرفة كل ما يخص النباتات! اسألني عن أي شيء، أو ارفع صوراً لتحديد نوع النبات، أو احصل على نصائح للعناية.",
   "languageEnglish": "الإنجليزية",
-  "languageArabic": "العربية"
+  "languageArabic": "العربية",
+  "deletePlant": "حذف النبات",
+  "deletePlantTitle": "حذف النبات؟",
+  "deletePlantSubtitle": "هل أنت متأكد من أنك تريد حذف هذا النبات؟ هذا الإجراء نهائي ولا يمكن التراجع عنه.",
+  "keepPlantBtn": "الاحتفاظ بالنبات",
+  "plantDeletedSuccessfully": "تم حذف النبات بنجاح."
 };
 static const Map<String,dynamic> _en = {
   "enterFullOTP": "Please enter the full OTP code",
@@ -302,7 +307,12 @@ static const Map<String,dynamic> _en = {
   "welcome_title": "Welcome to Plant Expert AI",
   "welcome_desc": "Your personal plant knowledge assistant! Ask me anything about plants, upload photos for identification, or get care advice.",
   "languageEnglish": "English",
-  "languageArabic": "Arabic"
+  "languageArabic": "Arabic",
+  "deletePlant": "Delete Plant",
+  "deletePlantTitle": "Delete your Plant?",
+  "deletePlantSubtitle": "Are you sure you want to delete this plant? This action is permanent and cannot be undone.",
+  "keepPlantBtn": "Keep Plant",
+  "plantDeletedSuccessfully": "Plant deleted successfully."
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }

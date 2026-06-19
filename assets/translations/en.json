@@ -141,5 +141,10 @@
   "welcome_title": "Welcome to Plant Expert AI",
   "welcome_desc": "Your personal plant knowledge assistant! Ask me anything about plants, upload photos for identification, or get care advice.",
   "languageEnglish": "English",
-  "languageArabic": "Arabic"
+  "languageArabic": "Arabic",
+  "deletePlant": "Delete Plant",
+  "deletePlantTitle": "Delete your Plant?",
+  "deletePlantSubtitle": "Are you sure you want to delete this plant? This action is permanent and cannot be undone.",
+  "keepPlantBtn": "Keep Plant",
+  "plantDeletedSuccessfully": "Plant deleted successfully."
 }

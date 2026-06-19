@@ -146,5 +146,10 @@ abstract class  LocaleKeys {
   static const welcome_desc = 'welcome_desc';
   static const languageEnglish = 'languageEnglish';
   static const languageArabic = 'languageArabic';
+  static const deletePlant = 'deletePlant';
+  static const deletePlantTitle = 'deletePlantTitle';
+  static const deletePlantSubtitle = 'deletePlantSubtitle';
+  static const keepPlantBtn = 'keepPlantBtn';
+  static const plantDeletedSuccessfully = 'plantDeletedSuccessfully';
 
 }
