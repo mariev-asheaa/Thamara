@@ -144,5 +144,7 @@ abstract class  LocaleKeys {
   static const suggestion_3 = 'suggestion_3';
   static const welcome_title = 'welcome_title';
   static const welcome_desc = 'welcome_desc';
+  static const languageEnglish = 'languageEnglish';
+  static const languageArabic = 'languageArabic';
 
 }

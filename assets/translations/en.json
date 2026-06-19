@@ -139,5 +139,7 @@
   "suggestion_2": "How many times should I water my plant?",
   "suggestion_3": "How much sunlight does my plant need?",
   "welcome_title": "Welcome to Plant Expert AI",
-  "welcome_desc": "Your personal plant knowledge assistant! Ask me anything about plants, upload photos for identification, or get care advice."
+  "welcome_desc": "Your personal plant knowledge assistant! Ask me anything about plants, upload photos for identification, or get care advice.",
+  "languageEnglish": "English",
+  "languageArabic": "Arabic"
 }

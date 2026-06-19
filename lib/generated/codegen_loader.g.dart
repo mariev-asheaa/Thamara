@@ -155,7 +155,9 @@ class CodegenLoader extends AssetLoader{
   "suggestion_2": "كم مرة يجب أن أسقي نباتي؟",
   "suggestion_3": "ما مقدار ضوء الشمس الذي يحتاجه نباتي؟",
   "welcome_title": "أهلاً بك في مساعد النبات الذكي",
-  "welcome_desc": "مساعدك الشخصي لمعرفة كل ما يخص النباتات! اسألني عن أي شيء، أو ارفع صوراً لتحديد نوع النبات، أو احصل على نصائح للعناية."
+  "welcome_desc": "مساعدك الشخصي لمعرفة كل ما يخص النباتات! اسألني عن أي شيء، أو ارفع صوراً لتحديد نوع النبات، أو احصل على نصائح للعناية.",
+  "languageEnglish": "الإنجليزية",
+  "languageArabic": "العربية"
 };
 static const Map<String,dynamic> _en = {
   "enterFullOTP": "Please enter the full OTP code",
@@ -298,7 +300,9 @@ static const Map<String,dynamic> _en = {
   "suggestion_2": "How many times should I water my plant?",
   "suggestion_3": "How much sunlight does my plant need?",
   "welcome_title": "Welcome to Plant Expert AI",
-  "welcome_desc": "Your personal plant knowledge assistant! Ask me anything about plants, upload photos for identification, or get care advice."
+  "welcome_desc": "Your personal plant knowledge assistant! Ask me anything about plants, upload photos for identification, or get care advice.",
+  "languageEnglish": "English",
+  "languageArabic": "Arabic"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }
