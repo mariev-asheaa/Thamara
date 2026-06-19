@@ -73,4 +73,12 @@ final class GetScanHistoryFailure extends PlantDetailsState {
 
   GetScanHistoryFailure({required this.errorMessage});
 }
+// ── Delete Plant──────────────────────────────────────────────────────────
+final class DeletePlantLoading extends PlantDetailsState {}
 
+final class DeletePlantSuccess extends PlantDetailsState {}
+
+final class DeletePlantFailure extends PlantDetailsState {
+  final String errorMessage;
+  DeletePlantFailure({required this.errorMessage});
+}

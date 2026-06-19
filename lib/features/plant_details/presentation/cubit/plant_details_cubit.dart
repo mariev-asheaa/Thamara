@@ -1,11 +1,16 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:thamara/generated/locale_keys.g.dart';
 
+import '../../../../core/extentions/navigation.dart';
+import '../../../../core/extentions/show_toast.dart';
 import '../../data/arguments/ai_comparison_arguments.dart';
 import '../../data/models/plants_model.dart';
 import '../../data/models/scan_record_model.dart';
@@ -134,6 +139,26 @@ class PlantDetailsCubit extends Cubit<PlantDetailsState> {
     if (history.isEmpty) return null;
     return history.reduce((a, b) =>
     DateTime.parse(a.date).isAfter(DateTime.parse(b.date)) ? a : b);
+  }
+
+  void deletePlant(BuildContext context,{required int id}) async {
+    if (state is DeletePlantLoading) return;
+    emit(DeletePlantLoading());
+    final result = await plantDetailsRepo.deletePlant(
+    id: id
+    );
+    result.fold(
+          (failure) {
+        context.pop();
+        context.showToast(failure.errMessage, isError: true);
+        emit(DeletePlantFailure(errorMessage: failure.errMessage));
+      },
+          (message) {
+            context.pop();
+            context.showToast(LocaleKeys.plantDeletedSuccessfully.tr());
+            emit(DeletePlantSuccess());
+      },
+    );
   }
 }
 
