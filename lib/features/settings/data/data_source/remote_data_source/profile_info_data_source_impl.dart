@@ -43,10 +43,17 @@ class ProfileInfoDataSourceImpl implements ProfileInfoDataSource{
     BaseResponse response = await apiConsumer.patch(
       ApiConstants.profileInfo,
       body: {
-        if (param.firstName != null) 'first_name': param.firstName,
-        if (param.secondName != null) 'last_name': param.secondName,
-        if (param.email != null) 'email': param.email,
-        if (param.phone != null) 'phone_number': param.phone,
+        if (param.firstName?.trim().isNotEmpty == true)
+          'first_name': param.firstName,
+
+        if (param.secondName?.trim().isNotEmpty == true)
+          'last_name': param.secondName,
+
+        if (param.email?.trim().isNotEmpty == true)
+          'email': param.email,
+
+        if (param.phone?.trim().isNotEmpty == true)
+          'phone_number': param.phone,
       },
     );
     if (response.status == ApiStatusCodes.ok ||
