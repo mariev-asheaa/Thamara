@@ -137,4 +137,17 @@ class PlantDetailsDataSourceImpl implements PlantDetailsDataSource {
       throw ServerException('There was an error try again');
     }
   }
+
+  @override
+  Future<void> deletePlant({required int id}) async{
+    BaseResponse response = await apiConsumer.delete(
+        '${ApiConstants.plantDetails}$id'
+    );
+    if (response.status == ApiStatusCodes.ok ||
+        response.status == ApiStatusCodes.created) {
+      return;
+    } else {
+      throw ServerException(response.message.toString());
+    }
+  }
 }

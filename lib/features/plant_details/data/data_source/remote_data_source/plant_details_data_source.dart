@@ -14,4 +14,7 @@ abstract class PlantDetailsDataSource {
 
   Future<String> postScanResult(ScanParams scanParam,int plantId);
   Future<List<ScanRecord>> getScanHistory(int plantId);
+  Future<void> deletePlant({
+    required int id,
+  });
 }
