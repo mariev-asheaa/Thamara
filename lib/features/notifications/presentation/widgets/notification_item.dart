@@ -9,7 +9,7 @@ import '../../../../core/text_style_manager/text_style_manager.dart';
 
 class NotificationItem extends StatelessWidget {
   final bool isUnread;
-final NotificationModel notificationModel;
+  final NotificationModel notificationModel;
   const NotificationItem({
     super.key,
     required this.isUnread,
@@ -38,7 +38,7 @@ final NotificationModel notificationModel;
               border: Border.all(color: AppColors.primaryColor),
             ),
             child: SvgPicture.asset(
-             AppAssets.notificationIcon,
+              AppAssets.notificationIcon,
               width: 22.w,
               height: 22.h,
             ),
@@ -66,37 +66,54 @@ final NotificationModel notificationModel;
                           shape: BoxShape.circle,
                         ),
                       ),
+                    SizedBox(width: 8.w),
+                    GestureDetector(
+                      onTap: () {},
+                      child: SvgPicture.asset(
+                        'assets/images/delete  notification.svg',
+                        width: 16.w,
+                        height: 16.w,
+                      ),
+                    ),
                   ],
                 ),
 
                 SizedBox(height: 4.h),
-
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          WeatherIcon(assetPath: 'assets/images/thermometer-warm.svg', label: "22°C",),
-                          SizedBox(width: 14.w),
-                          WeatherIcon(assetPath: 'assets/images/humidity.svg',label:  "55%"),
-                          SizedBox(width: 14.w),
-                          WeatherIcon(assetPath: 'assets/images/fast-wind.svg',label:  "12 Km/h"),
-                        ],
-                      ),
-                      SizedBox(height: 8.h),
-                      Text(
-                       notificationModel.body,
-                        style: TextStyleManager.font12Medium.copyWith(
-                          color: AppColors.neutralGrey500,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        WeatherIcon(
+                          assetPath: 'assets/images/thermometer-warm.svg',
+                          label: "22°C",
                         ),
+                        SizedBox(width: 14.w),
+                        WeatherIcon(
+                          assetPath: 'assets/images/humidity.svg',
+                          label: "55%",
+                        ),
+                        SizedBox(width: 14.w),
+                        WeatherIcon(
+                          assetPath: 'assets/images/fast-wind.svg',
+                          label: "12 Km/h",
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 8.h),
+                    Text(
+                      notificationModel.body,
+                      style: TextStyleManager.font12Medium.copyWith(
+                        color: AppColors.neutralGrey500,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
+                ),
                 SizedBox(height: 8.h),
                 Row(
                   children: [
                     SvgPicture.asset(
-                     AppAssets.clock,
+                      AppAssets.clock,
                       width: 14.w,
                       height: 14.h,
                       colorFilter: ColorFilter.mode(
@@ -107,7 +124,7 @@ final NotificationModel notificationModel;
 
                     SizedBox(width: 3.w),
                     Text(
-                     notificationModel.date,
+                      notificationModel.date,
                       style: TextStyleManager.font10Regular.copyWith(
                         color: AppColors.greyColor,
                       ),
