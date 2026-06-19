@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:thamara/core/color_manager/app_colors.dart';
+import 'package:thamara/core/constants/app_assets.dart';
 import 'package:thamara/core/text_style_manager/text_style_manager.dart';
 
 import '../../../../core/extentions/navigation.dart';
@@ -11,11 +12,12 @@ import '../../../../core/widgets/custome_button.dart';
 import '../../../../generated/locale_keys.g.dart';
 
 class CustomAccountDialog extends StatelessWidget {
-  const CustomAccountDialog({super.key, required this.title, required this.description, required this.onConfirm, required this.confirmActionButtonText});
+  const CustomAccountDialog({super.key, required this.title, required this.description, required this.onConfirm, required this.confirmActionButtonText, this.discard});
   final String title;
   final String description;
   final String confirmActionButtonText;
   final VoidCallback onConfirm;
+  final String? discard;
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -29,7 +31,7 @@ class CustomAccountDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             SvgPicture.asset(
-              'assets/images/delete account.svg',
+              AppAssets.deleteAccount,
               width: 56.r,
               height: 56.r,
             ),
@@ -56,7 +58,7 @@ class CustomAccountDialog extends StatelessWidget {
                 Expanded(
                   child: CustomButton(
                     textColor: AppColors.neutralGrey600,
-                    text: LocaleKeys.keepAccountBtn.tr(),
+                    text:discard?? LocaleKeys.keepAccountBtn.tr(),
                     isPrimary: false,
                     borderColor: AppColors.neutralGrey600,
                     onPressed: () => context.pop(),
