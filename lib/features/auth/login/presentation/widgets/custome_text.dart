@@ -17,7 +17,7 @@ class CustomText extends StatelessWidget {
     return Text(
       text,
       style: TextStyleManager.font14Bold.copyWith(
-        color: isColored ? AppColors.primaryColor : AppColors.mainBlack,
+        color: isColored ? AppColors.primaryColor : Theme.of(context).colorScheme.onSurface,
       ),
     );
   }

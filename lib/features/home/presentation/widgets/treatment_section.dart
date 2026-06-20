@@ -48,7 +48,9 @@ class TreatmentSection extends StatelessWidget {
               SizedBox(height: 10.h),
               Text(
                 treatmentTitle,
-                style: TextStyleManager.font14Bold,
+                style: TextStyleManager.font14Bold.copyWith(
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
               ),
               if (treatmentUsage.isNotEmpty)
                 Padding(
