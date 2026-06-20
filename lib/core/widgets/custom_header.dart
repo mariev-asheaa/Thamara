@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:thamara/core/color_manager/app_colors.dart';
+import 'package:thamara/core/constants/app_assets.dart';
 import 'package:thamara/core/text_style_manager/text_style_manager.dart';
 
 import '../extentions/navigation.dart';
@@ -25,7 +26,7 @@ class CustomHeader extends StatelessWidget {
               border: Border.all(color: AppColors.primaryColor),
             ),
             child: SvgPicture.asset(
-              'assets/images/back arrow.svg',
+             AppAssets.backArrow,
               width: 10.w,
               height: 14.h,
             ),
@@ -36,7 +37,9 @@ SizedBox(width: 12.w),
         if (title != null)
         Text(
           title!,
-          style: TextStyleManager.font22SemiBold
+          style: TextStyleManager.font22SemiBold.copyWith(
+            color: Theme.of(context).colorScheme.onSurface,
+          )
         ),
 
       ],

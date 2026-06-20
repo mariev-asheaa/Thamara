@@ -44,7 +44,9 @@ class CustomEmptyWidget extends StatelessWidget {
         Text(
           title,
           textAlign: TextAlign.center,
-          style: TextStyleManager.font16SemiBold,
+          style: TextStyleManager.font16SemiBold.copyWith(
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
         ),
 
         SizedBox(height: 6.h),
@@ -52,7 +54,9 @@ class CustomEmptyWidget extends StatelessWidget {
         Text(
           subTitle,
           textAlign: TextAlign.center,
-          style: TextStyleManager.font16Medium,
+          style: TextStyleManager.font16Medium.copyWith(
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
         ),
 
         SizedBox(height: 32.h),
