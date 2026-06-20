@@ -20,6 +20,7 @@ import 'package:thamara/core/api/api_consumer.dart' as _i920;
 import 'package:thamara/core/api/dio_consumer.dart' as _i40;
 import 'package:thamara/core/api/dio_log_interceptor.dart' as _i707;
 import 'package:thamara/core/api/network_info.dart' as _i819;
+import 'package:thamara/core/color_manager/theme_controller.dart' as _i838;
 import 'package:thamara/core/dependency_injection/di_api_consumer_polymorphism.dart'
     as _i248;
 import 'package:thamara/core/dependency_injection/di_module.dart' as _i351;
@@ -206,6 +207,9 @@ extension GetItInjectableX on _i174.GetIt {
         cachedSecure: gh<_i173.CachedSecure>(),
         appPref: gh<_i757.SharedPrefServices>(),
       ),
+    );
+    gh.lazySingleton<_i838.ThemeController>(
+      () => _i838.ThemeController(gh<_i757.SharedPrefServices>()),
     );
     gh.factory<_i509.RegisterLocalDataSource>(
       () => _i326.RegisterLocalDataSourceImpl(
