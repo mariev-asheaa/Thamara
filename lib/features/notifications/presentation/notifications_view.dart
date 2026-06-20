@@ -6,7 +6,6 @@ import 'package:thamara/core/color_manager/app_colors.dart';
 import 'package:thamara/features/notifications/presentation/cubit/notifications_cubit.dart';
 import 'package:thamara/features/notifications/presentation/widgets/notification_item.dart';
 import 'package:thamara/features/notifications/presentation/widgets/notifications_header.dart';
-import '../../../core/widgets/custom_error.dart';
 import '../../../core/widgets/empty_widget.dart';
 import '../../../generated/locale_keys.g.dart';
 
@@ -22,7 +21,6 @@ class _NotificationsViewState extends State<NotificationsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
         bottom: false,
         child: Padding(

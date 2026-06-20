@@ -27,7 +27,6 @@ class _PersonalInformationViewState extends State<PersonalInformationView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(

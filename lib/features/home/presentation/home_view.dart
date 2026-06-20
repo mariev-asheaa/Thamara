@@ -83,7 +83,6 @@ class _HomeViewState extends State<HomeView> {
         }
       },
       child: Scaffold(
-        backgroundColor: AppColors.backgroundColor,
         body: SafeArea(
           bottom: false,
           child: SingleChildScrollView(

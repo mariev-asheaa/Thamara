@@ -66,7 +66,6 @@ class _ChatBotViewState extends State<ChatBotView> {
         _ => null,
       },
       child: Scaffold(
-        backgroundColor: AppColors.backgroundColor,
         resizeToAvoidBottomInset: true,
         body: SafeArea(
           bottom: true,

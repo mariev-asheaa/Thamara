@@ -60,7 +60,6 @@ class _PlantDetailsViewState extends State<PlantDetailsView> {
         builder: (context, state) {
           if (state is PlantDetailsFailure) {
             return Scaffold(
-              backgroundColor: AppColors.backgroundColor,
               body: Center(
                 child: CustomError(
                   error: state.errorMessage,
@@ -73,7 +72,6 @@ class _PlantDetailsViewState extends State<PlantDetailsView> {
           }
           if (_plant == null) {
             return Scaffold(
-              backgroundColor: AppColors.backgroundColor,
               body: Center(
                 child: CircularProgressIndicator(
                   color: AppColors.primaryColor,
@@ -87,7 +85,6 @@ class _PlantDetailsViewState extends State<PlantDetailsView> {
             final history = _scanRecords ?? plant.scanHistory ?? [];
             final latestScan = _getLatestScan(history);
             return Scaffold(
-              backgroundColor: AppColors.backgroundColor,
               bottomNavigationBar: PlantDetailsBottomBar(plantsModel: plant),
               body: PlantDetailsBody(plant: plant, history: history,latestScan: latestScan, id: widget.plantId,)
             );

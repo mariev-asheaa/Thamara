@@ -28,7 +28,6 @@ class _AllPlantsViewState extends State<AllPlantsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
         bottom: false,
         child: SingleChildScrollView(
