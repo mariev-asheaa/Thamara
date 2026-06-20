@@ -10,4 +10,5 @@ class AppCached {
   static const String image = "image";
   static const String phone = "phone";
   static const String isRegister = "isRegister";
+  static const String isDarkMode = 'isDarkMode';
 }

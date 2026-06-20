@@ -26,5 +26,6 @@ class AppAssets {
   static const String theme='$_imagesPath/theme.svg';
   static const String translate='$_imagesPath/translate.svg';
   static const String dropButton='$_imagesPath/dropButton.svg';
-
+  static const String thamara='$_imagesPath/thamara.svg';
+  static const String backArrow='$_imagesPath/back arrow.svg';
 }
