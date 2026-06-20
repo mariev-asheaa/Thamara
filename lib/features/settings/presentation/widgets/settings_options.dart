@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:thamara/core/constants/app_assets.dart';
 import 'package:thamara/core/extentions/navigation.dart';
@@ -8,6 +7,8 @@ import 'package:thamara/features/settings/presentation/widgets/settings_divider.
 import 'package:thamara/features/settings/presentation/widgets/settings_option_item.dart';
 
 import '../../../../core/color_manager/app_colors.dart';
+import '../../../../core/color_manager/theme_controller.dart';
+import '../../../../core/dependency_injection/di.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../generated/locale_keys.g.dart';
 import 'language_dropdown.dart';
@@ -80,12 +81,13 @@ class _SettingsOptionsState extends State<SettingsOptions> {
               child: FittedBox(
                 fit: BoxFit.fill,
                 child: CupertinoSwitch(
-                  value: isDarkMode,
+                  value: getIt<ThemeController>().isDark,
                   activeTrackColor: AppColors.primaryColor,
-                  onChanged: (value) {
+                  onChanged: (value) async{
                     setState(() {
                       isDarkMode = value;
                     });
+                    await getIt<ThemeController>().toggle(value);
                   },
                 ),
               ),
