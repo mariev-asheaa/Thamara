@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'app/thamara_app.dart';
+import 'core/color_manager/theme_controller.dart';
 import 'core/dependency_injection/di.dart';
 import 'firebase_options.dart';
 
@@ -25,6 +26,7 @@ Future<void> main()async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await getIt<ThemeController>().init();
   runApp(
     DevicePreview(
       enabled:false,
